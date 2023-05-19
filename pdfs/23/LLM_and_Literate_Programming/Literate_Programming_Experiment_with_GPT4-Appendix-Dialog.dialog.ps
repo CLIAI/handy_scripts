@@ -1,0 +1,5752 @@
+%!PS-Adobe-3.0
+%%Title: Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md
+%%For: gw
+%%Creator: VIM - Vi IMproved 9.0 (2022 Jun 28)
+%%CreationDate: Sat May 20 11:07:07 2023
+%%DocumentData: Clean8Bit
+%%Orientation: Portrait
+%%Pages: (atend)
+%%PageOrder: Ascend
+%%BoundingBox: 59 49 516 800
+%%DocumentMedia: A4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-Oblique
+%%+ font Courier-BoldOblique
+%%DocumentSuppliedResources: procset VIM-Prolog 1.4 1
+%%+ encoding VIM-latin1 1.0 0
+%%Requirements: duplex collate color
+%%EndComments
+%%BeginDefaults
+%%PageResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-Oblique
+%%+ font Courier-BoldOblique
+%%PageMedia: A4
+%%EndDefaults
+%%BeginProlog
+%%BeginResource: procset VIM-Prolog
+%%BeginDocument: /usr/share/vim/vim90/print/prolog.ps
+%!PS-Adobe-3.0 Resource-ProcSet
+%%Title: VIM-Prolog
+%%Version: 1.4 1
+%%EndComments
+% Editing of this file is NOT RECOMMENDED.  You run a very good risk of causing
+% all PostScript printing from VIM failing if you do.  PostScript is not called
+% a write-only language for nothing!
+/packedarray where not{userdict begin/setpacking/pop load def/currentpacking
+false def end}{pop}ifelse/CP currentpacking def true setpacking
+/bd{bind def}bind def/ld{load def}bd/ed{exch def}bd/d/def ld
+/db{dict begin}bd/cde{currentdict end}bd
+/T true d/F false d
+/SO null d/sv{/SO save d}bd/re{SO restore}bd
+/L2 systemdict/languagelevel 2 copy known{get exec}{pop pop 1}ifelse 2 ge d
+/m/moveto ld/s/show ld /ms{m s}bd /g/setgray ld/r/setrgbcolor ld/sp{showpage}bd
+/gs/gsave ld/gr/grestore ld/cp/currentpoint ld
+/ul{gs UW setlinewidth cp UO add 2 copy newpath m 3 1 roll add exch lineto
+stroke gr}bd
+/bg{gs r cp BO add 4 -2 roll rectfill gr}bd
+/sl{90 rotate 0 exch translate}bd
+L2{
+/sspd{mark exch{setpagedevice}stopped cleartomark}bd
+/nc{1 db/NumCopies ed cde sspd}bd
+/sps{3 db/Orientation ed[3 1 roll]/PageSize ed/ImagingBBox null d cde sspd}bd
+/dt{2 db/Tumble ed/Duplex ed cde sspd}bd
+/c{1 db/Collate ed cde sspd}bd
+}{
+/nc{/#copies ed}bd
+/sps{statusdict/setpage get exec}bd
+/dt{statusdict/settumble 2 copy known{get exec}{pop pop pop}ifelse
+statusdict/setduplexmode 2 copy known{get exec}{pop pop pop}ifelse}bd
+/c{pop}bd
+}ifelse
+/ffs{findfont exch scalefont d}bd/sf{setfont}bd
+/ref{1 db findfont dup maxlength dict/NFD ed{exch dup/FID ne{exch NFD 3 1 roll
+put}{pop pop}ifelse}forall/Encoding findresource dup length 256 eq{NFD/Encoding
+3 -1 roll put}{pop}ifelse NFD dup/FontType get 3 ne{/CharStrings}{/CharProcs}
+ifelse 2 copy known{2 copy get dup maxlength dict copy[/questiondown/space]{2
+copy known{2 copy get 2 index/.notdef 3 -1 roll put pop exit}if pop}forall put
+}{pop pop}ifelse dup NFD/FontName 3 -1 roll put NFD definefont pop end}bd
+CP setpacking
+(\004)cvn{}bd
+% vim:ff=unix:
+%%EOF
+%%EndDocument
+%%EndResource
+%%BeginResource: encoding VIM-latin1
+%%BeginDocument: /usr/share/vim/vim90/print/latin1.ps
+%!PS-Adobe-3.0 Resource-Encoding
+%%Title: VIM-latin1
+%%Version: 1.0 0
+%%EndComments
+/VIM-latin1[
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quotesingle
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash
+/zero /one /two /three /four /five /six /seven
+/eight /nine /colon /semicolon /less /equal /greater /question
+/at /A /B /C /D /E /F /G
+/H /I /J /K /L /M /N /O
+/P /Q /R /S /T /U /V /W
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+/grave /a /b /c /d /e /f /g
+/h /i /j /k /l /m /n /o
+/p /q /r /s /t /u /v /w
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /periodcentered
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis]
+/Encoding defineresource pop
+% vim:ff=unix:
+%%EOF
+%%EndDocument
+%%EndResource
+%%EndProlog
+%%BeginSetup
+595 842 0 sps
+1 nc
+T F dt
+T c
+%%IncludeResource: font Courier
+/_F0 /VIM-latin1 /Courier ref
+/F0 10 /_F0 ffs
+%%IncludeResource: font Courier-Bold
+/_F1 /VIM-latin1 /Courier-Bold ref
+/F1 10 /_F1 ffs
+%%IncludeResource: font Courier-Oblique
+/_F2 /VIM-latin1 /Courier-Oblique ref
+/F2 10 /_F2 ffs
+%%IncludeResource: font Courier-BoldOblique
+/_F3 /VIM-latin1 /Courier-BoldOblique ref
+/F3 10 /_F3 ffs
+/UO -1 d
+/UW 0.5 d
+/BO -2.5 d
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 1)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(     1)59.5 772.4 ms
+0.753 0 0.753 r
+(---)107.5 772.4 ms
+0 0.502 0 r
+(     2)59.5 762.4 ms
+0.502 0.502 0 r
+(title)107.5 762.4 ms
+0.753 0 0.753 r
+(:)s
+0 g
+( Appendix - Dialog with GPT4 with Literature Programming Elements)s
+0 0.502 0 r
+(     3)59.5 752.4 ms
+0.502 0.502 0 r
+(author)107.5 752.4 ms
+0.753 0 0.753 r
+(:)s
+0 0.502 0 r
+(     4)59.5 742.4 ms
+(- )107.5 742.4 ms
+0 g
+(Grzegorz Wierzowiecki)s
+0 0.502 0 r
+(     5)59.5 732.4 ms
+(- )107.5 732.4 ms
+0 g
+(OpenAI GPT-4)s
+0 0.502 0 r
+(     6)59.5 722.4 ms
+0.502 0.502 0 r
+(date)107.5 722.4 ms
+0.753 0 0.753 r
+(:)s
+0 g
+( 2019-05-19)s
+0 0.502 0 r
+(     7)59.5 712.4 ms
+0.753 0 0.753 r
+(---)107.5 712.4 ms
+0 0.502 0 r
+(     8)59.5 702.4 ms
+(     9)59.5 692.4 ms
+(    10)59.5 682.4 ms
+0.753 0 0.753 r
+(-----)107.5 682.4 ms
+0 0.502 0 r
+(    11)59.5 672.4 ms
+0 g
+(User:)107.5 672.4 ms
+0 0.502 0 r
+(    12)59.5 662.4 ms
+(    13)59.5 652.4 ms
+0 g
+(Act as Arch Linux scripting expert. I want script that generates transcripts)107.5 652.4 ms
+( with openai whisper. Please make script that )107.5 642.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( if environment variable for)s
+( openai token is not defined , then informs user about it )107.5 632.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( checks if flag )s
+(specifies output file e.g. with )107.5 622.4 ms
+0.753 0 0.753 r
+(\\`)s
+0 g
+(-o outputfile' or standard output '-stdout)s
+('/'-so' \(otherwise displays help message\) \(i.e. if specified both ,then it b)107.5 612.4 ms
+(oth, saves to file and outputs to standard output\) )107.5 602.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( if no parameters provi)s
+(ded or "-h" o "--help" provides help message )107.5 592.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( detects file format of input)s
+( file \(and if not accepted by whisper, like e.g. ogg/oga or video formats, t)107.5 582.4 ms
+(hen converts into format accepted by whisper\) )107.5 572.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( makes a request to openai w)s
+(hisper service )107.5 562.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( if whisper returns information of used resources for billi)s
+(ng, it : )107.5 552.4 ms
+0.753 0 0.753 r
+(\\*)s
+0 g
+( displays those into stderr )s
+0.753 0 0.753 r
+(\\*)s
+0 g
+( addpends to billing log file \(defa)s
+(ult specified by environment varliable OPENAI)107.5 542.4 ms
+0.753 0 0.753 r
+(\\_)s
+0 g
+(WHISPER)s
+0.753 0 0.753 r
+(\\_)s
+0 g
+(BILLING)s
+0.753 0 0.753 r
+(\\_)s
+0 g
+(LOG , if no)s
+(t define then default )107.5 532.4 ms
+0.753 0 0.753 r
+(\\`)s
+0 g
+("${HOME}/.openai)s
+0.753 0 0.753 r
+(\\_)s
+0 g
+(whipser)s
+0.753 0 0.753 r
+(\\_)s
+0 g
+(billing.log)s
+0.753 0 0.753 r
+(\\`)s
+0 g
+( \) Is anythi)s
+(ng clear? Please ask me any questions that will help you to perform task wel)107.5 522.4 ms
+(l. If you start writing code, please write your thoughts in comments as you )107.5 512.4 ms
+(are implementing it.)107.5 502.4 ms
+0 0.502 0 r
+(    14)59.5 492.4 ms
+(    15)59.5 482.4 ms
+(    16)59.5 472.4 ms
+0.753 0 0.753 r
+(-----)107.5 472.4 ms
+0 0.502 0 r
+(    17)59.5 462.4 ms
+0 g
+(System:)107.5 462.4 ms
+0 0.502 0 r
+(    18)59.5 452.4 ms
+(    19)59.5 442.4 ms
+0 g
+(Understood. Before we start writing the script, let me clarify a few things:)107.5 442.4 ms
+0 0.502 0 r
+(    20)59.5 432.4 ms
+(    21)59.5 422.4 ms
+(1.)107.5 422.4 ms
+0 g
+( )s
+F1 sf
+(**Input File Format**)s
+F0 sf
+(: Whisper API currently supports WAV and FLAC files.)s
+( You mentioned detecting the format of input files. Are we assuming the inpu)107.5 412.4 ms
+(t files could be in any audio format or only certain types \(like wav, flac, )107.5 402.4 ms
+(ogg, oga, mp4 etc.\)?)107.5 392.4 ms
+0 0.502 0 r
+(    22)59.5 382.4 ms
+(2.)107.5 382.4 ms
+0 g
+( )s
+F1 sf
+(**File Conversion**)s
+F0 sf
+(: For file conversion, I am assuming that )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is )s
+(installed on the system. Is that correct?)107.5 372.4 ms
+0 0.502 0 r
+(    23)59.5 362.4 ms
+(3.)107.5 362.4 ms
+0 g
+( )s
+F1 sf
+(**Whisper API Request**)s
+F0 sf
+(: Making a request to the Whisper ASR API involves)s
+( sending a POST request with the audio data. The request can be made using )107.5 352.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(curl)107.5 342.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(, )s
+0.753 0 0.753 r
+(`)s
+0 g
+(wget)s
+0.753 0 0.753 r
+(`)s
+0 g
+( or any http client in bash. Any preference for this?)s
+0 0.502 0 r
+(    24)59.5 332.4 ms
+(4.)107.5 332.4 ms
+0 g
+( )s
+F1 sf
+(**Billing Information**)s
+F0 sf
+(: The billing information might not be directly av)s
+(ailable in the API response. It might need to be fetched from a different en)107.5 322.4 ms
+(dpoint or it might be provided in the Whisper ASR API response. I do not hav)107.5 312.4 ms
+(e this information as of my knowledge cut-off in September 2021. I suggest c)107.5 302.4 ms
+(hecking OpenAI's API documentation for this. For the script, should I assume)107.5 292.4 ms
+( it's part of the response or do you want me to fetch it from a different AP)107.5 282.4 ms
+(I endpoint?)107.5 272.4 ms
+0 0.502 0 r
+(    25)59.5 262.4 ms
+(5.)107.5 262.4 ms
+0 g
+( )s
+F1 sf
+(**Error Handling**)s
+F0 sf
+(: How do you want the script to handle errors? For exam)s
+(ple, what should happen if the Whisper API returns an error or if the input )107.5 252.4 ms
+(file can't be converted?)107.5 242.4 ms
+0 0.502 0 r
+(    26)59.5 232.4 ms
+(    27)59.5 222.4 ms
+0 g
+(Please provide your answers to the above questions so I can create the scrip)107.5 222.4 ms
+(t according to your needs.)107.5 212.4 ms
+0 0.502 0 r
+(    28)59.5 202.4 ms
+(    29)59.5 192.4 ms
+(    30)59.5 182.4 ms
+(    31)59.5 172.4 ms
+0.753 0 0.753 r
+(-----)107.5 172.4 ms
+0 0.502 0 r
+(    32)59.5 162.4 ms
+0 g
+(User:)107.5 162.4 ms
+0 0.502 0 r
+(    33)59.5 152.4 ms
+(    34)59.5 142.4 ms
+0 g
+(A1. Any format, but you can focus for now on ogg, oga, mp3, wav, flac, mp4, )107.5 142.4 ms
+(mkv, acc, mpeg, avi, and feel free to add some more)107.5 132.4 ms
+0 0.502 0 r
+(    35)59.5 122.4 ms
+0 g
+(A2. ffmpeg and other tools assume as installed, feel free to add in comments)107.5 122.4 ms
+( inside script pacman command that installs all dependencies that user shoul)107.5 112.4 ms
+(d run.)107.5 102.4 ms
+0 0.502 0 r
+(    36)59.5 92.4 ms
+0 g
+(A3. )107.5 92.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(curl)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is very good \(but if for any reason other like wget is better, I )s
+(am open\))107.5 82.4 ms
+0 0.502 0 r
+(    37)59.5 72.4 ms
+0 g
+(A4. Then if available in system )107.5 72.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(update_openai_billing' then call  it, and a)s
+(dditionally append to WHISPER log a line with date \(in ISO-8601 format\), how)107.5 62.4 ms
+( long was recording in seconds, and name of recording.)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 2 2
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 2)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(    38)59.5 772.4 ms
+0 g
+(A5. When there is error, please report on stdandard error "ERROR: error mess)107.5 772.4 ms
+(age")107.5 762.4 ms
+0 0.502 0 r
+(    39)59.5 752.4 ms
+(    40)59.5 742.4 ms
+0 g
+(Please also allow )107.5 742.4 ms
+0 0.502 0 r
+(    41)59.5 732.4 ms
+(    42)59.5 722.4 ms
+(*)107.5 722.4 ms
+0 g
+( optional  flag '-p'/'--prompt' that allow to specify optional prompt to im)s
+(prove transcriotion quality.)107.5 712.4 ms
+0 0.502 0 r
+(    43)59.5 702.4 ms
+(*)107.5 702.4 ms
+0 g
+( optional flag '-l'/'--lang'/'--language' to specify language)s
+0 0.502 0 r
+(    44)59.5 692.4 ms
+(    45)59.5 682.4 ms
+0 g
+(As you see there is 25MB size limit, to please for bigger recordings generat)107.5 682.4 ms
+(e 20MB chunks as mp3 in 128birtrate, and also in such case create chunked ou)107.5 672.4 ms
+(tput \(i.e. instead of one file )107.5 662.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(output.json)s
+0.753 0 0.753 r
+(`)s
+0 g
+( it will be )s
+0.753 0 0.753 r
+(`)s
+0 g
+(output-00.json)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ou)s
+(tput-01.json)107.5 652.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( etc\).)s
+0 0.502 0 r
+(    46)59.5 642.4 ms
+(    47)59.5 632.4 ms
+0 g
+(Additionally let me copy&paste newest data from documentation that may help )107.5 632.4 ms
+(you:)107.5 622.4 ms
+0 0.502 0 r
+(    48)59.5 612.4 ms
+(    49)59.5 602.4 ms
+0 g
+(https://platform.openai.com/docs/guides/speech-to-text?lang=curl)107.5 602.4 ms
+0 0.502 0 r
+(    50)59.5 592.4 ms
+(    51)59.5 582.4 ms
+0.753 0 0.753 r
+(```)107.5 582.4 ms
+0 0.502 0 r
+(    52)59.5 572.4 ms
+0 g
+(The speech to text API provides two endpoints, transcriptions and translatio)107.5 572.4 ms
+(ns, based on our state-of-the-art open source large-v2 Whisper model. They c)107.5 562.4 ms
+(an be used to:)107.5 552.4 ms
+0 0.502 0 r
+(    53)59.5 542.4 ms
+(    54)59.5 532.4 ms
+0 g
+(Transcribe audio into whatever language the audio is in.)107.5 532.4 ms
+0 0.502 0 r
+(    55)59.5 522.4 ms
+0 g
+(Translate and transcribe the audio into english.)107.5 522.4 ms
+0 0.502 0 r
+(    56)59.5 512.4 ms
+0 g
+(File uploads are currently limited to 25 MB and the following input file typ)107.5 512.4 ms
+(es are supported: mp3, mp4, mpeg, mpga, m4a, wav, and webm.)107.5 502.4 ms
+0 0.502 0 r
+(    57)59.5 492.4 ms
+(    58)59.5 482.4 ms
+0 g
+(Transcriptions)107.5 482.4 ms
+0 0.502 0 r
+(    59)59.5 472.4 ms
+0 g
+(The transcriptions API takes as input the audio file you want to transcribe )107.5 472.4 ms
+(and the desired output file format for the transcription of the audio. We cu)107.5 462.4 ms
+(rrently support multiple input and output file formats.)107.5 452.4 ms
+0 0.502 0 r
+(    60)59.5 442.4 ms
+(    61)59.5 432.4 ms
+0 g
+(Transcribe audio)107.5 432.4 ms
+0 0.502 0 r
+(    62)59.5 422.4 ms
+(    63)59.5 412.4 ms
+0 g
+(curl --request POST \\)107.5 412.4 ms
+0 0.502 0 r
+(    64)59.5 402.4 ms
+0 g
+(  --url https://api.openai.com/v1/audio/transcriptions \\)107.5 402.4 ms
+0 0.502 0 r
+(    65)59.5 392.4 ms
+0 g
+(  --header 'Authorization: Bearer TOKEN' \\)107.5 392.4 ms
+0 0.502 0 r
+(    66)59.5 382.4 ms
+0 g
+(  --header 'Content-Type: multipart/form-data' \\)107.5 382.4 ms
+0 0.502 0 r
+(    67)59.5 372.4 ms
+0 g
+(  --form file=@/path/to/file/openai.mp3 \\)107.5 372.4 ms
+0 0.502 0 r
+(    68)59.5 362.4 ms
+0 g
+(  --form model=whisper-1)107.5 362.4 ms
+0 0.502 0 r
+(    69)59.5 352.4 ms
+(    70)59.5 342.4 ms
+0 g
+(By default, the response type will be json with the raw text included.)107.5 342.4 ms
+0 0.502 0 r
+(    71)59.5 332.4 ms
+(    72)59.5 322.4 ms
+0 g
+({)107.5 322.4 ms
+0 0.502 0 r
+(    73)59.5 312.4 ms
+0 g
+(  "text": "Imagine the wildest idea that you've ever had, and you're curious)107.5 312.4 ms
+( about how it might scale to something that's a 100, a 1,000 times bigger.)107.5 302.4 ms
+0 0.502 0 r
+(    74)59.5 292.4 ms
+0 g
+(....)107.5 292.4 ms
+0 0.502 0 r
+(    75)59.5 282.4 ms
+0 g
+(})107.5 282.4 ms
+0 0.502 0 r
+(    76)59.5 272.4 ms
+0 g
+(To set additional parameters in a request, you can add more --form lines wit)107.5 272.4 ms
+(h the relevant options. For example, if you want to set the output format as)107.5 262.4 ms
+( text, you would add the following line:)107.5 252.4 ms
+0 0.502 0 r
+(    77)59.5 242.4 ms
+(    78)59.5 232.4 ms
+0 g
+(...)107.5 232.4 ms
+0 0.502 0 r
+(    79)59.5 222.4 ms
+0 g
+(--form file=@openai.mp3 \\)107.5 222.4 ms
+0 0.502 0 r
+(    80)59.5 212.4 ms
+0 g
+(--form model=whisper-1 \\)107.5 212.4 ms
+0 0.502 0 r
+(    81)59.5 202.4 ms
+0 g
+(--form response_format=text)107.5 202.4 ms
+0 0.502 0 r
+(    82)59.5 192.4 ms
+(    83)59.5 182.4 ms
+(    84)59.5 172.4 ms
+0 g
+(Supported languages)107.5 172.4 ms
+0 0.502 0 r
+(    85)59.5 162.4 ms
+0 g
+(We currently support the following languages through both the transcriptions)107.5 162.4 ms
+( and translations endpoint:)107.5 152.4 ms
+0 0.502 0 r
+(    86)59.5 142.4 ms
+(    87)59.5 132.4 ms
+0 g
+(Afrikaans, Arabic, Armenian, Azerbaijani, Belarusian, Bosnian, Bulgarian, Ca)107.5 132.4 ms
+(talan, Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, )107.5 122.4 ms
+(French, Galician, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indone)107.5 112.4 ms
+(sian, Italian, Japanese, Kannada, Kazakh, Korean, Latvian, Lithuanian, Maced)107.5 102.4 ms
+(onian, Malay, Marathi, Maori, Nepali, Norwegian, Persian, Polish, Portuguese)107.5 92.4 ms
+(, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swahili, Swedish, )107.5 82.4 ms
+(Tagalog, Tamil, Thai, Turkish, Ukrainian, Urdu, Vietnamese, and Welsh.)107.5 72.4 ms
+0 0.502 0 r
+(    88)59.5 62.4 ms
+(    89)59.5 52.4 ms
+0 g
+(While the underlying model was trained on 98 languages, we only list the lan)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 3 3
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 3)59.5 792.4 ms
+F0 sf
+(guages that exceeded <50% word error rate \(WER\) which is an industry standar)107.5 772.4 ms
+(d benchmark for speech to text model accuracy. The model will return results)107.5 762.4 ms
+( for languages not listed above but the quality will be low.)107.5 752.4 ms
+0 0.502 0 r
+(    90)59.5 742.4 ms
+(    91)59.5 732.4 ms
+0 g
+(Longer inputs)107.5 732.4 ms
+0 0.502 0 r
+(    92)59.5 722.4 ms
+0 g
+(By default, the Whisper API only supports files that are less than 25 MB. If)107.5 722.4 ms
+( you have an audio file that is longer than that, you will need to break it )107.5 712.4 ms
+(up into chunks of 25 MB's or less or used a compressed audio format. To get )107.5 702.4 ms
+(the best performance, we suggest that you avoid breaking the audio up mid-se)107.5 692.4 ms
+(ntence as this may cause some context to be lost.)107.5 682.4 ms
+0 0.502 0 r
+(    93)59.5 672.4 ms
+(    94)59.5 662.4 ms
+0 g
+(One way to handle this is to use the PyDub open source \( https://github.com/)107.5 662.4 ms
+(jiaaro/pydub \)  Python package to split the audio:)107.5 652.4 ms
+0 0.502 0 r
+(    95)59.5 642.4 ms
+(    96)59.5 632.4 ms
+0 g
+(from pydub import AudioSegment)107.5 632.4 ms
+0 0.502 0 r
+(    97)59.5 622.4 ms
+(    98)59.5 612.4 ms
+0 g
+(song = AudioSegment.from_mp3\("good_morning.mp3"\))107.5 612.4 ms
+0 0.502 0 r
+(    99)59.5 602.4 ms
+(   100)59.5 592.4 ms
+0.753 0 0.753 r
+(# PyDub handles time in milliseconds)107.5 592.4 ms
+0 0.502 0 r
+(   101)59.5 582.4 ms
+0 g
+(ten_minutes = 10 * 60 * 1000)107.5 582.4 ms
+0 0.502 0 r
+(   102)59.5 572.4 ms
+(   103)59.5 562.4 ms
+0 g
+(first_10_minutes = song[:ten_minutes])107.5 562.4 ms
+0 0.502 0 r
+(   104)59.5 552.4 ms
+(   105)59.5 542.4 ms
+0 g
+(first_10_minutes.export\("good_morning_10.mp3", format="mp3"\))107.5 542.4 ms
+0 0.502 0 r
+(   106)59.5 532.4 ms
+(   107)59.5 522.4 ms
+(   108)59.5 512.4 ms
+0 g
+(#Prompting)107.5 512.4 ms
+0 0.502 0 r
+(   109)59.5 502.4 ms
+0 g
+(You can use a prompt to improve the quality of the transcripts generated by )107.5 502.4 ms
+(the Whisper API. The model will try to match the style of the prompt, so it )107.5 492.4 ms
+(will be more likely to use capitalization and punctuation if the prompt does)107.5 482.4 ms
+( too. However, the current prompting system is much more limited than our ot)107.5 472.4 ms
+(her language models and only provides limited control over the generated aud)107.5 462.4 ms
+(io. Here are some examples of how prompting can help in different scenarios:)107.5 452.4 ms
+0 0.502 0 r
+(   110)59.5 442.4 ms
+(   111)59.5 432.4 ms
+0 g
+(Prompts can be very helpful for correcting specific words or acronyms that t)107.5 432.4 ms
+(he model often misrecognizes in the audio. For example, the following prompt)107.5 422.4 ms
+( improves the transcription of the words DALL·E and GPT-3, which were previo)107.5 412.4 ms
+(usly written as "GDP 3" and "DALI".)107.5 402.4 ms
+0 0.502 0 r
+(   112)59.5 392.4 ms
+(   113)59.5 382.4 ms
+0 g
+(The transcript is about OpenAI which makes technology like DALL·E, GPT-3, an)107.5 382.4 ms
+(d ChatGPT with the hope of one day building an AGI system that benefits all )107.5 372.4 ms
+(of humanity)107.5 362.4 ms
+0 0.502 0 r
+(   114)59.5 352.4 ms
+(   115)59.5 342.4 ms
+0 g
+(To preserve the context of a file that was split into segments, you can prom)107.5 342.4 ms
+(pt the model with the transcript of the preceding segment. This will make th)107.5 332.4 ms
+(e transcript more accurate, as the model will use the relevant information f)107.5 322.4 ms
+(rom the previous audio. The model will only consider the final 224 tokens of)107.5 312.4 ms
+( the prompt and ignore anything earlier.)107.5 302.4 ms
+0 0.502 0 r
+(   116)59.5 292.4 ms
+(   117)59.5 282.4 ms
+0 g
+(Sometimes the model might skip punctuation in the transcript. You can avoid )107.5 282.4 ms
+(this by using a simple prompt that includes punctuation:)107.5 272.4 ms
+0 0.502 0 r
+(   118)59.5 262.4 ms
+(   119)59.5 252.4 ms
+0 g
+(Hello, welcome to my lecture.)107.5 252.4 ms
+0 0.502 0 r
+(   120)59.5 242.4 ms
+(   121)59.5 232.4 ms
+0 g
+(The model may also leave out common filler words in the audio. If you want t)107.5 232.4 ms
+(o keep the filler words in your transcript, you can use a prompt that contai)107.5 222.4 ms
+(ns them:)107.5 212.4 ms
+0 0.502 0 r
+(   122)59.5 202.4 ms
+(   123)59.5 192.4 ms
+0 g
+(Umm, let me think like, hmm... Okay, here's what I'm, like, thinking.")107.5 192.4 ms
+0 0.502 0 r
+(   124)59.5 182.4 ms
+(   125)59.5 172.4 ms
+0 g
+(Some languages can be written in different ways, such as simplified or tradi)107.5 172.4 ms
+(tional Chinese. The model might not always use the writing style that you wa)107.5 162.4 ms
+(nt for your transcript by default. You can improve this by using a prompt in)107.5 152.4 ms
+( your preferred writing style.)107.5 142.4 ms
+0 0.502 0 r
+(   126)59.5 132.4 ms
+(   127)59.5 122.4 ms
+0.753 0 0.753 r
+(```)107.5 122.4 ms
+0 0.502 0 r
+(   128)59.5 112.4 ms
+(   129)59.5 102.4 ms
+(   130)59.5 92.4 ms
+(   131)59.5 82.4 ms
+0 g
+(https://platform.openai.com/docs/api-reference/audio/create)107.5 82.4 ms
+0 0.502 0 r
+(   132)59.5 72.4 ms
+(   133)59.5 62.4 ms
+0.753 0 0.753 r
+(```)107.5 62.4 ms
+0 0.502 0 r
+(   134)59.5 52.4 ms
+0 g
+(Create transcriptionBeta)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 4 4
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 4)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   135)59.5 772.4 ms
+0 g
+(POST)107.5 772.4 ms
+0 0.502 0 r
+(   136)59.5 762.4 ms
+0 g
+( )107.5 762.4 ms
+0 0.502 0 r
+(   137)59.5 752.4 ms
+0 g
+(https://api.openai.com/v1/audio/transcriptions)107.5 752.4 ms
+0 0.502 0 r
+(   138)59.5 742.4 ms
+(   139)59.5 732.4 ms
+(   140)59.5 722.4 ms
+0 g
+(Transcribes audio into the input language.)107.5 722.4 ms
+0 0.502 0 r
+(   141)59.5 712.4 ms
+(   142)59.5 702.4 ms
+0 g
+(Request body)107.5 702.4 ms
+0 0.502 0 r
+(   143)59.5 692.4 ms
+0 g
+(file)107.5 692.4 ms
+0 0.502 0 r
+(   144)59.5 682.4 ms
+0 g
+(string)107.5 682.4 ms
+0 0.502 0 r
+(   145)59.5 672.4 ms
+0 g
+(Required)107.5 672.4 ms
+0 0.502 0 r
+(   146)59.5 662.4 ms
+0 g
+(The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga,)107.5 662.4 ms
+( m4a, wav, or webm.)107.5 652.4 ms
+0 0.502 0 r
+(   147)59.5 642.4 ms
+(   148)59.5 632.4 ms
+0 g
+(model)107.5 632.4 ms
+0 0.502 0 r
+(   149)59.5 622.4 ms
+0 g
+(string)107.5 622.4 ms
+0 0.502 0 r
+(   150)59.5 612.4 ms
+0 g
+(Required)107.5 612.4 ms
+0 0.502 0 r
+(   151)59.5 602.4 ms
+0 g
+(ID of the model to use. Only whisper-1 is currently available.)107.5 602.4 ms
+0 0.502 0 r
+(   152)59.5 592.4 ms
+(   153)59.5 582.4 ms
+0 g
+(prompt)107.5 582.4 ms
+0 0.502 0 r
+(   154)59.5 572.4 ms
+0 g
+(string)107.5 572.4 ms
+0 0.502 0 r
+(   155)59.5 562.4 ms
+0 g
+(Optional)107.5 562.4 ms
+0 0.502 0 r
+(   156)59.5 552.4 ms
+0 g
+(An optional text to guide the model's style or continue a previous audio seg)107.5 552.4 ms
+(ment. The prompt should match the audio language.)107.5 542.4 ms
+0 0.502 0 r
+(   157)59.5 532.4 ms
+(   158)59.5 522.4 ms
+0 g
+(response_format)107.5 522.4 ms
+0 0.502 0 r
+(   159)59.5 512.4 ms
+0 g
+(string)107.5 512.4 ms
+0 0.502 0 r
+(   160)59.5 502.4 ms
+0 g
+(Optional)107.5 502.4 ms
+0 0.502 0 r
+(   161)59.5 492.4 ms
+0 g
+(Defaults to json)107.5 492.4 ms
+0 0.502 0 r
+(   162)59.5 482.4 ms
+0 g
+(The format of the transcript output, in one of these options: json, text, sr)107.5 482.4 ms
+(t, verbose_json, or vtt.)107.5 472.4 ms
+0 0.502 0 r
+(   163)59.5 462.4 ms
+(   164)59.5 452.4 ms
+0 g
+(temperature)107.5 452.4 ms
+0 0.502 0 r
+(   165)59.5 442.4 ms
+0 g
+(number)107.5 442.4 ms
+0 0.502 0 r
+(   166)59.5 432.4 ms
+0 g
+(Optional)107.5 432.4 ms
+0 0.502 0 r
+(   167)59.5 422.4 ms
+0 g
+(Defaults to 0)107.5 422.4 ms
+0 0.502 0 r
+(   168)59.5 412.4 ms
+0 g
+(The sampling temperature, between 0 and 1. Higher values like 0.8 will make )107.5 412.4 ms
+(the output more random, while lower values like 0.2 will make it more focuse)107.5 402.4 ms
+(d and deterministic. If set to 0, the model will use log probability to auto)107.5 392.4 ms
+(matically increase the temperature until certain thresholds are hit.)107.5 382.4 ms
+0 0.502 0 r
+(   169)59.5 372.4 ms
+(   170)59.5 362.4 ms
+0 g
+(language)107.5 362.4 ms
+0 0.502 0 r
+(   171)59.5 352.4 ms
+0 g
+(string)107.5 352.4 ms
+0 0.502 0 r
+(   172)59.5 342.4 ms
+0 g
+(Optional)107.5 342.4 ms
+0 0.502 0 r
+(   173)59.5 332.4 ms
+0 g
+(The language of the input audio. Supplying the input language in ISO-639-1 f)107.5 332.4 ms
+(ormat will improve accuracy and latency.)107.5 322.4 ms
+0 0.502 0 r
+(   174)59.5 312.4 ms
+(   175)59.5 302.4 ms
+0 g
+(example)107.5 302.4 ms
+0 0.502 0 r
+(   176)59.5 292.4 ms
+(   177)59.5 282.4 ms
+0 g
+(curl https://api.openai.com/v1/audio/transcriptions \\)107.5 282.4 ms
+0 0.502 0 r
+(   178)59.5 272.4 ms
+0 g
+(  -H "Authorization: Bearer $OPENAI_API_KEY" \\)107.5 272.4 ms
+0 0.502 0 r
+(   179)59.5 262.4 ms
+0 g
+(  -H "Content-Type: multipart/form-data" \\)107.5 262.4 ms
+0 0.502 0 r
+(   180)59.5 252.4 ms
+0 g
+(  -F file="@/path/to/file/audio.mp3" \\)107.5 252.4 ms
+0 0.502 0 r
+(   181)59.5 242.4 ms
+0 g
+(  -F model="whisper-1")107.5 242.4 ms
+0 0.502 0 r
+(   182)59.5 232.4 ms
+(   183)59.5 222.4 ms
+(   184)59.5 212.4 ms
+0 g
+({)107.5 212.4 ms
+0 0.502 0 r
+(   185)59.5 202.4 ms
+0 g
+(  "file": "audio.mp3",)107.5 202.4 ms
+0 0.502 0 r
+(   186)59.5 192.4 ms
+0 g
+(  "model": "whisper-1")107.5 192.4 ms
+0 0.502 0 r
+(   187)59.5 182.4 ms
+0 g
+(})107.5 182.4 ms
+0 0.502 0 r
+(   188)59.5 172.4 ms
+(   189)59.5 162.4 ms
+(   190)59.5 152.4 ms
+0 g
+({)107.5 152.4 ms
+0 0.502 0 r
+(   191)59.5 142.4 ms
+0 g
+(  "text": "Imagine the wildest idea that you've ever had, and you're curious)107.5 142.4 ms
+( about how it might scale to something that's a 100, a 1,000 times bigger. T)107.5 132.4 ms
+(his is a place where you can get to do that.")107.5 122.4 ms
+0 0.502 0 r
+(   192)59.5 112.4 ms
+0 g
+(})107.5 112.4 ms
+0 0.502 0 r
+(   193)59.5 102.4 ms
+(   194)59.5 92.4 ms
+0.753 0 0.753 r
+(```)107.5 92.4 ms
+0 0.502 0 r
+(   195)59.5 82.4 ms
+(   196)59.5 72.4 ms
+(   197)59.5 62.4 ms
+0 g
+(I understand that given new data you may have more questions.)107.5 62.4 ms
+0 0.502 0 r
+(   198)59.5 52.4 ms
+0 g
+(Please ask me as many questions as you want to ensure that you produce final)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 5 5
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 5)59.5 792.4 ms
+F0 sf
+( script correctly.)107.5 772.4 ms
+0 0.502 0 r
+(   199)59.5 762.4 ms
+0 g
+(Please remember to include in script comments with thoughts about reasoning )107.5 762.4 ms
+(and intent, to ensure more literature programming style, for easier future m)107.5 752.4 ms
+(aintanance, and modifications by kind language models like you.)107.5 742.4 ms
+0 0.502 0 r
+(   200)59.5 732.4 ms
+(   201)59.5 722.4 ms
+0.753 0 0.753 r
+(-----)107.5 722.4 ms
+0 0.502 0 r
+(   202)59.5 712.4 ms
+0 g
+(System:)107.5 712.4 ms
+0 0.502 0 r
+(   203)59.5 702.4 ms
+(   204)59.5 692.4 ms
+0 g
+(Thank you for the detailed response and the additional information, it's ver)107.5 692.4 ms
+(y helpful!)107.5 682.4 ms
+0 0.502 0 r
+(   205)59.5 672.4 ms
+(   206)59.5 662.4 ms
+0 g
+(Here are a few more points I would like to clarify before we proceed:)107.5 662.4 ms
+0 0.502 0 r
+(   207)59.5 652.4 ms
+(   208)59.5 642.4 ms
+(1.)107.5 642.4 ms
+0 g
+( **Billing Log Entry**: You mentioned appending a line in the billing log )s
+(with the date, the duration of the recording in seconds, and the name of the)107.5 632.4 ms
+( recording. How do we obtain the duration of the recording? Should we extrac)107.5 622.4 ms
+(t it from the audio file metadata or should it be part of the Whisper API re)107.5 612.4 ms
+(sponse? As of my knowledge cutoff in 2021, the Whisper API response does not)107.5 602.4 ms
+( include the duration of the audio.)107.5 592.4 ms
+0 0.502 0 r
+(   209)59.5 582.4 ms
+0 g
+(    )107.5 582.4 ms
+0 0.502 0 r
+(   210)59.5 572.4 ms
+(2.)107.5 572.4 ms
+0 g
+( **Chunking Larger Files**: When a file is larger than 25MB and needs to b)s
+(e split into chunks, how should we handle the output? For example, if we hav)107.5 562.4 ms
+(e )107.5 552.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(input.mp4)s
+0.753 0 0.753 r
+(`)s
+0 g
+( and it gets split into )s
+0.753 0 0.753 r
+(`)s
+0 g
+(input-00.mp3)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, )s
+0.753 0 0.753 r
+(`)s
+0 g
+(input-01.mp3)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, etc., s)s
+(hould the corresponding transcripts be )107.5 542.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(output-00.json)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, )s
+0.753 0 0.753 r
+(`)s
+0 g
+(output-01.json)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, e)s
+(tc.?)107.5 532.4 ms
+0 0.502 0 r
+(   211)59.5 522.4 ms
+0 g
+(    )107.5 522.4 ms
+0 0.502 0 r
+(   212)59.5 512.4 ms
+(3.)107.5 512.4 ms
+0 g
+( **Output Format**: Do you want the output transcript in JSON format as in)s
+(dicated in the Whisper API example or would you like to specify the format a)107.5 502.4 ms
+(s a command-line argument?)107.5 492.4 ms
+0 0.502 0 r
+(   213)59.5 482.4 ms
+0 g
+(    )107.5 482.4 ms
+0 0.502 0 r
+(   214)59.5 472.4 ms
+(4.)107.5 472.4 ms
+0 g
+( **Prompting**: You mentioned the use of a prompt to improve transcription)s
+( quality. However, it's not entirely clear how the prompt should be used. Wo)107.5 462.4 ms
+(uld the user specify this as a command-line argument? If so, would it be a s)107.5 452.4 ms
+(imple string or a path to a text file?)107.5 442.4 ms
+0 0.502 0 r
+(   215)59.5 432.4 ms
+0 g
+(    )107.5 432.4 ms
+0 0.502 0 r
+(   216)59.5 422.4 ms
+(   217)59.5 412.4 ms
+0 g
+(Please let me know your thoughts on these points. Once I have this informati)107.5 412.4 ms
+(on, I will start implementing the script and will include comments throughou)107.5 402.4 ms
+(t to explain the thought process and decisions made.)107.5 392.4 ms
+0 0.502 0 r
+(   218)59.5 382.4 ms
+(   219)59.5 372.4 ms
+0.753 0 0.753 r
+(-----)107.5 372.4 ms
+0 0.502 0 r
+(   220)59.5 362.4 ms
+0 g
+(User:)107.5 362.4 ms
+0 0.502 0 r
+(   221)59.5 352.4 ms
+(   222)59.5 342.4 ms
+0 g
+(A1. Please obtain information from input file with audio \(which maybe audio )107.5 342.4 ms
+(or video file\))107.5 332.4 ms
+0 0.502 0 r
+(   223)59.5 322.4 ms
+0 g
+(A2. You are correct! Chunked )107.5 322.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(input-${chunkno}.${ext})s
+0.753 0 0.753 r
+(`)s
+0 g
+( corresponds to )s
+0.753 0 0.753 r
+(`)s
+0 g
+(outpu)s
+(t-${chunkno}.json)107.5 312.4 ms
+0.753 0 0.753 r
+(`)s
+0 0.502 0 r
+(   224)59.5 302.4 ms
+0 g
+(A3. output format should be json file\(s\). However if you could for each .jso)107.5 302.4 ms
+(n file create corresponding .txt file with extracted text data from json "te)107.5 292.4 ms
+(xt" field that would be super helpful!)107.5 282.4 ms
+0 0.502 0 r
+(   225)59.5 272.4 ms
+0 g
+(A4. It should be optional for user to speficy prompt. Via '-p' or '--prompt')107.5 272.4 ms
+( command line parameter is string, however via '--promptfile' is file with t)107.5 262.4 ms
+(ext file with prompt in text format.)107.5 252.4 ms
+0 0.502 0 r
+(   226)59.5 242.4 ms
+(   227)59.5 232.4 ms
+0 g
+(Also I intoduced addditional optional -l/--lang/--language flag if user want)107.5 232.4 ms
+(s to give a hint to specify language.)107.5 222.4 ms
+0 0.502 0 r
+(   228)59.5 212.4 ms
+(   229)59.5 202.4 ms
+0 g
+(Before implementing script, could you please first prepare )107.5 202.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(README.md)s
+0.753 0 0.753 r
+(`)s
+0 g
+( for t)s
+(his script \(that will cover requirements we discussed\) to ensure that we hav)107.5 192.4 ms
+(e mutual understanding about vision/requirements?)107.5 182.4 ms
+0 0.502 0 r
+(   230)59.5 172.4 ms
+(   231)59.5 162.4 ms
+0.753 0 0.753 r
+(-----)107.5 162.4 ms
+0 0.502 0 r
+(   232)59.5 152.4 ms
+0 g
+(System:)107.5 152.4 ms
+0 0.502 0 r
+(   233)59.5 142.4 ms
+(   234)59.5 132.4 ms
+0 g
+(Absolutely, it's a great idea to start with the )107.5 132.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(README.md)s
+0.753 0 0.753 r
+(`)s
+0 g
+( document. It's a)s
+(n important step to ensure that we're on the same page regarding the functio)107.5 122.4 ms
+(nality and usage of the script. Here's a draft:)107.5 112.4 ms
+0 0.502 0 r
+(   235)59.5 102.4 ms
+(   236)59.5 92.4 ms
+0.753 0 0.753 r
+(---)107.5 92.4 ms
+0 0.502 0 r
+(   237)59.5 82.4 ms
+(   238)59.5 72.4 ms
+0.753 0 0.753 r
+(# OpenAI Whisper Transcript Generator)107.5 72.4 ms
+0 0.502 0 r
+(   239)59.5 62.4 ms
+(   240)59.5 52.4 ms
+0 g
+(This is a Bash script that uses the OpenAI Whisper API to transcribe audio f)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 6 6
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 6)59.5 792.4 ms
+F0 sf
+(iles. It supports various input file formats, includes file chunking for lar)107.5 772.4 ms
+(ger inputs, and provides detailed error logging.)107.5 762.4 ms
+0 0.502 0 r
+(   241)59.5 752.4 ms
+(   242)59.5 742.4 ms
+0.753 0 0.753 r
+(## Requirements)107.5 742.4 ms
+0 0.502 0 r
+(   243)59.5 732.4 ms
+(   244)59.5 722.4 ms
+(-)107.5 722.4 ms
+0 g
+( ffmpeg)s
+0 0.502 0 r
+(   245)59.5 712.4 ms
+(-)107.5 712.4 ms
+0 g
+( curl)s
+0 0.502 0 r
+(   246)59.5 702.4 ms
+(-)107.5 702.4 ms
+0 g
+( jq \(for parsing JSON responses\))s
+0 0.502 0 r
+(   247)59.5 692.4 ms
+(   248)59.5 682.4 ms
+0 g
+(You can install these with the following command \(for Arch Linux\):)107.5 682.4 ms
+0 0.502 0 r
+(   249)59.5 672.4 ms
+(   250)59.5 662.4 ms
+0.753 0 0.753 r
+(`)107.5 662.4 ms
+0 g
+(sudo pacman -S ffmpeg curl jq)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0 0.502 0 r
+(   251)59.5 652.4 ms
+(   252)59.5 642.4 ms
+0.753 0 0.753 r
+(## Features)107.5 642.4 ms
+0 0.502 0 r
+(   253)59.5 632.4 ms
+(   254)59.5 622.4 ms
+(-)107.5 622.4 ms
+0 g
+( Environment variable for OpenAI token \()s
+0.753 0 0.753 r
+(`)s
+0 g
+(OPENAI_API_KEY)s
+0.753 0 0.753 r
+(`)s
+0 g
+(\). If not defined, )s
+(the script will notify the user.)107.5 612.4 ms
+0 0.502 0 r
+(   255)59.5 602.4 ms
+(-)107.5 602.4 ms
+0 g
+( Support for different output modes: file output \()s
+0.753 0 0.753 r
+(`)s
+0 g
+(-o outputfile)s
+0.753 0 0.753 r
+(`)s
+0 g
+(\) and stan)s
+(dard output \()107.5 592.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(-stdout)s
+0.753 0 0.753 r
+(`)s
+0 g
+( or )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-so)s
+0.753 0 0.753 r
+(`)s
+0 g
+(\). If both are specified, the script will sav)s
+(e to a file and output to stdout.)107.5 582.4 ms
+0 0.502 0 r
+(   256)59.5 572.4 ms
+(-)107.5 572.4 ms
+0 g
+( Help message provided if no parameters are supplied or if "-h" or "--help")s
+( is used.)107.5 562.4 ms
+0 0.502 0 r
+(   257)59.5 552.4 ms
+(-)107.5 552.4 ms
+0 g
+( Detection of input file format and conversion to a format accepted by Whis)s
+(per \(if necessary\).)107.5 542.4 ms
+0 0.502 0 r
+(   258)59.5 532.4 ms
+(-)107.5 532.4 ms
+0 g
+( Logging of billing information into a specific log file. The log file path)s
+( can be specified by the environment variable )107.5 522.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(OPENAI_WHISPER_BILLING_LOG)s
+0.753 0 0.753 r
+(`)s
+0 g
+(. )s
+(If not defined, the default log file will be )107.5 512.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+("${HOME}/.openai_whisper_billi)s
+(ng.log")107.5 502.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(.)s
+0 0.502 0 r
+(   259)59.5 492.4 ms
+(-)107.5 492.4 ms
+0 g
+( Optional flag )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-p)s
+0.753 0 0.753 r
+(`)s
+0 g
+(/)s
+0.753 0 0.753 r
+(`)s
+0 g
+(--prompt)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to specify a prompt to improve transcription)s
+( quality.)107.5 482.4 ms
+0 0.502 0 r
+(   260)59.5 472.4 ms
+(-)107.5 472.4 ms
+0 g
+( Optional flag )s
+0.753 0 0.753 r
+(`)s
+0 g
+(--promptfile)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to specify a text file containing the prompt.)s
+0 0.502 0 r
+(   261)59.5 462.4 ms
+(-)107.5 462.4 ms
+0 g
+( Optional flag )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-l)s
+0.753 0 0.753 r
+(`)s
+0 g
+(/)s
+0.753 0 0.753 r
+(`)s
+0 g
+(--lang)s
+0.753 0 0.753 r
+(`)s
+0 g
+(/)s
+0.753 0 0.753 r
+(`)s
+0 g
+(--language)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to specify the language of the in)s
+(put audio.)107.5 452.4 ms
+0 0.502 0 r
+(   262)59.5 442.4 ms
+(   263)59.5 432.4 ms
+0.753 0 0.753 r
+(## Usage)107.5 432.4 ms
+0 0.502 0 r
+(   264)59.5 422.4 ms
+(   265)59.5 412.4 ms
+0 g
+(bashCopy code)107.5 412.4 ms
+0 0.502 0 r
+(   266)59.5 402.4 ms
+(   267)59.5 392.4 ms
+0.753 0 0.753 r
+(`)107.5 392.4 ms
+0 g
+(./whisper_transcript.sh -o outputfile inputfile)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0 0.502 0 r
+(   268)59.5 382.4 ms
+(   269)59.5 372.4 ms
+0 g
+(For detailed usage instructions, use the help command:)107.5 372.4 ms
+0 0.502 0 r
+(   270)59.5 362.4 ms
+(   271)59.5 352.4 ms
+0 g
+(bashCopy code)107.5 352.4 ms
+0 0.502 0 r
+(   272)59.5 342.4 ms
+(   273)59.5 332.4 ms
+0.753 0 0.753 r
+(`)107.5 332.4 ms
+0 g
+(./whisper_transcript.sh -h)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0 0.502 0 r
+(   274)59.5 322.4 ms
+(   275)59.5 312.4 ms
+0.753 0 0.753 r
+(## Note)107.5 312.4 ms
+0 0.502 0 r
+(   276)59.5 302.4 ms
+(   277)59.5 292.4 ms
+0 g
+(For input files larger than 25MB, the script will automatically split the fi)107.5 292.4 ms
+(le into chunks of 20MB each \(at most\) and generate separate output files for)107.5 282.4 ms
+( each chunk.)107.5 272.4 ms
+0 0.502 0 r
+(   278)59.5 262.4 ms
+(   279)59.5 252.4 ms
+0.753 0 0.753 r
+(---)107.5 252.4 ms
+0 0.502 0 r
+(   280)59.5 242.4 ms
+(   281)59.5 232.4 ms
+0 g
+(Please review the )107.5 232.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(README.md)s
+0.753 0 0.753 r
+(`)s
+0 g
+( and let me know if any changes are needed befo)s
+(re proceeding with the implementation of the script.)107.5 222.4 ms
+0 0.502 0 r
+(   282)59.5 212.4 ms
+(   283)59.5 202.4 ms
+0.753 0 0.753 r
+(-----)107.5 202.4 ms
+0 0.502 0 r
+(   284)59.5 192.4 ms
+0 g
+(User:)107.5 192.4 ms
+0 0.502 0 r
+(   285)59.5 182.4 ms
+(   286)59.5 172.4 ms
+0 g
+(Looks good to me. Could you please implement script?)107.5 172.4 ms
+0 0.502 0 r
+(   287)59.5 162.4 ms
+0 g
+(Please remember to include in script comments with thoughts about reasoning )107.5 162.4 ms
+(and intent, to ensure more literature programming style, for easier future m)107.5 152.4 ms
+(aintanance, and modifications by kind language models like you.)107.5 142.4 ms
+0 0.502 0 r
+(   288)59.5 132.4 ms
+(   289)59.5 122.4 ms
+0.753 0 0.753 r
+(-----)107.5 122.4 ms
+0 0.502 0 r
+(   290)59.5 112.4 ms
+0 g
+(System:)107.5 112.4 ms
+0 0.502 0 r
+(   291)59.5 102.4 ms
+(   292)59.5 92.4 ms
+0 g
+(Sure, let's start implementing the script. I'll start by setting up the basi)107.5 92.4 ms
+(c script structure, handling input arguments, and implementing the help mess)107.5 82.4 ms
+(age:)107.5 72.4 ms
+0 0.502 0 r
+(   293)59.5 62.4 ms
+(   294)59.5 52.4 ms
+0.753 0 0.753 r
+(```)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 7 7
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 7)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   295)59.5 772.4 ms
+0 g
+(#!/bin/bash)107.5 772.4 ms
+0 0.502 0 r
+(   296)59.5 762.4 ms
+(   297)59.5 752.4 ms
+0.753 0 0.753 r
+(# This script transcribes audio files using the OpenAI Whisper API. It suppo)107.5 752.4 ms
+(rts various audio formats,)107.5 742.4 ms
+0 0.502 0 r
+(   298)59.5 732.4 ms
+0.753 0 0.753 r
+(# handles large files by chunking them, and provides detailed error and bill)107.5 732.4 ms
+(ing logging.)107.5 722.4 ms
+0 0.502 0 r
+(   299)59.5 712.4 ms
+(   300)59.5 702.4 ms
+0.753 0 0.753 r
+(# We use getopts to parse command-line options.)107.5 702.4 ms
+0 0.502 0 r
+(   301)59.5 692.4 ms
+0.753 0 0.753 r
+(# The options are:)107.5 692.4 ms
+0 0.502 0 r
+(   302)59.5 682.4 ms
+0.753 0 0.753 r
+(#   -o: Specify the output file. If not provided, the script will print the )107.5 682.4 ms
+(help message.)107.5 672.4 ms
+0 0.502 0 r
+(   303)59.5 662.4 ms
+0.753 0 0.753 r
+(#   -so or -stdout: Print the transcription to the standard output.)107.5 662.4 ms
+0 0.502 0 r
+(   304)59.5 652.4 ms
+0.753 0 0.753 r
+(#   -p or --prompt: Specify a prompt to improve the transcription quality.)107.5 652.4 ms
+0 0.502 0 r
+(   305)59.5 642.4 ms
+0.753 0 0.753 r
+(#   -l or --lang or --language: Specify the language of the input audio.)107.5 642.4 ms
+0 0.502 0 r
+(   306)59.5 632.4 ms
+0.753 0 0.753 r
+(#   -h or --help: Print the help message.)107.5 632.4 ms
+0 0.502 0 r
+(   307)59.5 622.4 ms
+(   308)59.5 612.4 ms
+0 g
+(print_help\(\) {)107.5 612.4 ms
+0 0.502 0 r
+(   309)59.5 602.4 ms
+0 g
+(  echo "Usage: ./whisper_transcript.sh [-o outputfile] [-so | --stdout] [-p )107.5 602.4 ms
+(prompt | --promptfile promptfile] [-l lang | --lang lang | --language lang] )107.5 592.4 ms
+(inputfile")107.5 582.4 ms
+0 0.502 0 r
+(   310)59.5 572.4 ms
+0 g
+(  echo)107.5 572.4 ms
+0 0.502 0 r
+(   311)59.5 562.4 ms
+0 g
+(  echo "Transcribes an audio file using the OpenAI Whisper API.")107.5 562.4 ms
+0 0.502 0 r
+(   312)59.5 552.4 ms
+0 g
+(  echo)107.5 552.4 ms
+0 0.502 0 r
+(   313)59.5 542.4 ms
+0 g
+(  echo "Options:")107.5 542.4 ms
+0 0.502 0 r
+(   314)59.5 532.4 ms
+0 g
+(  echo "  -o, --output        Specify the output file. Required unless -so o)107.5 532.4 ms
+(r --stdout is used.")107.5 522.4 ms
+0 0.502 0 r
+(   315)59.5 512.4 ms
+0 g
+(  echo "  -so, --stdout       Print the transcription to the standard output)107.5 512.4 ms
+(.")107.5 502.4 ms
+0 0.502 0 r
+(   316)59.5 492.4 ms
+0 g
+(  echo "  -p, --prompt        Specify a prompt to improve the transcription )107.5 492.4 ms
+(quality.")107.5 482.4 ms
+0 0.502 0 r
+(   317)59.5 472.4 ms
+0 g
+(  echo "  --promptfile        Specify a text file containing the prompt.")107.5 472.4 ms
+0 0.502 0 r
+(   318)59.5 462.4 ms
+0 g
+(  echo "  -l, --lang, --language  Specify the language of the input audio.")107.5 462.4 ms
+0 0.502 0 r
+(   319)59.5 452.4 ms
+0 g
+(  echo "  -h, --help          Print this help message.")107.5 452.4 ms
+0 0.502 0 r
+(   320)59.5 442.4 ms
+0 g
+(  echo)107.5 442.4 ms
+0 0.502 0 r
+(   321)59.5 432.4 ms
+0 g
+(  echo "If the OPENAI_API_KEY environment variable is not defined, the scrip)107.5 432.4 ms
+(t will fail with an error message.")107.5 422.4 ms
+0 0.502 0 r
+(   322)59.5 412.4 ms
+0 g
+(  echo "Billing information is logged to the file specified by the OPENAI_WH)107.5 412.4 ms
+(ISPER_BILLING_LOG environment variable,")107.5 402.4 ms
+0 0.502 0 r
+(   323)59.5 392.4 ms
+0 g
+(  echo "or to '${HOME}/.openai_whisper_billing.log' if the variable is not d)107.5 392.4 ms
+(efined.")107.5 382.4 ms
+0 0.502 0 r
+(   324)59.5 372.4 ms
+0 g
+(})107.5 372.4 ms
+0 0.502 0 r
+(   325)59.5 362.4 ms
+(   326)59.5 352.4 ms
+0.753 0 0.753 r
+(# Check if the OPENAI)107.5 352.4 ms
+0 g
+(_)s
+0.753 0 0.753 r
+(API)s
+0 g
+(_)s
+0.753 0 0.753 r
+(KEY environment variable is defined. If not, print)s
+( an error message and exit.)107.5 342.4 ms
+0 0.502 0 r
+(   327)59.5 332.4 ms
+0 g
+(if [ -z "${OPENAI_API_KEY}" ]; then)107.5 332.4 ms
+0 0.502 0 r
+(   328)59.5 322.4 ms
+0 g
+(  echo "ERROR: The OPENAI_API_KEY environment variable is not defined. Pleas)107.5 322.4 ms
+(e set it to your OpenAI API key." >&2)107.5 312.4 ms
+0 0.502 0 r
+(   329)59.5 302.4 ms
+0 g
+(  exit 1)107.5 302.4 ms
+0 0.502 0 r
+(   330)59.5 292.4 ms
+0 g
+(fi)107.5 292.4 ms
+0 0.502 0 r
+(   331)59.5 282.4 ms
+(   332)59.5 272.4 ms
+0.753 0 0.753 r
+(# Parse options.)107.5 272.4 ms
+0 0.502 0 r
+(   333)59.5 262.4 ms
+0 g
+(OUTPUT_FILE="")107.5 262.4 ms
+0 0.502 0 r
+(   334)59.5 252.4 ms
+0 g
+(PRINT_TO_STDOUT=0)107.5 252.4 ms
+0 0.502 0 r
+(   335)59.5 242.4 ms
+0 g
+(PROMPT="")107.5 242.4 ms
+0 0.502 0 r
+(   336)59.5 232.4 ms
+0 g
+(PROMPT_FILE="")107.5 232.4 ms
+0 0.502 0 r
+(   337)59.5 222.4 ms
+0 g
+(LANGUAGE="")107.5 222.4 ms
+0 0.502 0 r
+(   338)59.5 212.4 ms
+(   339)59.5 202.4 ms
+0 g
+(while getopts "o:sp:l:h-:" opt; do)107.5 202.4 ms
+0 0.502 0 r
+(   340)59.5 192.4 ms
+0 g
+(  case ${opt} in)107.5 192.4 ms
+0 0.502 0 r
+(   341)59.5 182.4 ms
+0 g
+(    o\))107.5 182.4 ms
+0 0.502 0 r
+(   342)59.5 172.4 ms
+0 g
+(      OUTPUT_FILE="${OPTARG}")107.5 172.4 ms
+0 0.502 0 r
+(   343)59.5 162.4 ms
+0 g
+(      ;;)107.5 162.4 ms
+0 0.502 0 r
+(   344)59.5 152.4 ms
+0 g
+(    s\))107.5 152.4 ms
+0 0.502 0 r
+(   345)59.5 142.4 ms
+0 g
+(      PRINT_TO_STDOUT=1)107.5 142.4 ms
+0 0.502 0 r
+(   346)59.5 132.4 ms
+0 g
+(      ;;)107.5 132.4 ms
+0 0.502 0 r
+(   347)59.5 122.4 ms
+0 g
+(    p\))107.5 122.4 ms
+0 0.502 0 r
+(   348)59.5 112.4 ms
+0 g
+(      PROMPT="${OPTARG}")107.5 112.4 ms
+0 0.502 0 r
+(   349)59.5 102.4 ms
+0 g
+(      ;;)107.5 102.4 ms
+0 0.502 0 r
+(   350)59.5 92.4 ms
+0 g
+(    l\))107.5 92.4 ms
+0 0.502 0 r
+(   351)59.5 82.4 ms
+0 g
+(      LANGUAGE="${OPTARG}")107.5 82.4 ms
+0 0.502 0 r
+(   352)59.5 72.4 ms
+0 g
+(      ;;)107.5 72.4 ms
+0 0.502 0 r
+(   353)59.5 62.4 ms
+0 g
+(    h\))107.5 62.4 ms
+0 0.502 0 r
+(   354)59.5 52.4 ms
+0 g
+(      print_help)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 8 8
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 8)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   355)59.5 772.4 ms
+0 g
+(      exit 0)107.5 772.4 ms
+0 0.502 0 r
+(   356)59.5 762.4 ms
+0 g
+(      ;;)107.5 762.4 ms
+0 0.502 0 r
+(   357)59.5 752.4 ms
+0 g
+(    -\))107.5 752.4 ms
+0 0.502 0 r
+(   358)59.5 742.4 ms
+0 g
+(      case "${OPTARG}" in)107.5 742.4 ms
+0 0.502 0 r
+(   359)59.5 732.4 ms
+0 g
+(        output\))107.5 732.4 ms
+0 0.502 0 r
+(   360)59.5 722.4 ms
+0 g
+(          OUTPUT_FILE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 722.4 ms
+0 0.502 0 r
+(   361)59.5 712.4 ms
+0 g
+(          ;;)107.5 712.4 ms
+0 0.502 0 r
+(   362)59.5 702.4 ms
+0 g
+(        stdout\))107.5 702.4 ms
+0 0.502 0 r
+(   363)59.5 692.4 ms
+0 g
+(          PRINT_TO_STDOUT=1)107.5 692.4 ms
+0 0.502 0 r
+(   364)59.5 682.4 ms
+0 g
+(          ;;)107.5 682.4 ms
+0 0.502 0 r
+(   365)59.5 672.4 ms
+0 g
+(        prompt\))107.5 672.4 ms
+0 0.502 0 r
+(   366)59.5 662.4 ms
+0 g
+(          PROMPT="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 662.4 ms
+0 0.502 0 r
+(   367)59.5 652.4 ms
+0 g
+(          ;;)107.5 652.4 ms
+0 0.502 0 r
+(   368)59.5 642.4 ms
+0 g
+(        promptfile\))107.5 642.4 ms
+0 0.502 0 r
+(   369)59.5 632.4 ms
+0 g
+(          PROMPT_FILE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 632.4 ms
+0 0.502 0 r
+(   370)59.5 622.4 ms
+0 g
+(          ;;)107.5 622.4 ms
+0 0.502 0 r
+(   371)59.5 612.4 ms
+0 g
+(        lang|language\))107.5 612.4 ms
+0 0.502 0 r
+(   372)59.5 602.4 ms
+0 g
+(          LANGUAGE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 602.4 ms
+0 0.502 0 r
+(   373)59.5 592.4 ms
+0 g
+(          ;;)107.5 592.4 ms
+0 0.502 0 r
+(   374)59.5 582.4 ms
+0 g
+(        help\))107.5 582.4 ms
+0 0.502 0 r
+(   375)59.5 572.4 ms
+0 g
+(          print_help)107.5 572.4 ms
+0 0.502 0 r
+(   376)59.5 562.4 ms
+0 g
+(          exit 0)107.5 562.4 ms
+0 0.502 0 r
+(   377)59.5 552.4 ms
+0 g
+(          ;;)107.5 552.4 ms
+0 0.502 0 r
+(   378)59.5 542.4 ms
+0 g
+(        *\))107.5 542.4 ms
+0 0.502 0 r
+(   379)59.5 532.4 ms
+0 g
+(          echo "ERROR: Invalid option --${OPTARG}" >&2)107.5 532.4 ms
+0 0.502 0 r
+(   380)59.5 522.4 ms
+0 g
+(          print_help)107.5 522.4 ms
+0 0.502 0 r
+(   381)59.5 512.4 ms
+0 g
+(          exit 1)107.5 512.4 ms
+0 0.502 0 r
+(   382)59.5 502.4 ms
+0 g
+(          ;;)107.5 502.4 ms
+0 0.502 0 r
+(   383)59.5 492.4 ms
+0 g
+(      esac)107.5 492.4 ms
+0 0.502 0 r
+(   384)59.5 482.4 ms
+0 g
+(      ;;)107.5 482.4 ms
+0 0.502 0 r
+(   385)59.5 472.4 ms
+0 g
+(    \\?\))107.5 472.4 ms
+0 0.502 0 r
+(   386)59.5 462.4 ms
+0 g
+(      echo "ERROR: Invalid option -${OPTARG}" >&2)107.5 462.4 ms
+0 0.502 0 r
+(   387)59.5 452.4 ms
+0 g
+(      print_help)107.5 452.4 ms
+0 0.502 0 r
+(   388)59.5 442.4 ms
+0 g
+(      exit 1)107.5 442.4 ms
+0 0.502 0 r
+(   389)59.5 432.4 ms
+0 g
+(      ;;)107.5 432.4 ms
+0 0.502 0 r
+(   390)59.5 422.4 ms
+0 g
+(  esac)107.5 422.4 ms
+0 0.502 0 r
+(   391)59.5 412.4 ms
+0 g
+(done)107.5 412.4 ms
+0 0.502 0 r
+(   392)59.5 402.4 ms
+0 g
+(shift $\(\(OPTIND -1\)\))107.5 402.4 ms
+0 0.502 0 r
+(   393)59.5 392.4 ms
+(   394)59.5 382.4 ms
+0.753 0 0.753 r
+(# Check if an input file was provided. If not, print an error message and ex)107.5 382.4 ms
+(it.)107.5 372.4 ms
+0 0.502 0 r
+(   395)59.5 362.4 ms
+0 g
+(if [ $# -eq 0 ]; then)107.5 362.4 ms
+0 0.502 0 r
+(   396)59.5 352.4 ms
+0 g
+(  echo "ERROR: No input file provided." >&2)107.5 352.4 ms
+0 0.502 0 r
+(   397)59.5 342.4 ms
+0 g
+(  print_help)107.5 342.4 ms
+0 0.502 0 r
+(   398)59.5 332.4 ms
+0 g
+(  exit 1)107.5 332.4 ms
+0 0.502 0 r
+(   399)59.5 322.4 ms
+0 g
+(fi)107.5 322.4 ms
+0 0.502 0 r
+(   400)59.5 312.4 ms
+(   401)59.5 302.4 ms
+0 g
+(INPUT_FILE="$1")107.5 302.4 ms
+0 0.502 0 r
+(   402)59.5 292.4 ms
+(   403)59.5 282.4 ms
+0.753 0 0.753 r
+(# Check if the input file exists. If not, print an error message and exit.)107.5 282.4 ms
+0 0.502 0 r
+(   404)59.5 272.4 ms
+0 g
+(if [ ! -f "${INPUT_FILE}" ]; then)107.5 272.4 ms
+0 0.502 0 r
+(   405)59.5 262.4 ms
+0 g
+(  echo "ERROR: The input file '${INPUT_FILE}' does not exist." >&2)107.5 262.4 ms
+0 0.502 0 r
+(   406)59.5 252.4 ms
+0 g
+(  exit 1)107.5 252.4 ms
+0 0.502 0 r
+(   407)59.5 242.4 ms
+0 g
+(fi)107.5 242.4 ms
+0 0.502 0 r
+(   408)59.5 232.4 ms
+(   409)59.5 222.4 ms
+0.753 0 0.753 r
+(# If the user specified a prompt file, check if it exists. If not, print an )107.5 222.4 ms
+(error message and exit.)107.5 212.4 ms
+0 0.502 0 r
+(   410)59.5 202.4 ms
+0 g
+(if [ -n "${PROMPT_FILE}" ]; then)107.5 202.4 ms
+0 0.502 0 r
+(   411)59.5 192.4 ms
+0 g
+(  if [ ! -f "${PROMPT_FILE}" ]; then)107.5 192.4 ms
+0 0.502 0 r
+(   412)59.5 182.4 ms
+0 g
+(    echo "ERROR: The prompt file '${PROMPT_FILE}' does not exist." >&2)107.5 182.4 ms
+0 0.502 0 r
+(   413)59.5 172.4 ms
+0 g
+(    exit 1)107.5 172.4 ms
+0 0.502 0 r
+(   414)59.5 162.4 ms
+0 g
+(  fi)107.5 162.4 ms
+0 0.502 0 r
+(   415)59.5 152.4 ms
+0 g
+(fi)107.5 152.4 ms
+0 0.502 0 r
+(   416)59.5 142.4 ms
+0.753 0 0.753 r
+(```)107.5 142.4 ms
+0 0.502 0 r
+(   417)59.5 132.4 ms
+(   418)59.5 122.4 ms
+0 g
+(This code checks the )107.5 122.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(OPENAI_API_KEY)s
+0.753 0 0.753 r
+(`)s
+0 g
+( environment variable and exits the scr)s
+(ipt with an error message if it's not defined. It then parses the command-li)107.5 112.4 ms
+(ne options using )107.5 102.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(getopts)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, setting variables as necessary. If the )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-h)s
+0.753 0 0.753 r
+(`)s
+0 g
+( or )s
+0.753 0 0.753 r
+(`)s
+0 g
+(--help)107.5 92.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( option is used, it calls the )s
+0.753 0 0.753 r
+(`)s
+0 g
+(print_help)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function to print the help)s
+( message and exits. If any invalid options are encountered, it prints an err)107.5 82.4 ms
+(or message, the help message, and exits.)107.5 72.4 ms
+0 0.502 0 r
+(   419)59.5 62.4 ms
+(   420)59.5 52.4 ms
+0 g
+(After parsing the options, it checks if an input file was provided. If not, )107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 9 9
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md           Page 9)59.5 792.4 ms
+F0 sf
+(it prints an error message and exits. It then checks if the input file exist)107.5 772.4 ms
+(s, and if a prompt file was specified, it checks if that exists as well. If )107.5 762.4 ms
+(any of these files don't exist, it prints an error message and exits.)107.5 752.4 ms
+0 0.502 0 r
+(   421)59.5 742.4 ms
+(   422)59.5 732.4 ms
+0 g
+(Next steps will include implementing the audio conversion, file chunking, tr)107.5 732.4 ms
+(anscription, and output.)107.5 722.4 ms
+0 0.502 0 r
+(   423)59.5 712.4 ms
+(   424)59.5 702.4 ms
+0.753 0 0.753 r
+(-----)107.5 702.4 ms
+0 0.502 0 r
+(   425)59.5 692.4 ms
+0 g
+(User:)107.5 692.4 ms
+0 0.502 0 r
+(   426)59.5 682.4 ms
+(   427)59.5 672.4 ms
+0 g
+(So far looks good!)107.5 672.4 ms
+0 0.502 0 r
+(   428)59.5 662.4 ms
+0 g
+(Coudl you please continue?)107.5 662.4 ms
+0 0.502 0 r
+(   429)59.5 652.4 ms
+(   430)59.5 642.4 ms
+0.753 0 0.753 r
+(-----)107.5 642.4 ms
+0 0.502 0 r
+(   431)59.5 632.4 ms
+0 g
+(System:)107.5 632.4 ms
+0 0.502 0 r
+(   432)59.5 622.4 ms
+(   433)59.5 612.4 ms
+0 g
+(Certainly! Let's continue with the implementation.)107.5 612.4 ms
+0 0.502 0 r
+(   434)59.5 602.4 ms
+(   435)59.5 592.4 ms
+0 g
+(In this next step, we will implement the audio chunking and transcoding. We')107.5 592.4 ms
+(ll use )107.5 582.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( for this purpose because it's versatile and it's commonly us)s
+(ed for handling multimedia data. We're assuming )107.5 572.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is installed and av)s
+(ailable in the user's system.)107.5 562.4 ms
+0 0.502 0 r
+(   436)59.5 552.4 ms
+(   437)59.5 542.4 ms
+0 g
+(bashCopy code)107.5 542.4 ms
+0 0.502 0 r
+(   438)59.5 532.4 ms
+(   439)59.5 522.4 ms
+0.753 0 0.753 r
+(`)107.5 522.4 ms
+0 g
+(# Define the path to the directory where we'll store the temporary files.)s
+0 0.502 0 r
+(   440)59.5 512.4 ms
+0 g
+(TMP_DIR="/tmp/whisper_transcript_${RANDOM}")107.5 512.4 ms
+0 0.502 0 r
+(   441)59.5 502.4 ms
+(   442)59.5 492.4 ms
+0.753 0 0.753 r
+(# Create the temporary directory.)107.5 492.4 ms
+0 0.502 0 r
+(   443)59.5 482.4 ms
+0 g
+(mkdir -p "${TMP_DIR}")107.5 482.4 ms
+0 0.502 0 r
+(   444)59.5 472.4 ms
+(   445)59.5 462.4 ms
+0.753 0 0.753 r
+(# Convert the input file to WAV format and split it into chunks of 30 second)107.5 462.4 ms
+(s each.)107.5 452.4 ms
+0 0.502 0 r
+(   446)59.5 442.4 ms
+0.753 0 0.753 r
+(# We use the WAV format because it's a common, uncompressed audio format tha)107.5 442.4 ms
+(t should work with the Whisper API.)107.5 432.4 ms
+0 0.502 0 r
+(   447)59.5 422.4 ms
+0.753 0 0.753 r
+(# We split the input file into chunks because the Whisper API has a maximum )107.5 422.4 ms
+(length limit for audio inputs.)107.5 412.4 ms
+0 0.502 0 r
+(   448)59.5 402.4 ms
+0 g
+(ffmpeg -i "${INPUT_FILE}" -f segment -segment_time 30 -acodec pcm_s16le -ar )107.5 402.4 ms
+(16000 -ac 1 -vn "${TMP_DIR}/input-%03d.wav" > /dev/null 2>&1)107.5 392.4 ms
+0 0.502 0 r
+(   449)59.5 382.4 ms
+(   450)59.5 372.4 ms
+0 g
+(if [ $? -ne 0 ]; then)107.5 372.4 ms
+0 0.502 0 r
+(   451)59.5 362.4 ms
+0 g
+(  echo "ERROR: Failed to convert and split the input file." >&2)107.5 362.4 ms
+0 0.502 0 r
+(   452)59.5 352.4 ms
+0 g
+(  exit 1)107.5 352.4 ms
+0 0.502 0 r
+(   453)59.5 342.4 ms
+0 g
+(fi)107.5 342.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0 0.502 0 r
+(   454)59.5 332.4 ms
+(   455)59.5 322.4 ms
+0 g
+(In this block, we're creating a temporary directory to store the audio chunk)107.5 322.4 ms
+(s. We're then converting the input audio to WAV format, and at the same time)107.5 312.4 ms
+( splitting it into 30-second chunks. The )107.5 302.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( command might seem complic)s
+(ated, but it's quite straightforward:)107.5 292.4 ms
+0 0.502 0 r
+(   456)59.5 282.4 ms
+(   457)59.5 272.4 ms
+(-)107.5 272.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-i "${INPUT_FILE}")s
+0.753 0 0.753 r
+(`)s
+0 g
+( specifies the input file.)s
+0 0.502 0 r
+(   458)59.5 262.4 ms
+(-)107.5 262.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-f segment)s
+0.753 0 0.753 r
+(`)s
+0 g
+( tells )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( that we want to split the input into segments.)s
+0 0.502 0 r
+(   459)59.5 252.4 ms
+(-)107.5 252.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-segment_time 30)s
+0.753 0 0.753 r
+(`)s
+0 g
+( sets the segment duration to 30 seconds.)s
+0 0.502 0 r
+(   460)59.5 242.4 ms
+(-)107.5 242.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-acodec pcm_s16le -ar 16000 -ac 1)s
+0.753 0 0.753 r
+(`)s
+0 g
+( specifies the audio codec, sample rate)s
+(, and number of audio channels for the output file\(s\). These settings should)107.5 232.4 ms
+( be compatible with the Whisper API.)107.5 222.4 ms
+0 0.502 0 r
+(   461)59.5 212.4 ms
+(-)107.5 212.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-vn)s
+0.753 0 0.753 r
+(`)s
+0 g
+( tells )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to ignore any video stream in the input file.)s
+0 0.502 0 r
+(   462)59.5 202.4 ms
+(-)107.5 202.4 ms
+0 g
+( )s
+0.753 0 0.753 r
+(`)s
+0 g
+("${TMP_DIR}/input-%03d.wav")s
+0.753 0 0.753 r
+(`)s
+0 g
+( is the output file pattern. )s
+0.753 0 0.753 r
+(`)s
+0 g
+(%03d)s
+0.753 0 0.753 r
+(`)s
+0 g
+( will be r)s
+(eplaced with the segment number, zero-padded to three digits.)107.5 192.4 ms
+0 0.502 0 r
+(   463)59.5 182.4 ms
+(   464)59.5 172.4 ms
+0 g
+(We're redirecting the output of )107.5 172.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to )s
+0.753 0 0.753 r
+(`)s
+0 g
+(/dev/null)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to avoid cluttering )s
+(the console. We then check the exit code of )107.5 162.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(ffmpeg)s
+0.753 0 0.753 r
+(`)s
+0 g
+( and print an error mess)s
+(age if it's not zero, indicating that something went wrong.)107.5 152.4 ms
+0 0.502 0 r
+(   465)59.5 142.4 ms
+(   466)59.5 132.4 ms
+0.753 0 0.753 r
+(-----)107.5 132.4 ms
+0 0.502 0 r
+(   467)59.5 122.4 ms
+0 g
+(User:)107.5 122.4 ms
+0 0.502 0 r
+(   468)59.5 112.4 ms
+(   469)59.5 102.4 ms
+0 g
+(So far looks good!)107.5 102.4 ms
+0 0.502 0 r
+(   470)59.5 92.4 ms
+0 g
+(Could you, please, continue?)107.5 92.4 ms
+0 0.502 0 r
+(   471)59.5 82.4 ms
+(   472)59.5 72.4 ms
+0.753 0 0.753 r
+(-----)107.5 72.4 ms
+0 0.502 0 r
+(   473)59.5 62.4 ms
+0 g
+(System:)107.5 62.4 ms
+0 0.502 0 r
+(   474)59.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 10 10
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 10)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   475)59.5 772.4 ms
+0 g
+(Sure, I'll continue.)107.5 772.4 ms
+0 0.502 0 r
+(   476)59.5 762.4 ms
+(   477)59.5 752.4 ms
+0 g
+(Next, we will iterate over each chunk of the audio, transcribe it with the W)107.5 752.4 ms
+(hisper API, and write the transcriptions to the output file\(s\). After each t)107.5 742.4 ms
+(ranscription, we'll append the billing data to the log file and call the )107.5 732.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(up)s
+(date_openai_billing)107.5 722.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( command, if available.)s
+0 0.502 0 r
+(   478)59.5 712.4 ms
+(   479)59.5 702.4 ms
+0.753 0 0.753 r
+(```)107.5 702.4 ms
+0 0.502 0 r
+(   480)59.5 692.4 ms
+0.753 0 0.753 r
+(# Iterate over the audio chunks.)107.5 692.4 ms
+0 0.502 0 r
+(   481)59.5 682.4 ms
+0 g
+(for CHUNK in "${TMP_DIR}"/input-*.wav; do)107.5 682.4 ms
+0 0.502 0 r
+(   482)59.5 672.4 ms
+0.753 0 0.753 r
+(  # Extract the chunk number from the file name.)107.5 672.4 ms
+0 0.502 0 r
+(   483)59.5 662.4 ms
+0 g
+(  CHUNK_NO=$\(basename "${CHUNK}" .wav | cut -d '-' -f 2\))107.5 662.4 ms
+0 0.502 0 r
+(   484)59.5 652.4 ms
+(   485)59.5 642.4 ms
+0.753 0 0.753 r
+(  # Use curl to transcribe the audio chunk with the Whisper API.)107.5 642.4 ms
+0 0.502 0 r
+(   486)59.5 632.4 ms
+0.753 0 0.753 r
+(  # We're setting the output format to JSON, as required by the assignment.)107.5 632.4 ms
+0 0.502 0 r
+(   487)59.5 622.4 ms
+0 g
+(  RESPONSE=$\(curl -s -X POST "https://api.openai.com/v1/audio/transcriptions)107.5 622.4 ms
+(" \\)107.5 612.4 ms
+0 0.502 0 r
+(   488)59.5 602.4 ms
+0 g
+(    -H "Authorization: Bearer ${OPENAI_API_KEY}" \\)107.5 602.4 ms
+0 0.502 0 r
+(   489)59.5 592.4 ms
+0 g
+(    -H "Content-Type: multipart/form-data" \\)107.5 592.4 ms
+0 0.502 0 r
+(   490)59.5 582.4 ms
+0 g
+(    -F "file=@${CHUNK}" \\)107.5 582.4 ms
+0 0.502 0 r
+(   491)59.5 572.4 ms
+0 g
+(    -F "model=whisper-1" \\)107.5 572.4 ms
+0 0.502 0 r
+(   492)59.5 562.4 ms
+0 g
+(    -F "response_format=json" \\)107.5 562.4 ms
+0 0.502 0 r
+(   493)59.5 552.4 ms
+0 g
+(    -F "prompt=${PROMPT}" \\)107.5 552.4 ms
+0 0.502 0 r
+(   494)59.5 542.4 ms
+0 g
+(    -F "language=${LANGUAGE}"\))107.5 542.4 ms
+0 0.502 0 r
+(   495)59.5 532.4 ms
+(   496)59.5 522.4 ms
+0.753 0 0.753 r
+(  # Check the HTTP status code.)107.5 522.4 ms
+0 0.502 0 r
+(   497)59.5 512.4 ms
+0 g
+(  STATUS=$\(echo "${RESPONSE}" | jq -r '.status'\))107.5 512.4 ms
+0 0.502 0 r
+(   498)59.5 502.4 ms
+(   499)59.5 492.4 ms
+0 g
+(  if [ "${STATUS}" != "200" ]; then)107.5 492.4 ms
+0 0.502 0 r
+(   500)59.5 482.4 ms
+0 g
+(    echo "ERROR: Failed to transcribe chunk ${CHUNK_NO}. Status: ${STATUS}" )107.5 482.4 ms
+(>&2)107.5 472.4 ms
+0 0.502 0 r
+(   501)59.5 462.4 ms
+0 g
+(    continue)107.5 462.4 ms
+0 0.502 0 r
+(   502)59.5 452.4 ms
+0 g
+(  fi)107.5 452.4 ms
+0 0.502 0 r
+(   503)59.5 442.4 ms
+(   504)59.5 432.4 ms
+0.753 0 0.753 r
+(  # Extract the transcript text from the JSON response.)107.5 432.4 ms
+0 0.502 0 r
+(   505)59.5 422.4 ms
+0 g
+(  TRANSCRIPT=$\(echo "${RESPONSE}" | jq -r '.text'\))107.5 422.4 ms
+0 0.502 0 r
+(   506)59.5 412.4 ms
+(   507)59.5 402.4 ms
+0.753 0 0.753 r
+(  # Write the transcript to the output file\(s\).)107.5 402.4 ms
+0 0.502 0 r
+(   508)59.5 392.4 ms
+0 g
+(  if [ "${OUTFILE}" != "" ]; then)107.5 392.4 ms
+0 0.502 0 r
+(   509)59.5 382.4 ms
+0 g
+(    echo "${TRANSCRIPT}" >> "${OUTFILE}-${CHUNK_NO}.json")107.5 382.4 ms
+0 0.502 0 r
+(   510)59.5 372.4 ms
+0 g
+(    echo "${TRANSCRIPT}" >> "${OUTFILE}-${CHUNK_NO}.txt")107.5 372.4 ms
+0 0.502 0 r
+(   511)59.5 362.4 ms
+0 g
+(  fi)107.5 362.4 ms
+0 0.502 0 r
+(   512)59.5 352.4 ms
+0 g
+(  if [ "${STDOUT}" = "1" ]; then)107.5 352.4 ms
+0 0.502 0 r
+(   513)59.5 342.4 ms
+0 g
+(    echo "${TRANSCRIPT}")107.5 342.4 ms
+0 0.502 0 r
+(   514)59.5 332.4 ms
+0 g
+(  fi)107.5 332.4 ms
+0 0.502 0 r
+(   515)59.5 322.4 ms
+(   516)59.5 312.4 ms
+0.753 0 0.753 r
+(  # Extract the billing data from the JSON response and append it to the log)107.5 312.4 ms
+( file.)107.5 302.4 ms
+0 0.502 0 r
+(   517)59.5 292.4 ms
+0 g
+(  BILLING=$\(echo "${RESPONSE}" | jq -r '.usage'\))107.5 292.4 ms
+0 0.502 0 r
+(   518)59.5 282.4 ms
+0 g
+(  echo "$\(date --iso-8601=seconds\) ${INPUT_FILE} ${CHUNK_NO} ${BILLING}" >> )107.5 282.4 ms
+("${BILLING_LOG_FILE}")107.5 272.4 ms
+0 0.502 0 r
+(   519)59.5 262.4 ms
+(   520)59.5 252.4 ms
+0.753 0 0.753 r
+(  # Call the `)107.5 252.4 ms
+0 g
+(update_openai_billing)s
+0.753 0 0.753 r
+(` command, if available.)s
+0 0.502 0 r
+(   521)59.5 242.4 ms
+0 g
+(  if command -v update_openai_billing > /dev/null; then)107.5 242.4 ms
+0 0.502 0 r
+(   522)59.5 232.4 ms
+0 g
+(    update_openai_billing)107.5 232.4 ms
+0 0.502 0 r
+(   523)59.5 222.4 ms
+0 g
+(  fi)107.5 222.4 ms
+0 0.502 0 r
+(   524)59.5 212.4 ms
+0 g
+(done)107.5 212.4 ms
+0 0.502 0 r
+(   525)59.5 202.4 ms
+0.753 0 0.753 r
+(```)107.5 202.4 ms
+0 0.502 0 r
+(   526)59.5 192.4 ms
+(   527)59.5 182.4 ms
+0 g
+(In this block, we're iterating over the audio chunks in the temporary direct)107.5 182.4 ms
+(ory. For each chunk, we're sending a POST request to the Whisper API to tran)107.5 172.4 ms
+(scribe the audio. We're setting the output format to JSON, and we're passing)107.5 162.4 ms
+( the prompt and language parameters that we parsed earlier.)107.5 152.4 ms
+0 0.502 0 r
+(   528)59.5 142.4 ms
+(   529)59.5 132.4 ms
+0 g
+(We then check the HTTP status code in the response. If it's not 200, we prin)107.5 132.4 ms
+(t an error message and continue with the next chunk.)107.5 122.4 ms
+0 0.502 0 r
+(   530)59.5 112.4 ms
+(   531)59.5 102.4 ms
+0 g
+(Next, we extract the transcript text from the JSON response and write it to )107.5 102.4 ms
+(the output file\(s\). We're checking if each output option is enabled before w)107.5 92.4 ms
+(riting the transcript.)107.5 82.4 ms
+0 0.502 0 r
+(   532)59.5 72.4 ms
+(   533)59.5 62.4 ms
+0 g
+(After writing the transcript, we extract the billing data from the JSON resp)107.5 62.4 ms
+(onse and append it to the log file. We're using the )107.5 52.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(date)s
+0.753 0 0.753 r
+(`)s
+0 g
+( command to get th)s
+re sp
+%%PageTrailer
+%%Page: 11 11
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 11)59.5 792.4 ms
+F0 sf
+(e current date and time in ISO 8601 format, as requested.)107.5 772.4 ms
+0 0.502 0 r
+(   534)59.5 762.4 ms
+(   535)59.5 752.4 ms
+0 g
+(Finally, we check if the )107.5 752.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(update_openai_billing)s
+0.753 0 0.753 r
+(`)s
+0 g
+( command is available in the)s
+( system, and if it is, we call it.)107.5 742.4 ms
+0 0.502 0 r
+(   536)59.5 732.4 ms
+(   537)59.5 722.4 ms
+0 g
+(This block should implement the core functionality of the script. We're usin)107.5 722.4 ms
+(g )107.5 712.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(jq)s
+0.753 0 0.753 r
+(`)s
+0 g
+( to parse the JSON responses from the Whisper API, which is aSorry, my)s
+( previous response was cut off.)107.5 702.4 ms
+0 0.502 0 r
+(   538)59.5 692.4 ms
+(   539)59.5 682.4 ms
+0 g
+(What I wanted to add is that )107.5 682.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(jq)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is a versatile command-line JSON processor)s
+(. If it is not available in the user's system, they will need to install it.)107.5 672.4 ms
+( )107.5 662.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(jq)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is used here to parse the HTTP status, the transcript text, and the us)s
+(age data from the JSON response.)107.5 652.4 ms
+0 0.502 0 r
+(   540)59.5 642.4 ms
+(   541)59.5 632.4 ms
+0 g
+(After the loop ends, we should clean up the temporary directory:)107.5 632.4 ms
+0 0.502 0 r
+(   542)59.5 622.4 ms
+(   543)59.5 612.4 ms
+0.753 0 0.753 r
+(```)107.5 612.4 ms
+0 0.502 0 r
+(   544)59.5 602.4 ms
+0.753 0 0.753 r
+(# Clean up the temporary directory.)107.5 602.4 ms
+0 0.502 0 r
+(   545)59.5 592.4 ms
+0 g
+(rm -rf "${TMP_DIR}")107.5 592.4 ms
+0 0.502 0 r
+(   546)59.5 582.4 ms
+0.753 0 0.753 r
+(```)107.5 582.4 ms
+0 0.502 0 r
+(   547)59.5 572.4 ms
+(   548)59.5 562.4 ms
+0 g
+(This command deletes the temporary directory and its contents. We're using t)107.5 562.4 ms
+(he )107.5 552.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(-rf)s
+0.753 0 0.753 r
+(`)s
+0 g
+( option to remove files and directories recursively and without aski)s
+(ng for confirmation.)107.5 542.4 ms
+0 0.502 0 r
+(   549)59.5 532.4 ms
+(   550)59.5 522.4 ms
+0 g
+(Finally, we print a success message and exit the script:)107.5 522.4 ms
+0 0.502 0 r
+(   551)59.5 512.4 ms
+(   552)59.5 502.4 ms
+0.753 0 0.753 r
+(```)107.5 502.4 ms
+0 0.502 0 r
+(   553)59.5 492.4 ms
+0.753 0 0.753 r
+(# Print a success message and exit.)107.5 492.4 ms
+0 0.502 0 r
+(   554)59.5 482.4 ms
+0 g
+(echo "Successfully transcribed the audio file.")107.5 482.4 ms
+0 0.502 0 r
+(   555)59.5 472.4 ms
+0 g
+(exit 0)107.5 472.4 ms
+0 0.502 0 r
+(   556)59.5 462.4 ms
+0.753 0 0.753 r
+(```)107.5 462.4 ms
+0 0.502 0 r
+(   557)59.5 452.4 ms
+(   558)59.5 442.4 ms
+0 g
+(This is the complete implementation of the script. It fulfills all the requi)107.5 442.4 ms
+(rements as I understand them, but let me know if there's anything else you n)107.5 432.4 ms
+(eed.)107.5 422.4 ms
+0 0.502 0 r
+(   559)59.5 412.4 ms
+(   560)59.5 402.4 ms
+(   561)59.5 392.4 ms
+0.753 0 0.753 r
+(-----)107.5 392.4 ms
+0 0.502 0 r
+(   562)59.5 382.4 ms
+0 g
+(User:)107.5 382.4 ms
+0 0.502 0 r
+(   563)59.5 372.4 ms
+(   564)59.5 362.4 ms
+0 g
+(I added one more feature to features list in README.md:)107.5 362.4 ms
+0 0.502 0 r
+(   565)59.5 352.4 ms
+(   566)59.5 342.4 ms
+(-)107.5 342.4 ms
+0 g
+( If interrupted with Ctrl-C, captures signal with a trap and removes tempor)s
+(ary files.)107.5 332.4 ms
+0 0.502 0 r
+(   567)59.5 322.4 ms
+(   568)59.5 312.4 ms
+(   569)59.5 302.4 ms
+0 g
+(Coud you please provide what piece of code I need to add to ensure that when)107.5 302.4 ms
+( I hit Ctrl-C during script execution that temporary files are cleaned up?)107.5 292.4 ms
+0 0.502 0 r
+(   570)59.5 282.4 ms
+(   571)59.5 272.4 ms
+0.753 0 0.753 r
+(-----)107.5 272.4 ms
+0 0.502 0 r
+(   572)59.5 262.4 ms
+0 g
+(System:)107.5 262.4 ms
+0 0.502 0 r
+(   573)59.5 252.4 ms
+(   574)59.5 242.4 ms
+0 g
+(Absolutely. You can use the trap command in Bash to capture signals and exec)107.5 242.4 ms
+(ute a piece of code when they're received. In your case, you can set up a tr)107.5 232.4 ms
+(ap for the SIGINT signal, which is sent when you hit Ctrl-C.)107.5 222.4 ms
+0 0.502 0 r
+(   575)59.5 212.4 ms
+(   576)59.5 202.4 ms
+0 g
+(Add the following lines right after creating the temporary directory:)107.5 202.4 ms
+0 0.502 0 r
+(   577)59.5 192.4 ms
+(   578)59.5 182.4 ms
+0.753 0 0.753 r
+(```)107.5 182.4 ms
+0 0.502 0 r
+(   579)59.5 172.4 ms
+0.753 0 0.753 r
+(# Set up a trap to clean up the temporary directory on Ctrl-C.)107.5 172.4 ms
+0 0.502 0 r
+(   580)59.5 162.4 ms
+0 g
+(trap 'echo "Interrupted. Cleaning up..."; rm -rf "${TMP_DIR}"; exit 1' INT)107.5 162.4 ms
+0 0.502 0 r
+(   581)59.5 152.4 ms
+0.753 0 0.753 r
+(```)107.5 152.4 ms
+0 0.502 0 r
+(   582)59.5 142.4 ms
+(   583)59.5 132.4 ms
+0 g
+(This command sets up a trap for the SIGINT signal. When the script receives )107.5 132.4 ms
+(this signal, it prints a message, deletes the temporary directory, and exits)107.5 122.4 ms
+( with a non-zero status code to indicate that it was interrupted.)107.5 112.4 ms
+0 0.502 0 r
+(   584)59.5 102.4 ms
+(   585)59.5 92.4 ms
+0 g
+(The trap command should be added right after creating the temporary director)107.5 92.4 ms
+(y to ensure that it's always deleted, even if the script is interrupted righ)107.5 82.4 ms
+(t after it's created.)107.5 72.4 ms
+0 0.502 0 r
+(   586)59.5 62.4 ms
+(   587)59.5 52.4 ms
+0 g
+(So, the part of the script with the creation of the temporary directory and )107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 12 12
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 12)59.5 792.4 ms
+F0 sf
+(the trap would look like this:)107.5 772.4 ms
+0 0.502 0 r
+(   588)59.5 762.4 ms
+(   589)59.5 752.4 ms
+0.753 0 0.753 r
+(```)107.5 752.4 ms
+0 0.502 0 r
+(   590)59.5 742.4 ms
+0.753 0 0.753 r
+(# Create a temporary directory for the audio chunks.)107.5 742.4 ms
+0 0.502 0 r
+(   591)59.5 732.4 ms
+0 g
+(TMP_DIR=$\(mktemp -d\))107.5 732.4 ms
+0 0.502 0 r
+(   592)59.5 722.4 ms
+0 g
+(echo "Using temporary directory ${TMP_DIR}")107.5 722.4 ms
+0 0.502 0 r
+(   593)59.5 712.4 ms
+(   594)59.5 702.4 ms
+0.753 0 0.753 r
+(# Set up a trap to clean up the temporary directory on Ctrl-C.)107.5 702.4 ms
+0 0.502 0 r
+(   595)59.5 692.4 ms
+0 g
+(trap 'echo "Interrupted. Cleaning up..."; rm -rf "${TMP_DIR}"; exit 1' INT)107.5 692.4 ms
+0 0.502 0 r
+(   596)59.5 682.4 ms
+0 g
+(This way, if the script is interrupted at any point after the temporary dire)107.5 682.4 ms
+(ctory is created, the directory will be cleaned up before the script exits.)107.5 672.4 ms
+0 0.502 0 r
+(   597)59.5 662.4 ms
+0.753 0 0.753 r
+(```)107.5 662.4 ms
+0 0.502 0 r
+(   598)59.5 652.4 ms
+(   599)59.5 642.4 ms
+0.753 0 0.753 r
+(-----)107.5 642.4 ms
+0 0.502 0 r
+(   600)59.5 632.4 ms
+0 g
+(User:)107.5 632.4 ms
+0 0.502 0 r
+(   601)59.5 622.4 ms
+(   602)59.5 612.4 ms
+0 g
+(I got following output:)107.5 612.4 ms
+0 0.502 0 r
+(   603)59.5 602.4 ms
+(   604)59.5 592.4 ms
+0.753 0 0.753 r
+(```)107.5 592.4 ms
+0 0.502 0 r
+(   605)59.5 582.4 ms
+0 g
+(Using temporary directory /tmp/tmp.x0egkQ6xQk)107.5 582.4 ms
+0 0.502 0 r
+(   606)59.5 572.4 ms
+0 g
+(ERROR: Failed to transcribe chunk 000. Status: null)107.5 572.4 ms
+0 0.502 0 r
+(   607)59.5 562.4 ms
+0 g
+(ERROR: Failed to transcribe chunk 001. Status: null)107.5 562.4 ms
+0 0.502 0 r
+(   608)59.5 552.4 ms
+0 g
+(ERROR: Failed to transcribe chunk 002. Status: null)107.5 552.4 ms
+0 0.502 0 r
+(   609)59.5 542.4 ms
+0 g
+(Successfully transcribed the audio file.)107.5 542.4 ms
+0 0.502 0 r
+(   610)59.5 532.4 ms
+0.753 0 0.753 r
+(```)107.5 532.4 ms
+0 0.502 0 r
+(   611)59.5 522.4 ms
+(   612)59.5 512.4 ms
+0 g
+(Where and what extra verbose logging information shoudl I add that will be p)107.5 512.4 ms
+(rint to stderr so we can identify what is the issue?)107.5 502.4 ms
+0 0.502 0 r
+(   613)59.5 492.4 ms
+(   614)59.5 482.4 ms
+0.753 0 0.753 r
+(-----)107.5 482.4 ms
+0 0.502 0 r
+(   615)59.5 472.4 ms
+0 g
+(System:)107.5 472.4 ms
+0 0.502 0 r
+(   616)59.5 462.4 ms
+(   617)59.5 452.4 ms
+0 g
+(I'd suggest adding logging around the curl command that makes the request to)107.5 452.4 ms
+( the OpenAI API. This could help identify whether the issue lies in the requ)107.5 442.4 ms
+(est being made, or in the response received.)107.5 432.4 ms
+0 0.502 0 r
+(   618)59.5 422.4 ms
+(   619)59.5 412.4 ms
+0 g
+(To add this, you can make use of the )107.5 412.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(-v)s
+0.753 0 0.753 r
+(`)s
+0 g
+( \(verbose\) flag provided by curl. T)s
+(his will print a lot of information, including the entire request and respon)107.5 402.4 ms
+(se \(headers and body\). However, be aware that this will include your API key)107.5 392.4 ms
+( in the )107.5 382.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(Authorization)s
+0.753 0 0.753 r
+(`)s
+0 g
+( header, so don't share this output publicly.)s
+0 0.502 0 r
+(   620)59.5 372.4 ms
+(   621)59.5 362.4 ms
+0 g
+(Modify the )107.5 362.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function like this:)s
+0 0.502 0 r
+(   622)59.5 352.4 ms
+(   623)59.5 342.4 ms
+0.753 0 0.753 r
+(```)107.5 342.4 ms
+0 0.502 0 r
+(   624)59.5 332.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 332.4 ms
+0 0.502 0 r
+(   625)59.5 322.4 ms
+0 g
+(  local chunkno=$1)107.5 322.4 ms
+0 0.502 0 r
+(   626)59.5 312.4 ms
+0 g
+(  local promptfile=$2)107.5 312.4 ms
+0 0.502 0 r
+(   627)59.5 302.4 ms
+0 g
+(  local langflag=$3)107.5 302.4 ms
+0 0.502 0 r
+(   628)59.5 292.4 ms
+0 g
+(  local outputfile=$OUTPUT_FILE_BASENAME-${chunkno}.json)107.5 292.4 ms
+0 0.502 0 r
+(   629)59.5 282.4 ms
+0 g
+(  local txtoutputfile=$OUTPUT_FILE_BASENAME-${chunkno}.txt)107.5 282.4 ms
+0 0.502 0 r
+(   630)59.5 272.4 ms
+(   631)59.5 262.4 ms
+0 g
+(  echo "Transcribing chunk ${chunkno}...")107.5 262.4 ms
+0 0.502 0 r
+(   632)59.5 252.4 ms
+(   633)59.5 242.4 ms
+0.753 0 0.753 r
+(  # Run the curl command with the -v flag for verbose output.)107.5 242.4 ms
+0 0.502 0 r
+(   634)59.5 232.4 ms
+0 g
+(  curl -v --request POST \\)107.5 232.4 ms
+0 0.502 0 r
+(   635)59.5 222.4 ms
+0 g
+(    --url https://api.openai.com/v1/audio/transcriptions \\)107.5 222.4 ms
+0 0.502 0 r
+(   636)59.5 212.4 ms
+0 g
+(    --header "Authorization: Bearer ${OPENAI_TOKEN}" \\)107.5 212.4 ms
+0 0.502 0 r
+(   637)59.5 202.4 ms
+0 g
+(    --header 'Content-Type: multipart/form-data' \\)107.5 202.4 ms
+0 0.502 0 r
+(   638)59.5 192.4 ms
+0 g
+(    --form file=@${TMP_DIR}/input-${chunkno}.mp3 \\)107.5 192.4 ms
+0 0.502 0 r
+(   639)59.5 182.4 ms
+0 g
+(    --form model=whisper-1 \\)107.5 182.4 ms
+0 0.502 0 r
+(   640)59.5 172.4 ms
+0 g
+(    --form response_format=json \\)107.5 172.4 ms
+0 0.502 0 r
+(   641)59.5 162.4 ms
+0 g
+(    ${promptfile:+--form prompt=@${promptfile}} \\)107.5 162.4 ms
+0 0.502 0 r
+(   642)59.5 152.4 ms
+0 g
+(    ${langflag} \\)107.5 152.4 ms
+0 0.502 0 r
+(   643)59.5 142.4 ms
+0 g
+(    > ${outputfile} 2>curl-${chunkno}.log)107.5 142.4 ms
+0 0.502 0 r
+(   644)59.5 132.4 ms
+(   645)59.5 122.4 ms
+0 g
+(  local status=$?)107.5 122.4 ms
+0 0.502 0 r
+(   646)59.5 112.4 ms
+(   647)59.5 102.4 ms
+0.753 0 0.753 r
+(  # Check the status of the curl command.)107.5 102.4 ms
+0 0.502 0 r
+(   648)59.5 92.4 ms
+0 g
+(  if [ $status -ne 0 ]; then)107.5 92.4 ms
+0 0.502 0 r
+(   649)59.5 82.4 ms
+0 g
+(    echo "ERROR: Failed to transcribe chunk ${chunkno}. Status: $status" >&2)107.5 82.4 ms
+0 0.502 0 r
+(   650)59.5 72.4 ms
+0 g
+(  else)107.5 72.4 ms
+0 0.502 0 r
+(   651)59.5 62.4 ms
+0 g
+(    echo "Transcribed chunk ${chunkno} successfully.")107.5 62.4 ms
+0 0.502 0 r
+(   652)59.5 52.4 ms
+0 g
+(    # Extract text from json output)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 13 13
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 13)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   653)59.5 772.4 ms
+0 g
+(    jq -r .text ${outputfile} > ${txtoutputfile})107.5 772.4 ms
+0 0.502 0 r
+(   654)59.5 762.4 ms
+0 g
+(  fi)107.5 762.4 ms
+0 0.502 0 r
+(   655)59.5 752.4 ms
+0 g
+(})107.5 752.4 ms
+0 0.502 0 r
+(   656)59.5 742.4 ms
+0.753 0 0.753 r
+(```)107.5 742.4 ms
+0 0.502 0 r
+(   657)59.5 732.4 ms
+(   658)59.5 722.4 ms
+0 g
+(This will create a separate log file \()107.5 722.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(curl-${chunkno}.log)s
+0.753 0 0.753 r
+(`)s
+0 g
+(\) for each chunk,)s
+( containing the verbose output from curl. You can then examine these log fil)107.5 712.4 ms
+(es to see the full request and response for each chunk.)107.5 702.4 ms
+0 0.502 0 r
+(   659)59.5 692.4 ms
+(   660)59.5 682.4 ms
+0 g
+(Remember to inspect these files and remove sensitive information \(like your )107.5 682.4 ms
+(API key\) before sharing them. Also, remember to delete these files when you')107.5 672.4 ms
+(re done troubleshooting, as they might contain sensitive information.)107.5 662.4 ms
+0 0.502 0 r
+(   661)59.5 652.4 ms
+(   662)59.5 642.4 ms
+0.753 0 0.753 r
+(-----)107.5 642.4 ms
+0 0.502 0 r
+(   663)59.5 632.4 ms
+0 g
+(User:)107.5 632.4 ms
+0 0.502 0 r
+(   664)59.5 622.4 ms
+(   665)59.5 612.4 ms
+0 g
+(Current code does not contain or use function transcribe chunk.)107.5 612.4 ms
+0 0.502 0 r
+(   666)59.5 602.4 ms
+(   667)59.5 592.4 ms
+0 g
+(Do I understand I should modify loop that iterates over chunks to call menti)107.5 592.4 ms
+(oned function?)107.5 582.4 ms
+0 0.502 0 r
+(   668)59.5 572.4 ms
+(   669)59.5 562.4 ms
+0.753 0 0.753 r
+(-----)107.5 562.4 ms
+0 0.502 0 r
+(   670)59.5 552.4 ms
+0 g
+(System:)107.5 552.4 ms
+0 0.502 0 r
+(   671)59.5 542.4 ms
+(   672)59.5 532.4 ms
+0 g
+(Yes, you're correct. I apologize for the oversight. The transcribe_chunk\(\) f)107.5 532.4 ms
+(unction isn't currently in the script you have. The provided function is a s)107.5 522.4 ms
+(uggestion to encapsulate the transcription of each chunk into a separate fun)107.5 512.4 ms
+(ction for better code organization and readability.)107.5 502.4 ms
+0 0.502 0 r
+(   673)59.5 492.4 ms
+(   674)59.5 482.4 ms
+0 g
+(Here's how you can modify your loop to use this function:)107.5 482.4 ms
+0 0.502 0 r
+(   675)59.5 472.4 ms
+(   676)59.5 462.4 ms
+(   677)59.5 452.4 ms
+0.753 0 0.753 r
+(```)107.5 452.4 ms
+0 0.502 0 r
+(   678)59.5 442.4 ms
+0.753 0 0.753 r
+(# Get number of chunks)107.5 442.4 ms
+0 0.502 0 r
+(   679)59.5 432.4 ms
+0 g
+(chunks=$\(ls ${TMP_DIR}/input-*.mp3 | wc -l\))107.5 432.4 ms
+0 0.502 0 r
+(   680)59.5 422.4 ms
+(   681)59.5 412.4 ms
+0.753 0 0.753 r
+(# Transcribe each chunk)107.5 412.4 ms
+0 0.502 0 r
+(   682)59.5 402.4 ms
+0 g
+(for \(\( i=0; i<$chunks; i++ \)\); do)107.5 402.4 ms
+0 0.502 0 r
+(   683)59.5 392.4 ms
+0 g
+(  transcribe_chunk $\(printf "%03d" $i\) $PROMPT_FILE $LANG_FLAG)107.5 392.4 ms
+0 0.502 0 r
+(   684)59.5 382.4 ms
+0 g
+(done)107.5 382.4 ms
+0 0.502 0 r
+(   685)59.5 372.4 ms
+0.753 0 0.753 r
+(```)107.5 372.4 ms
+0 0.502 0 r
+(   686)59.5 362.4 ms
+(   687)59.5 352.4 ms
+0 g
+(This loop will call )107.5 352.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk\(\))s
+0.753 0 0.753 r
+(`)s
+0 g
+( for each chunk. The )s
+0.753 0 0.753 r
+(`)s
+0 g
+($\(printf "%03d)s
+(" $i\))107.5 342.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( part is used to format the chunk number as a three-digit number with )s
+(leading zeros, matching the chunk file names.)107.5 332.4 ms
+0 0.502 0 r
+(   688)59.5 322.4 ms
+(   689)59.5 312.4 ms
+0 g
+(Also, remember to define the )107.5 312.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function earlier in your scr)s
+(ipt:)107.5 302.4 ms
+0 0.502 0 r
+(   690)59.5 292.4 ms
+(   691)59.5 282.4 ms
+0.753 0 0.753 r
+(```)107.5 282.4 ms
+0 0.502 0 r
+(   692)59.5 272.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 272.4 ms
+0 0.502 0 r
+(   693)59.5 262.4 ms
+0 g
+(  local chunkno=$1)107.5 262.4 ms
+0 0.502 0 r
+(   694)59.5 252.4 ms
+0 g
+(  local promptfile=$2)107.5 252.4 ms
+0 0.502 0 r
+(   695)59.5 242.4 ms
+0 g
+(  local langflag=$3)107.5 242.4 ms
+0 0.502 0 r
+(   696)59.5 232.4 ms
+0 g
+(  local outputfile=$OUTPUT_FILE_BASENAME-${chunkno}.json)107.5 232.4 ms
+0 0.502 0 r
+(   697)59.5 222.4 ms
+0 g
+(  local txtoutputfile=$OUTPUT_FILE_BASENAME-${chunkno}.txt)107.5 222.4 ms
+0 0.502 0 r
+(   698)59.5 212.4 ms
+(   699)59.5 202.4 ms
+0 g
+(  echo "Transcribing chunk ${chunkno}...")107.5 202.4 ms
+0 0.502 0 r
+(   700)59.5 192.4 ms
+(   701)59.5 182.4 ms
+0.753 0 0.753 r
+(  # Run the curl command with the -v flag for verbose output.)107.5 182.4 ms
+0 0.502 0 r
+(   702)59.5 172.4 ms
+0 g
+(  curl -v --request POST \\)107.5 172.4 ms
+0 0.502 0 r
+(   703)59.5 162.4 ms
+0 g
+(    --url https://api.openai.com/v1/audio/transcriptions \\)107.5 162.4 ms
+0 0.502 0 r
+(   704)59.5 152.4 ms
+0 g
+(    --header "Authorization: Bearer ${OPENAI_TOKEN}" \\)107.5 152.4 ms
+0 0.502 0 r
+(   705)59.5 142.4 ms
+0 g
+(    --header 'Content-Type: multipart/form-data' \\)107.5 142.4 ms
+0 0.502 0 r
+(   706)59.5 132.4 ms
+0 g
+(    --form file=@${TMP_DIR}/input-${chunkno}.mp3 \\)107.5 132.4 ms
+0 0.502 0 r
+(   707)59.5 122.4 ms
+0 g
+(    --form model=whisper-1 \\)107.5 122.4 ms
+0 0.502 0 r
+(   708)59.5 112.4 ms
+0 g
+(    --form response_format=json \\)107.5 112.4 ms
+0 0.502 0 r
+(   709)59.5 102.4 ms
+0 g
+(    ${promptfile:+--form prompt=@${promptfile}} \\)107.5 102.4 ms
+0 0.502 0 r
+(   710)59.5 92.4 ms
+0 g
+(    ${langflag} \\)107.5 92.4 ms
+0 0.502 0 r
+(   711)59.5 82.4 ms
+0 g
+(    > ${outputfile} 2>curl-${chunkno}.log)107.5 82.4 ms
+0 0.502 0 r
+(   712)59.5 72.4 ms
+(   713)59.5 62.4 ms
+0 g
+(  local status=$?)107.5 62.4 ms
+0 0.502 0 r
+(   714)59.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 14 14
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 14)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   715)59.5 772.4 ms
+0.753 0 0.753 r
+(  # Check the status of the curl command.)107.5 772.4 ms
+0 0.502 0 r
+(   716)59.5 762.4 ms
+0 g
+(  if [ $status -ne 0 ]; then)107.5 762.4 ms
+0 0.502 0 r
+(   717)59.5 752.4 ms
+0 g
+(    echo "ERROR: Failed to transcribe chunk ${chunkno}. Status: $status" >&2)107.5 752.4 ms
+0 0.502 0 r
+(   718)59.5 742.4 ms
+0 g
+(  else)107.5 742.4 ms
+0 0.502 0 r
+(   719)59.5 732.4 ms
+0 g
+(    echo "Transcribed chunk ${chunkno} successfully.")107.5 732.4 ms
+0 0.502 0 r
+(   720)59.5 722.4 ms
+0 g
+(    # Extract text from json output)107.5 722.4 ms
+0 0.502 0 r
+(   721)59.5 712.4 ms
+0 g
+(    jq -r .text ${outputfile} > ${txtoutputfile})107.5 712.4 ms
+0 0.502 0 r
+(   722)59.5 702.4 ms
+0 g
+(  fi)107.5 702.4 ms
+0 0.502 0 r
+(   723)59.5 692.4 ms
+0 g
+(})107.5 692.4 ms
+0 0.502 0 r
+(   724)59.5 682.4 ms
+0.753 0 0.753 r
+(```)107.5 682.4 ms
+0 0.502 0 r
+(   725)59.5 672.4 ms
+(   726)59.5 662.4 ms
+0 g
+(This function takes the chunk number, prompt file, and language flag as para)107.5 662.4 ms
+(meters, transcribes the chunk, and handles any errors that may occur. It als)107.5 652.4 ms
+(o creates verbose log files for each curl request.)107.5 642.4 ms
+0 0.502 0 r
+(   727)59.5 632.4 ms
+(   728)59.5 622.4 ms
+0 g
+(Remember to inspect these log files and remove sensitive information \(like y)107.5 622.4 ms
+(our API key\) before sharing them. Also, remember to delete these log files w)107.5 612.4 ms
+(hen you're done troubleshooting, as they might contain sensitive information)107.5 602.4 ms
+(.)107.5 592.4 ms
+0 0.502 0 r
+(   729)59.5 582.4 ms
+(   730)59.5 572.4 ms
+0.753 0 0.753 r
+(-----)107.5 572.4 ms
+0 0.502 0 r
+(   731)59.5 562.4 ms
+0 g
+(User:)107.5 562.4 ms
+0 0.502 0 r
+(   732)59.5 552.4 ms
+(   733)59.5 542.4 ms
+0 g
+(As I see )107.5 542.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is using correctly, according to specification )s
+0.753 0 0.753 r
+(`)s
+0 g
+(.mp3)107.5 532.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( files.)s
+0 0.502 0 r
+(   734)59.5 522.4 ms
+(   735)59.5 512.4 ms
+0 g
+(Can we please also make function )107.5 512.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(check_if_mp3_chunks_are_present)s
+0.753 0 0.753 r
+(`)s
+0 g
+( that woul)s
+(d be called before that, and in case of missing mp3 files report that and sh)107.5 502.4 ms
+(ow contents of temporary directory before existing with error code ?)107.5 492.4 ms
+0 0.502 0 r
+(   736)59.5 482.4 ms
+(   737)59.5 472.4 ms
+0.753 0 0.753 r
+(-----)107.5 472.4 ms
+0 0.502 0 r
+(   738)59.5 462.4 ms
+0 g
+(System:)107.5 462.4 ms
+0 0.502 0 r
+(   739)59.5 452.4 ms
+(   740)59.5 442.4 ms
+0 g
+(Sure, here's a function )107.5 442.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(check_if_mp3_chunks_are_present)s
+0.753 0 0.753 r
+(`)s
+0 g
+( that you can use:)s
+0 0.502 0 r
+(   741)59.5 432.4 ms
+(   742)59.5 422.4 ms
+0.753 0 0.753 r
+(```)107.5 422.4 ms
+0 0.502 0 r
+(   743)59.5 412.4 ms
+0 g
+(check_if_mp3_chunks_are_present\(\) {)107.5 412.4 ms
+0 0.502 0 r
+(   744)59.5 402.4 ms
+0 g
+(  local mp3_files_count=$\(ls ${TMP_DIR}/*.mp3 2> /dev/null | wc -l\))107.5 402.4 ms
+0 0.502 0 r
+(   745)59.5 392.4 ms
+0 g
+(  )107.5 392.4 ms
+0 0.502 0 r
+(   746)59.5 382.4 ms
+0 g
+(  if \(\( mp3_files_count == 0 \)\); then)107.5 382.4 ms
+0 0.502 0 r
+(   747)59.5 372.4 ms
+0 g
+(    echo "ERROR: No MP3 files found in the temporary directory. Please check)107.5 372.4 ms
+( the input file and splitting process." >&2)107.5 362.4 ms
+0 0.502 0 r
+(   748)59.5 352.4 ms
+0 g
+(    echo "Contents of the temporary directory:" >&2)107.5 352.4 ms
+0 0.502 0 r
+(   749)59.5 342.4 ms
+0 g
+(    ls -l ${TMP_DIR} >&2)107.5 342.4 ms
+0 0.502 0 r
+(   750)59.5 332.4 ms
+0 g
+(    exit 1)107.5 332.4 ms
+0 0.502 0 r
+(   751)59.5 322.4 ms
+0 g
+(  fi)107.5 322.4 ms
+0 0.502 0 r
+(   752)59.5 312.4 ms
+0 g
+(})107.5 312.4 ms
+0 0.502 0 r
+(   753)59.5 302.4 ms
+0.753 0 0.753 r
+(```)107.5 302.4 ms
+0 0.502 0 r
+(   754)59.5 292.4 ms
+(   755)59.5 282.4 ms
+0 g
+(You should call this function in your main script before calling the )107.5 282.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transc)s
+(ribe_chunk)107.5 272.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( function inside the loop:)s
+0 0.502 0 r
+(   756)59.5 262.4 ms
+(   757)59.5 252.4 ms
+0.753 0 0.753 r
+(`)107.5 252.4 ms
+0 g
+(check_if_mp3_chunks_are_present)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+0 0.502 0 r
+(   758)59.5 242.4 ms
+(   759)59.5 232.4 ms
+0 g
+(This function checks if there are any MP3 files in the temporary directory. )107.5 232.4 ms
+(If there are none, it prints an error message, displays the contents of the )107.5 222.4 ms
+(temporary directory, and exits with a non-zero status code. The )107.5 212.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(2> /dev/nul)s
+(l)107.5 202.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( part in the )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ls)s
+0.753 0 0.753 r
+(`)s
+0 g
+( command is used to redirect any error messages \(like "No)s
+( such file or directory"\) to )107.5 192.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(/dev/null)s
+0.753 0 0.753 r
+(`)s
+0 g
+(, effectively suppressing them.)s
+0 0.502 0 r
+(   760)59.5 182.4 ms
+(   761)59.5 172.4 ms
+0.753 0 0.753 r
+(-----)107.5 172.4 ms
+0 0.502 0 r
+(   762)59.5 162.4 ms
+0 g
+(User:)107.5 162.4 ms
+0 0.502 0 r
+(   763)59.5 152.4 ms
+(   764)59.5 142.4 ms
+0.753 0 0.753 r
+(```)107.5 142.4 ms
+0 0.502 0 r
+(   765)59.5 132.4 ms
+0 g
+(openai_whisper_transcription.sh -l en -o foobar.ogg.json foobar.ogg)107.5 132.4 ms
+0 0.502 0 r
+(   766)59.5 122.4 ms
+0 g
+(Using temporary directory /tmp/tmp.8vN35XmxMU)107.5 122.4 ms
+0 0.502 0 r
+(   767)59.5 112.4 ms
+0 g
+(ls: cannot access '/tmp/tmp.8vN35XmxMU/input-*.mp3': No such file or directo)107.5 112.4 ms
+(ry)107.5 102.4 ms
+0 0.502 0 r
+(   768)59.5 92.4 ms
+0 g
+(ERROR: No MP3 files found in the temporary directory. Please check the input)107.5 92.4 ms
+( file and splitting process.)107.5 82.4 ms
+0 0.502 0 r
+(   769)59.5 72.4 ms
+0 g
+(Contents of the temporary directory:)107.5 72.4 ms
+0 0.502 0 r
+(   770)59.5 62.4 ms
+0 g
+(-rw-r--r-- 1 gw gw 960470 May 19 16:36 input-000.wav)107.5 62.4 ms
+0 0.502 0 r
+(   771)59.5 52.4 ms
+0 g
+(-rw-r--r-- 1 gw gw 960362 May 19 16:36 input-001.wav)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 15 15
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 15)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   772)59.5 772.4 ms
+0 g
+(-rw-r--r-- 1 gw gw 959434 May 19 16:36 input-002.wav)107.5 772.4 ms
+0 0.502 0 r
+(   773)59.5 762.4 ms
+0.753 0 0.753 r
+(```)107.5 762.4 ms
+0 0.502 0 r
+(   774)59.5 752.4 ms
+(   775)59.5 742.4 ms
+0.753 0 0.753 r
+(-----)107.5 742.4 ms
+0 0.502 0 r
+(   776)59.5 732.4 ms
+0 g
+(System:)107.5 732.4 ms
+0 0.502 0 r
+(   777)59.5 722.4 ms
+(   778)59.5 712.4 ms
+(   779)59.5 702.4 ms
+0 g
+(It seems like the chunks are being split into .wav files instead of .mp3 fil)107.5 702.4 ms
+(es. This is likely because the ffmpeg command that splits the audio file int)107.5 692.4 ms
+(o chunks is outputting .wav files.)107.5 682.4 ms
+0 0.502 0 r
+(   780)59.5 672.4 ms
+(   781)59.5 662.4 ms
+0 g
+(Please ensure that your ffmpeg command is outputting .mp3 files. If you are )107.5 662.4 ms
+(using the command I suggested earlier, it should look like this:)107.5 652.4 ms
+0 0.502 0 r
+(   782)59.5 642.4 ms
+(   783)59.5 632.4 ms
+0.753 0 0.753 r
+(```)107.5 632.4 ms
+0 0.502 0 r
+(   784)59.5 622.4 ms
+0 g
+(ffmpeg -i "${INPUT_FILE}" -f segment -segment_time 600 -b:a 128k -vn -map 0:)107.5 622.4 ms
+(a "${TMP_DIR}/input-%03d.mp3")107.5 612.4 ms
+0 0.502 0 r
+(   785)59.5 602.4 ms
+0 g
+(This command tells ffmpeg to read the input file \("${INPUT_FILE}"\), output i)107.5 602.4 ms
+(t in the segment format \(-f segment\), split it into segments of 600 seconds )107.5 592.4 ms
+(each \(-segment_time 600\), encode the audio at a bitrate of 128k \(-b:a 128k\),)107.5 582.4 ms
+( ignore the video stream \(-vn\), and write the audio stream \(-map 0:a\) to the)107.5 572.4 ms
+( output files \("${TMP_DIR}/input-%03d.mp3"\).)107.5 562.4 ms
+0 0.502 0 r
+(   786)59.5 552.4 ms
+(   787)59.5 542.4 ms
+0 g
+(After this command, you should have .mp3 files in your temporary directory, )107.5 542.4 ms
+(not .wav files. If you still get .wav files, please check your ffmpeg comman)107.5 532.4 ms
+(d for errors.)107.5 522.4 ms
+0 0.502 0 r
+(   788)59.5 512.4 ms
+0.753 0 0.753 r
+(```)107.5 512.4 ms
+0 0.502 0 r
+(   789)59.5 502.4 ms
+(   790)59.5 492.4 ms
+0.753 0 0.753 r
+(-----)107.5 492.4 ms
+0 0.502 0 r
+(   791)59.5 482.4 ms
+0 g
+(User:)107.5 482.4 ms
+0 0.502 0 r
+(   792)59.5 472.4 ms
+(   793)59.5 462.4 ms
+0 g
+(Just FYI, you provided following line in script:)107.5 462.4 ms
+0 0.502 0 r
+(   794)59.5 452.4 ms
+(   795)59.5 442.4 ms
+0.753 0 0.753 r
+(```)107.5 442.4 ms
+0 0.502 0 r
+(   796)59.5 432.4 ms
+0 g
+(    --header "Authorization: Bearer ${OPENAI_TOKEN}" \\)107.5 432.4 ms
+0 0.502 0 r
+(   797)59.5 422.4 ms
+0.753 0 0.753 r
+(```)107.5 422.4 ms
+0 0.502 0 r
+(   798)59.5 412.4 ms
+(   799)59.5 402.4 ms
+0 g
+(I corrected it to:)107.5 402.4 ms
+0 0.502 0 r
+(   800)59.5 392.4 ms
+(   801)59.5 382.4 ms
+0.753 0 0.753 r
+(```)107.5 382.4 ms
+0 0.502 0 r
+(   802)59.5 372.4 ms
+0 g
+(    --header "Authorization: Bearer ${OPENAI_API_KEY}" \\)107.5 372.4 ms
+0 0.502 0 r
+(   803)59.5 362.4 ms
+0.753 0 0.753 r
+(```)107.5 362.4 ms
+0 0.502 0 r
+(   804)59.5 352.4 ms
+(   805)59.5 342.4 ms
+0 g
+(To make request successful.)107.5 342.4 ms
+0 0.502 0 r
+(   806)59.5 332.4 ms
+(   807)59.5 322.4 ms
+0 g
+(After executing:)107.5 322.4 ms
+0 0.502 0 r
+(   808)59.5 312.4 ms
+(   809)59.5 302.4 ms
+0.753 0 0.753 r
+(```)107.5 302.4 ms
+0 0.502 0 r
+(   810)59.5 292.4 ms
+0 g
+(openai_whisper_transcription.sh -l en -o foobar.ogg.json foobar.ogg )107.5 292.4 ms
+0 0.502 0 r
+(   811)59.5 282.4 ms
+0.753 0 0.753 r
+(```)107.5 282.4 ms
+0 0.502 0 r
+(   812)59.5 272.4 ms
+(   813)59.5 262.4 ms
+0 g
+(I see following new files in directory:)107.5 262.4 ms
+0 0.502 0 r
+(   814)59.5 252.4 ms
+(   815)59.5 242.4 ms
+0.753 0 0.753 r
+(```)107.5 242.4 ms
+0 0.502 0 r
+(   816)59.5 232.4 ms
+0 g
+(-000.json)107.5 232.4 ms
+0 0.502 0 r
+(   817)59.5 222.4 ms
+0 g
+(-000.txt)107.5 222.4 ms
+0 0.502 0 r
+(   818)59.5 212.4 ms
+0 g
+(curl-000.log)107.5 212.4 ms
+0 0.502 0 r
+(   819)59.5 202.4 ms
+0.753 0 0.753 r
+(```)107.5 202.4 ms
+0 0.502 0 r
+(   820)59.5 192.4 ms
+(   821)59.5 182.4 ms
+0 g
+(Also I do not see information appened at the end of billing log file, which )107.5 182.4 ms
+(should contain line with ISO-8601 timestamp, encoded seconds of recordings, )107.5 172.4 ms
+(and filename, according to following line in our specification:)107.5 162.4 ms
+0 0.502 0 r
+(   822)59.5 152.4 ms
+(   823)59.5 142.4 ms
+0.753 0 0.753 r
+(```)107.5 142.4 ms
+0 0.502 0 r
+(   824)59.5 132.4 ms
+(-)107.5 132.4 ms
+0 g
+( Logging of billing information into a specific log file. The log file path)s
+( can be specified by the environment variable `OPENAI_WHISPER_BILLING_LOG`. )107.5 122.4 ms
+(If not defined, the default log file will be `"${HOME}/.openai_whisper_billi)107.5 112.4 ms
+(ng.log"`.)107.5 102.4 ms
+0 0.502 0 r
+(   825)59.5 92.4 ms
+0.753 0 0.753 r
+(```)107.5 92.4 ms
+0 0.502 0 r
+(   826)59.5 82.4 ms
+(   827)59.5 72.4 ms
+0 g
+(Could you please fix:)107.5 72.4 ms
+0 0.502 0 r
+(   828)59.5 62.4 ms
+(   829)59.5 52.4 ms
+(*)107.5 52.4 ms
+0 g
+( naming of generated files? Or suggest what should I check, provide you fro)s
+re sp
+%%PageTrailer
+%%Page: 16 16
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 16)59.5 792.4 ms
+F0 sf
+(m my script as reminded of code, or investigate/check to fix issue?)107.5 772.4 ms
+0 0.502 0 r
+(   830)59.5 762.4 ms
+(*)107.5 762.4 ms
+0 g
+( Add missing logging of encoded seconds of recordings?)s
+0 0.502 0 r
+(   831)59.5 752.4 ms
+(   832)59.5 742.4 ms
+0.753 0 0.753 r
+(-----)107.5 742.4 ms
+0 0.502 0 r
+(   833)59.5 732.4 ms
+0 g
+(System:)107.5 732.4 ms
+0 0.502 0 r
+(   834)59.5 722.4 ms
+(   835)59.5 712.4 ms
+0 g
+(The issue with the file naming might be due to the value of ${OUTPUT_FILE} n)107.5 712.4 ms
+(ot being set properly. Let's verify this by printing the value of ${OUTPUT_F)107.5 702.4 ms
+(ILE} before the loop that generates the files. You can add the following deb)107.5 692.4 ms
+(ug line in your script:)107.5 682.4 ms
+0 0.502 0 r
+(   836)59.5 672.4 ms
+(   837)59.5 662.4 ms
+0.753 0 0.753 r
+(```)107.5 662.4 ms
+0 0.502 0 r
+(   838)59.5 652.4 ms
+0 g
+(echo "DEBUG: OUTPUT_FILE = ${OUTPUT_FILE}" >&2)107.5 652.4 ms
+0 0.502 0 r
+(   839)59.5 642.4 ms
+0 g
+(As for the billing information, it should be logged after the transcription )107.5 642.4 ms
+(API call in the transcribe_chunk function. Here's how you can modify the tra)107.5 632.4 ms
+(nscribe_chunk function to add the logging of encoded seconds:)107.5 622.4 ms
+0 0.502 0 r
+(   840)59.5 612.4 ms
+0.753 0 0.753 r
+(```)107.5 612.4 ms
+0 0.502 0 r
+(   841)59.5 602.4 ms
+(   842)59.5 592.4 ms
+0.753 0 0.753 r
+(```)107.5 592.4 ms
+0 0.502 0 r
+(   843)59.5 582.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 582.4 ms
+0 0.502 0 r
+(   844)59.5 572.4 ms
+0 g
+(    local chunkno="${1}")107.5 572.4 ms
+0 0.502 0 r
+(   845)59.5 562.4 ms
+0 g
+(    local chunkfile="${TMP_DIR}/input-${chunkno}.mp3")107.5 562.4 ms
+0 0.502 0 r
+(   846)59.5 552.4 ms
+0 g
+(    local chunksize=$\(du -k "${chunkfile}" | cut -f1\))107.5 552.4 ms
+0 0.502 0 r
+(   847)59.5 542.4 ms
+0 g
+(    local chunklength=$\(ffprobe -v error -show_entries format=duration -of d)107.5 542.4 ms
+(efault=noprint_wrappers=1:nokey=1 "${chunkfile}"\))107.5 532.4 ms
+0 0.502 0 r
+(   848)59.5 522.4 ms
+0 g
+(    local encoded_seconds=$\(python3 -c "print\(int\(${chunksize} * 8 / ${bitra)107.5 522.4 ms
+(te} / 60\)\)"\) # bitrate is in bits/second, size is in kilobytes, so multiply )107.5 512.4 ms
+(size by 8 to get kilobits, divide by bitrate to get minutes)107.5 502.4 ms
+0 0.502 0 r
+(   849)59.5 492.4 ms
+(   850)59.5 482.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 482.4 ms
+0 0.502 0 r
+(   851)59.5 472.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 472.4 ms
+0 0.502 0 r
+(   852)59.5 462.4 ms
+(   853)59.5 452.4 ms
+0 g
+(    echo "DEBUG: chunkno = ${chunkno}, chunkfile = ${chunkfile}, resultfile )107.5 452.4 ms
+(= ${resultfile}" >&2)107.5 442.4 ms
+0 0.502 0 r
+(   854)59.5 432.4 ms
+(   855)59.5 422.4 ms
+0 g
+(    curl "https://api.openai.com/v1/whisper/asr" \\)107.5 422.4 ms
+0 0.502 0 r
+(   856)59.5 412.4 ms
+0 g
+(        --header "Authorization: Bearer ${OPENAI_API_KEY}" \\)107.5 412.4 ms
+0 0.502 0 r
+(   857)59.5 402.4 ms
+0 g
+(        --header "OpenAI-Language: ${LANG}" \\)107.5 402.4 ms
+0 0.502 0 r
+(   858)59.5 392.4 ms
+0 g
+(        --header "Content-Type: audio/mpeg" \\)107.5 392.4 ms
+0 0.502 0 r
+(   859)59.5 382.4 ms
+0 g
+(        --data-binary @"${chunkfile}" \\)107.5 382.4 ms
+0 0.502 0 r
+(   860)59.5 372.4 ms
+0 g
+(        --output "${resultfile}" \\)107.5 372.4 ms
+0 0.502 0 r
+(   861)59.5 362.4 ms
+0 g
+(        -sS -w "\\nHTTP status: %{http_code}\\nTotal time: %{time_total}s\\n" -)107.5 362.4 ms
+(o "${TMP_DIR}/curl-${chunkno}.log")107.5 352.4 ms
+0 0.502 0 r
+(   862)59.5 342.4 ms
+(   863)59.5 332.4 ms
+0 g
+(    jq -r .text < "${resultfile}" > "${resultfiletxt}")107.5 332.4 ms
+0 0.502 0 r
+(   864)59.5 322.4 ms
+(   865)59.5 312.4 ms
+0 g
+(    # Add the billing logging here.)107.5 312.4 ms
+0 0.502 0 r
+(   866)59.5 302.4 ms
+0 g
+(    local iso8601_timestamp=$\(date -u +"%Y-%m-%dT%H:%M:%SZ"\))107.5 302.4 ms
+0 0.502 0 r
+(   867)59.5 292.4 ms
+0 g
+(    echo "${iso8601_timestamp}, ${encoded_seconds}, ${INPUT_FILE}" >> "${OPE)107.5 292.4 ms
+(NAI_WHISPER_BILLING_LOG:-${HOME}/.openai_whisper_billing.log}")107.5 282.4 ms
+0 0.502 0 r
+(   868)59.5 272.4 ms
+0 g
+(})107.5 272.4 ms
+0 0.502 0 r
+(   869)59.5 262.4 ms
+0.753 0 0.753 r
+(```)107.5 262.4 ms
+0 0.502 0 r
+(   870)59.5 252.4 ms
+(   871)59.5 242.4 ms
+0 g
+(Please replace )107.5 242.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(${OPENAI_API_KEY})s
+0.753 0 0.753 r
+(`)s
+0 g
+( with your actual OpenAI API key. This mod)s
+(ified function also includes debug print statements for )107.5 232.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(${chunkno})s
+0.753 0 0.753 r
+(`)s
+0 g
+(, )s
+0.753 0 0.753 r
+(`)s
+0 g
+(${chu)s
+(nkfile})107.5 222.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(, and )s
+0.753 0 0.753 r
+(`)s
+0 g
+(${resultfile})s
+0.753 0 0.753 r
+(`)s
+0 g
+( to help diagnose the file naming issue.)s
+0 0.502 0 r
+(   872)59.5 212.4 ms
+(   873)59.5 202.4 ms
+0 g
+(Please run your script again and let me know the output of the debug lines, )107.5 202.4 ms
+(as well as any changes in the generated files.)107.5 192.4 ms
+0 0.502 0 r
+(   874)59.5 182.4 ms
+(   875)59.5 172.4 ms
+0.753 0 0.753 r
+(-----)107.5 172.4 ms
+0 0.502 0 r
+(   876)59.5 162.4 ms
+0 g
+(User:)107.5 162.4 ms
+0 0.502 0 r
+(   877)59.5 152.4 ms
+(   878)59.5 142.4 ms
+0 g
+(Some things improved )107.5 142.4 ms
+0 0.502 0 r
+(   879)59.5 132.4 ms
+(*)107.5 132.4 ms
+0 g
+(  output filenames are working better.)s
+0 0.502 0 r
+(   880)59.5 122.4 ms
+(   881)59.5 112.4 ms
+0 g
+(some other things are worse:)107.5 112.4 ms
+0 0.502 0 r
+(   882)59.5 102.4 ms
+(*)107.5 102.4 ms
+0 g
+( e.g. request does not work anymore - returned json file indicated that POS)s
+(T URL is wrong.)107.5 92.4 ms
+0 0.502 0 r
+(   883)59.5 82.4 ms
+(*)107.5 82.4 ms
+0 g
+( calculation of esimated seconds is returning syntax error.)s
+0 0.502 0 r
+(   884)59.5 72.4 ms
+(   885)59.5 62.4 ms
+0 g
+(Additionally I would love you to assume that if )107.5 62.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(-o)s
+0.753 0 0.753 r
+(`)s
+0 g
+( and )s
+0.753 0 0.753 r
+(`)s
+0 g
+(-so)s
+0.753 0 0.753 r
+(`)s
+0 g
+( parameters ar)s
+(e missing, that default is like )107.5 52.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(-o ${inputfile}.json)s
+0.753 0 0.753 r
+(`)s
+0 g
+(.)s
+re sp
+%%PageTrailer
+%%Page: 17 17
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 17)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   886)59.5 772.4 ms
+(   887)59.5 762.4 ms
+(   888)59.5 752.4 ms
+0 g
+(Let me privde to refersh specification from https://platform.openai.com/docs)107.5 752.4 ms
+(/api-reference/audio :)107.5 742.4 ms
+0 0.502 0 r
+(   889)59.5 732.4 ms
+(   890)59.5 722.4 ms
+(   891)59.5 712.4 ms
+0.753 0 0.753 r
+(```)107.5 712.4 ms
+0 0.502 0 r
+(   892)59.5 702.4 ms
+0 g
+(Create transcriptionBeta)107.5 702.4 ms
+0 0.502 0 r
+(   893)59.5 692.4 ms
+0 g
+(POST)107.5 692.4 ms
+0 0.502 0 r
+(   894)59.5 682.4 ms
+0 g
+( )107.5 682.4 ms
+0 0.502 0 r
+(   895)59.5 672.4 ms
+0 g
+(https://api.openai.com/v1/audio/transcriptions)107.5 672.4 ms
+0 0.502 0 r
+(   896)59.5 662.4 ms
+(   897)59.5 652.4 ms
+0 g
+(Transcribes audio into the input language.)107.5 652.4 ms
+0 0.502 0 r
+(   898)59.5 642.4 ms
+(   899)59.5 632.4 ms
+0 g
+(Request body)107.5 632.4 ms
+0 0.502 0 r
+(   900)59.5 622.4 ms
+0 g
+(file)107.5 622.4 ms
+0 0.502 0 r
+(   901)59.5 612.4 ms
+0 g
+(string)107.5 612.4 ms
+0 0.502 0 r
+(   902)59.5 602.4 ms
+0 g
+(Required)107.5 602.4 ms
+0 0.502 0 r
+(   903)59.5 592.4 ms
+0 g
+(The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga,)107.5 592.4 ms
+( m4a, wav, or webm.)107.5 582.4 ms
+0 0.502 0 r
+(   904)59.5 572.4 ms
+(   905)59.5 562.4 ms
+0 g
+(model)107.5 562.4 ms
+0 0.502 0 r
+(   906)59.5 552.4 ms
+0 g
+(string)107.5 552.4 ms
+0 0.502 0 r
+(   907)59.5 542.4 ms
+0 g
+(Required)107.5 542.4 ms
+0 0.502 0 r
+(   908)59.5 532.4 ms
+0 g
+(ID of the model to use. Only whisper-1 is currently available.)107.5 532.4 ms
+0 0.502 0 r
+(   909)59.5 522.4 ms
+(   910)59.5 512.4 ms
+0 g
+(prompt)107.5 512.4 ms
+0 0.502 0 r
+(   911)59.5 502.4 ms
+0 g
+(string)107.5 502.4 ms
+0 0.502 0 r
+(   912)59.5 492.4 ms
+0 g
+(Optional)107.5 492.4 ms
+0 0.502 0 r
+(   913)59.5 482.4 ms
+0 g
+(An optional text to guide the model's style or continue a previous audio seg)107.5 482.4 ms
+(ment. The prompt should match the audio language.)107.5 472.4 ms
+0 0.502 0 r
+(   914)59.5 462.4 ms
+(   915)59.5 452.4 ms
+0 g
+(response\\_format)107.5 452.4 ms
+0 0.502 0 r
+(   916)59.5 442.4 ms
+0 g
+(string)107.5 442.4 ms
+0 0.502 0 r
+(   917)59.5 432.4 ms
+0 g
+(Optional)107.5 432.4 ms
+0 0.502 0 r
+(   918)59.5 422.4 ms
+0 g
+(Defaults to json)107.5 422.4 ms
+0 0.502 0 r
+(   919)59.5 412.4 ms
+0 g
+(The format of the transcript output, in one of these options: json, text, sr)107.5 412.4 ms
+(t, `verbose_json`, or vtt.)107.5 402.4 ms
+0 0.502 0 r
+(   920)59.5 392.4 ms
+(   921)59.5 382.4 ms
+0 g
+(temperature)107.5 382.4 ms
+0 0.502 0 r
+(   922)59.5 372.4 ms
+0 g
+(number)107.5 372.4 ms
+0 0.502 0 r
+(   923)59.5 362.4 ms
+0 g
+(Optional)107.5 362.4 ms
+0 0.502 0 r
+(   924)59.5 352.4 ms
+0 g
+(Defaults to 0)107.5 352.4 ms
+0 0.502 0 r
+(   925)59.5 342.4 ms
+0 g
+(The sampling temperature, between 0 and 1. Higher values like 0.8 will make )107.5 342.4 ms
+(the output more random, while lower values like 0.2 will make it more focuse)107.5 332.4 ms
+(d and deterministic. If set to 0, the model will use log probability to auto)107.5 322.4 ms
+(matically increase the temperature until certain thresholds are hit.)107.5 312.4 ms
+0 0.502 0 r
+(   926)59.5 302.4 ms
+(   927)59.5 292.4 ms
+0 g
+(language)107.5 292.4 ms
+0 0.502 0 r
+(   928)59.5 282.4 ms
+0 g
+(string)107.5 282.4 ms
+0 0.502 0 r
+(   929)59.5 272.4 ms
+0 g
+(Optional)107.5 272.4 ms
+0 0.502 0 r
+(   930)59.5 262.4 ms
+0 g
+(The language of the input audio. Supplying the input language in ISO-639-1 f)107.5 262.4 ms
+(ormat will improve accuracy and latency.)107.5 252.4 ms
+0 0.502 0 r
+(   931)59.5 242.4 ms
+0.753 0 0.753 r
+(```)107.5 242.4 ms
+0 0.502 0 r
+(   932)59.5 232.4 ms
+(   933)59.5 222.4 ms
+0 g
+(Example request:)107.5 222.4 ms
+0 0.502 0 r
+(   934)59.5 212.4 ms
+(   935)59.5 202.4 ms
+0.753 0 0.753 r
+(```)107.5 202.4 ms
+0 0.502 0 r
+(   936)59.5 192.4 ms
+0 g
+(curl https://api.openai.com/v1/audio/transcriptions \\)107.5 192.4 ms
+0 0.502 0 r
+(   937)59.5 182.4 ms
+0 g
+(  -H "Authorization: Bearer $OPENAI_API_KEY" \\)107.5 182.4 ms
+0 0.502 0 r
+(   938)59.5 172.4 ms
+0 g
+(  -H "Content-Type: multipart/form-data" \\)107.5 172.4 ms
+0 0.502 0 r
+(   939)59.5 162.4 ms
+0 g
+(  -F file="@/path/to/file/audio.mp3" \\)107.5 162.4 ms
+0 0.502 0 r
+(   940)59.5 152.4 ms
+0 g
+(  -F model="whisper-1")107.5 152.4 ms
+0 0.502 0 r
+(   941)59.5 142.4 ms
+0.753 0 0.753 r
+(```)107.5 142.4 ms
+0 0.502 0 r
+(   942)59.5 132.4 ms
+(   943)59.5 122.4 ms
+0 g
+(Example parmeters:)107.5 122.4 ms
+0 0.502 0 r
+(   944)59.5 112.4 ms
+(   945)59.5 102.4 ms
+0.753 0 0.753 r
+(```)107.5 102.4 ms
+0 0.502 0 r
+(   946)59.5 92.4 ms
+0 g
+({)107.5 92.4 ms
+0 0.502 0 r
+(   947)59.5 82.4 ms
+0 g
+(  "file": "audio.mp3",)107.5 82.4 ms
+0 0.502 0 r
+(   948)59.5 72.4 ms
+0 g
+(  "model": "whisper-1")107.5 72.4 ms
+0 0.502 0 r
+(   949)59.5 62.4 ms
+0 g
+(})107.5 62.4 ms
+0 0.502 0 r
+(   950)59.5 52.4 ms
+0.753 0 0.753 r
+(```)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 18 18
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 18)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(   951)59.5 772.4 ms
+(   952)59.5 762.4 ms
+0 g
+(Example Response:)107.5 762.4 ms
+0 0.502 0 r
+(   953)59.5 752.4 ms
+(   954)59.5 742.4 ms
+0.753 0 0.753 r
+(```)107.5 742.4 ms
+0 0.502 0 r
+(   955)59.5 732.4 ms
+0 g
+({)107.5 732.4 ms
+0 0.502 0 r
+(   956)59.5 722.4 ms
+0 g
+(  "text": "Imagine the wildest idea that you've ever had, and you're curious)107.5 722.4 ms
+( about how it might scale to something that's a 100, a 1,000 times bigger. T)107.5 712.4 ms
+(his is a place where you can get to do that.")107.5 702.4 ms
+0 0.502 0 r
+(   957)59.5 692.4 ms
+0 g
+(})107.5 692.4 ms
+0 0.502 0 r
+(   958)59.5 682.4 ms
+0.753 0 0.753 r
+(```)107.5 682.4 ms
+0 0.502 0 r
+(   959)59.5 672.4 ms
+(   960)59.5 662.4 ms
+0.753 0 0.753 r
+(-----)107.5 662.4 ms
+0 0.502 0 r
+(   961)59.5 652.4 ms
+0 g
+(System:)107.5 652.4 ms
+0 0.502 0 r
+(   962)59.5 642.4 ms
+(   963)59.5 632.4 ms
+0 g
+(Apologies for the confusion. There seems to have been a misunderstanding reg)107.5 632.4 ms
+(arding the Whisper ASR API. The API URL should indeed be https://api.openai.)107.5 622.4 ms
+(com/v1/audio/transcriptions as per the specification you provided. My previo)107.5 612.4 ms
+(us suggestion was based on an older version of the API, and I appreciate you)107.5 602.4 ms
+(r patience.)107.5 592.4 ms
+0 0.502 0 r
+(   964)59.5 582.4 ms
+(   965)59.5 572.4 ms
+0 g
+(Here's the corrected )107.5 572.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function that uses the correct API a)s
+(nd request format:)107.5 562.4 ms
+0 0.502 0 r
+(   966)59.5 552.4 ms
+(   967)59.5 542.4 ms
+0.753 0 0.753 r
+(```)107.5 542.4 ms
+0 0.502 0 r
+(   968)59.5 532.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 532.4 ms
+0 0.502 0 r
+(   969)59.5 522.4 ms
+0 g
+(    local chunkno="${1}")107.5 522.4 ms
+0 0.502 0 r
+(   970)59.5 512.4 ms
+0 g
+(    local chunkfile="${TMP_DIR}/input-${chunkno}.mp3")107.5 512.4 ms
+0 0.502 0 r
+(   971)59.5 502.4 ms
+0 g
+(    local chunksize=$\(du -k "${chunkfile}" | cut -f1\))107.5 502.4 ms
+0 0.502 0 r
+(   972)59.5 492.4 ms
+0 g
+(    local chunklength=$\(ffprobe -v error -show_entries format=duration -of d)107.5 492.4 ms
+(efault=noprint_wrappers=1:nokey=1 "${chunkfile}"\))107.5 482.4 ms
+0 0.502 0 r
+(   973)59.5 472.4 ms
+(   974)59.5 462.4 ms
+0 g
+(    # You can adjust the bitrate value if it's different for your audio file)107.5 462.4 ms
+(s)107.5 452.4 ms
+0 0.502 0 r
+(   975)59.5 442.4 ms
+0 g
+(    local bitrate=128)107.5 442.4 ms
+0 0.502 0 r
+(   976)59.5 432.4 ms
+0 g
+(    local encoded_seconds=$\(echo "${chunksize} * 8 / ${bitrate} / 60" | bc\))107.5 432.4 ms
+0 0.502 0 r
+(   977)59.5 422.4 ms
+(   978)59.5 412.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 412.4 ms
+0 0.502 0 r
+(   979)59.5 402.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 402.4 ms
+0 0.502 0 r
+(   980)59.5 392.4 ms
+(   981)59.5 382.4 ms
+0 g
+(    echo "DEBUG: chunkno = ${chunkno}, chunkfile = ${chunkfile}, resultfile )107.5 382.4 ms
+(= ${resultfile}" >&2)107.5 372.4 ms
+0 0.502 0 r
+(   982)59.5 362.4 ms
+(   983)59.5 352.4 ms
+0 g
+(    curl -X POST "https://api.openai.com/v1/audio/transcriptions" \\)107.5 352.4 ms
+0 0.502 0 r
+(   984)59.5 342.4 ms
+0 g
+(        -H "Authorization: Bearer ${OPENAI_API_KEY}" \\)107.5 342.4 ms
+0 0.502 0 r
+(   985)59.5 332.4 ms
+0 g
+(        -H "Content-Type: multipart/form-data" \\)107.5 332.4 ms
+0 0.502 0 r
+(   986)59.5 322.4 ms
+0 g
+(        -F "file=@${chunkfile}" \\)107.5 322.4 ms
+0 0.502 0 r
+(   987)59.5 312.4 ms
+0 g
+(        -F "model=whisper-1" \\)107.5 312.4 ms
+0 0.502 0 r
+(   988)59.5 302.4 ms
+0 g
+(        -o "${resultfile}")107.5 302.4 ms
+0 0.502 0 r
+(   989)59.5 292.4 ms
+(   990)59.5 282.4 ms
+0 g
+(    local status=$?)107.5 282.4 ms
+0 0.502 0 r
+(   991)59.5 272.4 ms
+0 g
+(    if [ $status -ne 0 ]; then)107.5 272.4 ms
+0 0.502 0 r
+(   992)59.5 262.4 ms
+0 g
+(        echo "ERROR: Failed to transcribe chunk ${chunkno}. Status: ${status)107.5 262.4 ms
+(}")107.5 252.4 ms
+0 0.502 0 r
+(   993)59.5 242.4 ms
+0 g
+(        return $status)107.5 242.4 ms
+0 0.502 0 r
+(   994)59.5 232.4 ms
+0 g
+(    fi)107.5 232.4 ms
+0 0.502 0 r
+(   995)59.5 222.4 ms
+(   996)59.5 212.4 ms
+0 g
+(    jq -r .text < "${resultfile}" > "${resultfiletxt}")107.5 212.4 ms
+0 0.502 0 r
+(   997)59.5 202.4 ms
+(   998)59.5 192.4 ms
+0 g
+(    # Add the billing logging here.)107.5 192.4 ms
+0 0.502 0 r
+(   999)59.5 182.4 ms
+0 g
+(    local iso8601_timestamp=$\(date -u +"%Y-%m-%dT%H:%M:%SZ"\))107.5 182.4 ms
+0 0.502 0 r
+(  1000)59.5 172.4 ms
+0 g
+(    echo "${iso8601_timestamp}, ${encoded_seconds}, ${INPUT_FILE}" >> "${OPE)107.5 172.4 ms
+(NAI_WHISPER_BILLING_LOG:-${HOME}/.openai_whisper_billing.log}")107.5 162.4 ms
+0 0.502 0 r
+(  1001)59.5 152.4 ms
+0 g
+(})107.5 152.4 ms
+0 0.502 0 r
+(  1002)59.5 142.4 ms
+0.753 0 0.753 r
+(```)107.5 142.4 ms
+0 0.502 0 r
+(  1003)59.5 132.4 ms
+(  1004)59.5 122.4 ms
+0 g
+(Regarding the -o and -so parameters, you can handle their default values in )107.5 122.4 ms
+(the argument parsing section. If these arguments are not provided, you can s)107.5 112.4 ms
+(et their values to ${inputfile}.json and ${inputfile}.txt, respectively. Her)107.5 102.4 ms
+(e's how you can modify the argument parsing section:)107.5 92.4 ms
+0 0.502 0 r
+(  1005)59.5 82.4 ms
+(  1006)59.5 72.4 ms
+0.753 0 0.753 r
+(```)107.5 72.4 ms
+0 0.502 0 r
+(  1007)59.5 62.4 ms
+0 g
+(while getopts "i:o:p:l:hs" opt; do)107.5 62.4 ms
+0 0.502 0 r
+(  1008)59.5 52.4 ms
+0 g
+(    case ${opt} in)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 19 19
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 19)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(  1009)59.5 772.4 ms
+0 g
+(        i\))107.5 772.4 ms
+0 0.502 0 r
+(  1010)59.5 762.4 ms
+0 g
+(            INPUT_FILE="${OPTARG}")107.5 762.4 ms
+0 0.502 0 r
+(  1011)59.5 752.4 ms
+0 g
+(            ;;)107.5 752.4 ms
+0 0.502 0 r
+(  1012)59.5 742.4 ms
+0 g
+(        o\))107.5 742.4 ms
+0 0.502 0 r
+(  1013)59.5 732.4 ms
+0 g
+(            OUTPUT_FILE="${OPTARG}")107.5 732.4 ms
+0 0.502 0 r
+(  1014)59.5 722.4 ms
+0 g
+(            ;;)107.5 722.4 ms
+0 0.502 0 r
+(  1015)59.5 712.4 ms
+0 g
+(        p\))107.5 712.4 ms
+0 0.502 0 r
+(  1016)59.5 702.4 ms
+0 g
+(            PROMPT="${OPTARG}")107.5 702.4 ms
+0 0.502 0 r
+(  1017)59.5 692.4 ms
+0 g
+(            ;;)107.5 692.4 ms
+0 0.502 0 r
+(  1018)59.5 682.4 ms
+0 g
+(        l\))107.5 682.4 ms
+0 0.502 0 r
+(  1019)59.5 672.4 ms
+0 g
+(            LANG="${OPTARG}")107.5 672.4 ms
+0 0.502 0 r
+(  1020)59.5 662.4 ms
+0 g
+(            ;;)107.5 662.4 ms
+0 0.502 0 r
+(  1021)59.5 652.4 ms
+0 g
+(        h\))107.5 652.4 ms
+0 0.502 0 r
+(  1022)59.5 642.4 ms
+0 g
+(            print_usage)107.5 642.4 ms
+0 0.502 0 r
+(  1023)59.5 632.4 ms
+0 g
+(            exit 0)107.5 632.4 ms
+0 0.502 0 r
+(  1024)59.5 622.4 ms
+0 g
+(            ;;)107.5 622.4 ms
+0 0.502 0 r
+(  1025)59.5 612.4 ms
+0 g
+(        s\))107.5 612.4 ms
+0 0.502 0 r
+(  1026)59.5 602.4 ms
+0 g
+(            SINGLE_OUTPUT=true)107.5 602.4 ms
+0 0.502 0 r
+(  1027)59.5 592.4 ms
+0 g
+(            ;;)107.5 592.4 ms
+0 0.502 0 r
+(  1028)59.5 582.4 ms
+0 g
+(        \\?\))107.5 582.4 ms
+0 0.502 0 r
+(  1029)59.5 572.4 ms
+0 g
+(            echo "Invalid option: -${OPTARG}" >&2)107.5 572.4 ms
+0 0.502 0 r
+(  1030)59.5 562.4 ms
+0 g
+(            print_usage)107.5 562.4 ms
+0 0.502 0 r
+(  1031)59.5 552.4 ms
+0 g
+(            exit 1)107.5 552.4 ms
+0 0.502 0 r
+(  1032)59.5 542.4 ms
+0 g
+(            ;;)107.5 542.4 ms
+0 0.502 0 r
+(  1033)59.5 532.4 ms
+0 g
+(        :\))107.5 532.4 ms
+0 0.502 0 r
+(  1034)59.5 522.4 ms
+0 g
+(            echo "Option -${OPTARG} requires an argument." >&2)107.5 522.4 ms
+0 0.502 0 r
+(  1035)59.5 512.4 ms
+0 g
+(            print_usage)107.5 512.4 ms
+0 0.502 0 r
+(  1036)59.5 502.4 ms
+0 g
+(            exit 1)107.5 502.4 ms
+0 0.502 0 r
+(  1037)59.5 492.4 ms
+0 g
+(            ;;)107.5 492.4 ms
+0 0.502 0 r
+(  1038)59.5 482.4 ms
+0 g
+(    esac)107.5 482.4 ms
+0 0.502 0 r
+(  1039)59.5 472.4 ms
+0 g
+(done)107.5 472.4 ms
+0 0.502 0 r
+(  1040)59.5 462.4 ms
+(  1041)59.5 452.4 ms
+0.753 0 0.753 r
+(# Set default output files if not provided)107.5 452.4 ms
+0 0.502 0 r
+(  1042)59.5 442.4 ms
+0 g
+(OUTPUT_FILE="${OUTPUT_FILE:-${INPUT_FILE}.json}")107.5 442.4 ms
+0 0.502 0 r
+(  1043)59.5 432.4 ms
+0 g
+(SINGLE_OUTPUT_FILE="${SINGLE_OUTPUT_FILE:-${INPUT_FILE}.txt}")107.5 432.4 ms
+0 0.502 0 r
+(  1044)59.5 422.4 ms
+0.753 0 0.753 r
+(```)107.5 422.4 ms
+0 0.502 0 r
+(  1045)59.5 412.4 ms
+(  1046)59.5 402.4 ms
+0 g
+(Please replace these sections in your script and run it again. Let me know i)107.5 402.4 ms
+(f you encounter any issues.)107.5 392.4 ms
+0 0.502 0 r
+(  1047)59.5 382.4 ms
+(  1048)59.5 372.4 ms
+0.753 0 0.753 r
+(-----)107.5 372.4 ms
+0 0.502 0 r
+(  1049)59.5 362.4 ms
+0 g
+(User:)107.5 362.4 ms
+0 0.502 0 r
+(  1050)59.5 352.4 ms
+(  1051)59.5 342.4 ms
+0 g
+(Could you propose check to ensure that if json or txt output file already ex)107.5 342.4 ms
+(ists it will not execute, instead display error message and exit with error )107.5 332.4 ms
+(code?)107.5 322.4 ms
+0 0.502 0 r
+(  1052)59.5 312.4 ms
+(  1053)59.5 302.4 ms
+0.753 0 0.753 r
+(-----)107.5 302.4 ms
+0 0.502 0 r
+(  1054)59.5 292.4 ms
+0 g
+(System:)107.5 292.4 ms
+0 0.502 0 r
+(  1055)59.5 282.4 ms
+(  1056)59.5 272.4 ms
+0 g
+(Yes, you can use the -e test in bash to check if a file already exists. Add )107.5 272.4 ms
+(the following check after the argument parsing section:)107.5 262.4 ms
+0 0.502 0 r
+(  1057)59.5 252.4 ms
+(  1058)59.5 242.4 ms
+0.753 0 0.753 r
+(```)107.5 242.4 ms
+0 0.502 0 r
+(  1059)59.5 232.4 ms
+0.753 0 0.753 r
+(# Check if output files already exist)107.5 232.4 ms
+0 0.502 0 r
+(  1060)59.5 222.4 ms
+0 g
+(if [[ -e "${OUTPUT_FILE}" ]]; then)107.5 222.4 ms
+0 0.502 0 r
+(  1061)59.5 212.4 ms
+0 g
+(    echo "ERROR: The output JSON file ${OUTPUT_FILE} already exists. Please )107.5 212.4 ms
+(specify a different file or delete the existing one." >&2)107.5 202.4 ms
+0 0.502 0 r
+(  1062)59.5 192.4 ms
+0 g
+(    exit 1)107.5 192.4 ms
+0 0.502 0 r
+(  1063)59.5 182.4 ms
+0 g
+(fi)107.5 182.4 ms
+0 0.502 0 r
+(  1064)59.5 172.4 ms
+(  1065)59.5 162.4 ms
+0 g
+(if [[ -e "${SINGLE_OUTPUT_FILE}" ]]; then)107.5 162.4 ms
+0 0.502 0 r
+(  1066)59.5 152.4 ms
+0 g
+(    echo "ERROR: The output text file ${SINGLE_OUTPUT_FILE} already exists. )107.5 152.4 ms
+(Please specify a different file or delete the existing one." >&2)107.5 142.4 ms
+0 0.502 0 r
+(  1067)59.5 132.4 ms
+0 g
+(    exit 1)107.5 132.4 ms
+0 0.502 0 r
+(  1068)59.5 122.4 ms
+0 g
+(fi)107.5 122.4 ms
+0 0.502 0 r
+(  1069)59.5 112.4 ms
+0.753 0 0.753 r
+(```)107.5 112.4 ms
+0 0.502 0 r
+(  1070)59.5 102.4 ms
+(  1071)59.5 92.4 ms
+0 g
+(This will cause the script to exit with an error message if either the outpu)107.5 92.4 ms
+(t JSON file or the output text file already exists. Please replace these lin)107.5 82.4 ms
+(es in your script and let me know if you encounter any issues.)107.5 72.4 ms
+0 0.502 0 r
+(  1072)59.5 62.4 ms
+(  1073)59.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 20 20
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 20)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(  1074)59.5 772.4 ms
+0.753 0 0.753 r
+(-----)107.5 772.4 ms
+0 0.502 0 r
+(  1075)59.5 762.4 ms
+0 g
+(User:)107.5 762.4 ms
+0 0.502 0 r
+(  1076)59.5 752.4 ms
+(  1077)59.5 742.4 ms
+0 g
+(But in case of chunks output file will not be $OUTPUTFILE< but instead)107.5 742.4 ms
+0 0.502 0 r
+(  1078)59.5 732.4 ms
+(  1079)59.5 722.4 ms
+0.753 0 0.753 r
+(```)107.5 722.4 ms
+0 0.502 0 r
+(  1080)59.5 712.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 712.4 ms
+0 0.502 0 r
+(  1081)59.5 702.4 ms
+0 g
+(    ...)107.5 702.4 ms
+0 0.502 0 r
+(  1082)59.5 692.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 692.4 ms
+0 0.502 0 r
+(  1083)59.5 682.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 682.4 ms
+0 0.502 0 r
+(  1084)59.5 672.4 ms
+0 g
+(    ...)107.5 672.4 ms
+0 0.502 0 r
+(  1085)59.5 662.4 ms
+0.753 0 0.753 r
+(```)107.5 662.4 ms
+0 0.502 0 r
+(  1086)59.5 652.4 ms
+(  1087)59.5 642.4 ms
+0 g
+(What about adding check inside transcribe chunk before sending request?)107.5 642.4 ms
+0 0.502 0 r
+(  1088)59.5 632.4 ms
+0 g
+(And if resultfile or resultfiletxt exists , display information to stndard s)107.5 632.4 ms
+(tream communicating that this chunk is skipped as output file $filename alre)107.5 622.4 ms
+(ady exists, )107.5 612.4 ms
+0 0.502 0 r
+(  1089)59.5 602.4 ms
+0 g
+(and continue to process other chunks?)107.5 602.4 ms
+0 0.502 0 r
+(  1090)59.5 592.4 ms
+(  1091)59.5 582.4 ms
+(  1092)59.5 572.4 ms
+0.753 0 0.753 r
+(-----)107.5 572.4 ms
+0 0.502 0 r
+(  1093)59.5 562.4 ms
+0 g
+(System:)107.5 562.4 ms
+0 0.502 0 r
+(  1094)59.5 552.4 ms
+(  1095)59.5 542.4 ms
+0 g
+(That's a great point! We can indeed add a check within the )107.5 542.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)107.5 532.4 ms
+0 g
+( function to ensure the individual chunk output files don't already exist b)s
+(efore sending the request. Here's how you can modify the )107.5 522.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( )s
+(function:)107.5 512.4 ms
+0 0.502 0 r
+(  1096)59.5 502.4 ms
+(  1097)59.5 492.4 ms
+0.753 0 0.753 r
+(```)107.5 492.4 ms
+0 0.502 0 r
+(  1098)59.5 482.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 482.4 ms
+0 0.502 0 r
+(  1099)59.5 472.4 ms
+0 g
+(    ...)107.5 472.4 ms
+0 0.502 0 r
+(  1100)59.5 462.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 462.4 ms
+0 0.502 0 r
+(  1101)59.5 452.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 452.4 ms
+0 0.502 0 r
+(  1102)59.5 442.4 ms
+(  1103)59.5 432.4 ms
+0 g
+(    # Check if output files for this chunk already exist)107.5 432.4 ms
+0 0.502 0 r
+(  1104)59.5 422.4 ms
+0 g
+(    if [[ -e "${resultfile}" ]]; then)107.5 422.4 ms
+0 0.502 0 r
+(  1105)59.5 412.4 ms
+0 g
+(        echo "INFO: The output JSON file ${resultfile} for chunk ${chunkno} )107.5 412.4 ms
+(already exists. Skipping this chunk." >&2)107.5 402.4 ms
+0 0.502 0 r
+(  1106)59.5 392.4 ms
+0 g
+(        return 0)107.5 392.4 ms
+0 0.502 0 r
+(  1107)59.5 382.4 ms
+0 g
+(    fi)107.5 382.4 ms
+0 0.502 0 r
+(  1108)59.5 372.4 ms
+(  1109)59.5 362.4 ms
+0 g
+(    if [[ -e "${resultfiletxt}" ]]; then)107.5 362.4 ms
+0 0.502 0 r
+(  1110)59.5 352.4 ms
+0 g
+(        echo "INFO: The output text file ${resultfiletxt} for chunk ${chunkn)107.5 352.4 ms
+(o} already exists. Skipping this chunk." >&2)107.5 342.4 ms
+0 0.502 0 r
+(  1111)59.5 332.4 ms
+0 g
+(        return 0)107.5 332.4 ms
+0 0.502 0 r
+(  1112)59.5 322.4 ms
+0 g
+(    fi)107.5 322.4 ms
+0 0.502 0 r
+(  1113)59.5 312.4 ms
+0 g
+(    ...)107.5 312.4 ms
+0 0.502 0 r
+(  1114)59.5 302.4 ms
+0.753 0 0.753 r
+(```)107.5 302.4 ms
+0 0.502 0 r
+(  1115)59.5 292.4 ms
+(  1116)59.5 282.4 ms
+0 g
+(This modification will make the function return immediately and continue wit)107.5 282.4 ms
+(h the next chunk if the output file for the current chunk already exists. If)107.5 272.4 ms
+( you want the script to fail and exit immediately when an output file alread)107.5 262.4 ms
+(y exists, replace )107.5 252.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(return 0)s
+0.753 0 0.753 r
+(`)s
+0 g
+( with )s
+0.753 0 0.753 r
+(`)s
+0 g
+(exit 1)s
+0.753 0 0.753 r
+(`)s
+0 g
+( in the above code.)s
+0 0.502 0 r
+(  1117)59.5 242.4 ms
+(  1118)59.5 232.4 ms
+0.753 0 0.753 r
+(-----)107.5 232.4 ms
+0 0.502 0 r
+(  1119)59.5 222.4 ms
+0 g
+(User:)107.5 222.4 ms
+0 0.502 0 r
+(  1120)59.5 212.4 ms
+(  1121)59.5 202.4 ms
+0 g
+(Thank you!)107.5 202.4 ms
+0 0.502 0 r
+(  1122)59.5 192.4 ms
+(  1123)59.5 182.4 ms
+0 g
+(Script seems to work.)107.5 182.4 ms
+0 0.502 0 r
+(  1124)59.5 172.4 ms
+(  1125)59.5 162.4 ms
+0 g
+(I have to only correct the length calculation for billing file to change fro)107.5 162.4 ms
+(m:)107.5 152.4 ms
+0 0.502 0 r
+(  1126)59.5 142.4 ms
+(  1127)59.5 132.4 ms
+0.753 0 0.753 r
+(```)107.5 132.4 ms
+0 0.502 0 r
+(  1128)59.5 122.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 122.4 ms
+0 0.502 0 r
+(  1129)59.5 112.4 ms
+0 g
+(    local chunkno="${1}")107.5 112.4 ms
+0 0.502 0 r
+(  1130)59.5 102.4 ms
+0 g
+(    local chunkfile="${TMP_DIR}/input-${chunkno}.mp3")107.5 102.4 ms
+0 0.502 0 r
+(  1131)59.5 92.4 ms
+0 g
+(    local chunksize=$\(du -k "${chunkfile}" | cut -f1\))107.5 92.4 ms
+0 0.502 0 r
+(  1132)59.5 82.4 ms
+0 g
+(    local chunklength=$\(ffprobe -v error -show_entries format=duration -of d)107.5 82.4 ms
+(efault=noprint_wrappers=1:nokey=1 "${chunkfile}"\))107.5 72.4 ms
+0 0.502 0 r
+(  1133)59.5 62.4 ms
+(  1134)59.5 52.4 ms
+0 g
+(    # You can adjust the bitrate value if it's different for your audio file)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 21 21
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 21)59.5 792.4 ms
+F0 sf
+(s)107.5 772.4 ms
+0 0.502 0 r
+(  1135)59.5 762.4 ms
+0 g
+(    local bitrate=128)107.5 762.4 ms
+0 0.502 0 r
+(  1136)59.5 752.4 ms
+0 g
+(    local encoded_seconds=$\(echo "${chunksize} * 8 / ${bitrate} / 60" | bc\))107.5 752.4 ms
+0 0.502 0 r
+(  1137)59.5 742.4 ms
+(  1138)59.5 732.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 732.4 ms
+0 0.502 0 r
+(  1139)59.5 722.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 722.4 ms
+0 0.502 0 r
+(  1140)59.5 712.4 ms
+(  1141)59.5 702.4 ms
+0 g
+(    echo "DEBUG: chunkno = ${chunkno}, chunkfile = ${chunkfile}, resultfile )107.5 702.4 ms
+(= ${resultfile}" >&2)107.5 692.4 ms
+0 0.502 0 r
+(  1142)59.5 682.4 ms
+0 g
+(    ...)107.5 682.4 ms
+0 0.502 0 r
+(  1143)59.5 672.4 ms
+0 g
+(})107.5 672.4 ms
+0 0.502 0 r
+(  1144)59.5 662.4 ms
+0.753 0 0.753 r
+(```)107.5 662.4 ms
+0 0.502 0 r
+(  1145)59.5 652.4 ms
+(  1146)59.5 642.4 ms
+0 g
+(to)107.5 642.4 ms
+0 0.502 0 r
+(  1147)59.5 632.4 ms
+(  1148)59.5 622.4 ms
+0.753 0 0.753 r
+(```)107.5 622.4 ms
+0 0.502 0 r
+(  1149)59.5 612.4 ms
+0 g
+(transcribe_chunk\(\) {)107.5 612.4 ms
+0 0.502 0 r
+(  1150)59.5 602.4 ms
+0 g
+(    local chunkno="${1}")107.5 602.4 ms
+0 0.502 0 r
+(  1151)59.5 592.4 ms
+0 g
+(    local chunkfile="${TMP_DIR}/input-${chunkno}.mp3")107.5 592.4 ms
+0 0.502 0 r
+(  1152)59.5 582.4 ms
+0 g
+(    local chunksize=$\(du -k "${chunkfile}" | cut -f1\))107.5 582.4 ms
+0 0.502 0 r
+(  1153)59.5 572.4 ms
+0 g
+(    local chunkduration=$\(ffprobe -v error -show_entries format=duration -of)107.5 572.4 ms
+( default=noprint_wrappers=1:nokey=1 "${chunkfile}"\))107.5 562.4 ms
+0 0.502 0 r
+(  1154)59.5 552.4 ms
+(  1155)59.5 542.4 ms
+0 g
+(    # Round the duration to the nearest whole number)107.5 542.4 ms
+0 0.502 0 r
+(  1156)59.5 532.4 ms
+0 g
+(    encoded_seconds=$\(printf "%.0f" "$chunkduration"\))107.5 532.4 ms
+0 0.502 0 r
+(  1157)59.5 522.4 ms
+(  1158)59.5 512.4 ms
+0 g
+(    local resultfile="${OUTPUT_FILE%.json}-${chunkno}.json")107.5 512.4 ms
+0 0.502 0 r
+(  1159)59.5 502.4 ms
+0 g
+(    local resultfiletxt="${OUTPUT_FILE%.json}-${chunkno}.txt")107.5 502.4 ms
+0 0.502 0 r
+(  1160)59.5 492.4 ms
+(  1161)59.5 482.4 ms
+0 g
+(    echo "DEBUG: chunkno = ${chunkno}, chunkfile = ${chunkfile}, resultfile )107.5 482.4 ms
+(= ${resultfile}" >&2)107.5 472.4 ms
+0 0.502 0 r
+(  1162)59.5 462.4 ms
+(  1163)59.5 452.4 ms
+0 g
+(    ...)107.5 452.4 ms
+0 0.502 0 r
+(  1164)59.5 442.4 ms
+0 g
+(})107.5 442.4 ms
+0 0.502 0 r
+(  1165)59.5 432.4 ms
+0.753 0 0.753 r
+(```)107.5 432.4 ms
+0 0.502 0 r
+(  1166)59.5 422.4 ms
+(  1167)59.5 412.4 ms
+0 g
+(And also, the command line options, I just updated prevous one with default )107.5 412.4 ms
+(parameter lines, so for your infor this is how currently looks like paramete)107.5 402.4 ms
+(r parsing section:)107.5 392.4 ms
+0 0.502 0 r
+(  1168)59.5 382.4 ms
+(  1169)59.5 372.4 ms
+(  1170)59.5 362.4 ms
+0.753 0 0.753 r
+(```)107.5 362.4 ms
+0 0.502 0 r
+(  1171)59.5 352.4 ms
+0.753 0 0.753 r
+(# Parse options.)107.5 352.4 ms
+0 0.502 0 r
+(  1172)59.5 342.4 ms
+0 g
+(OUTPUT_FILE="")107.5 342.4 ms
+0 0.502 0 r
+(  1173)59.5 332.4 ms
+0 g
+(PRINT_TO_STDOUT=0)107.5 332.4 ms
+0 0.502 0 r
+(  1174)59.5 322.4 ms
+0 g
+(PROMPT="")107.5 322.4 ms
+0 0.502 0 r
+(  1175)59.5 312.4 ms
+0 g
+(PROMPT_FILE="")107.5 312.4 ms
+0 0.502 0 r
+(  1176)59.5 302.4 ms
+0 g
+(LANGUAGE="")107.5 302.4 ms
+0 0.502 0 r
+(  1177)59.5 292.4 ms
+(  1178)59.5 282.4 ms
+0 g
+(while getopts "o:sp:l:h-:" opt; do)107.5 282.4 ms
+0 0.502 0 r
+(  1179)59.5 272.4 ms
+0 g
+(  case ${opt} in)107.5 272.4 ms
+0 0.502 0 r
+(  1180)59.5 262.4 ms
+0 g
+(    o\))107.5 262.4 ms
+0 0.502 0 r
+(  1181)59.5 252.4 ms
+0 g
+(      OUTPUT_FILE="${OPTARG}")107.5 252.4 ms
+0 0.502 0 r
+(  1182)59.5 242.4 ms
+0 g
+(      ;;)107.5 242.4 ms
+0 0.502 0 r
+(  1183)59.5 232.4 ms
+0 g
+(    s\))107.5 232.4 ms
+0 0.502 0 r
+(  1184)59.5 222.4 ms
+0 g
+(      PRINT_TO_STDOUT=1)107.5 222.4 ms
+0 0.502 0 r
+(  1185)59.5 212.4 ms
+0 g
+(      ;;)107.5 212.4 ms
+0 0.502 0 r
+(  1186)59.5 202.4 ms
+0 g
+(    p\))107.5 202.4 ms
+0 0.502 0 r
+(  1187)59.5 192.4 ms
+0 g
+(      PROMPT="${OPTARG}")107.5 192.4 ms
+0 0.502 0 r
+(  1188)59.5 182.4 ms
+0 g
+(      ;;)107.5 182.4 ms
+0 0.502 0 r
+(  1189)59.5 172.4 ms
+0 g
+(    l\))107.5 172.4 ms
+0 0.502 0 r
+(  1190)59.5 162.4 ms
+0 g
+(      LANGUAGE="${OPTARG}")107.5 162.4 ms
+0 0.502 0 r
+(  1191)59.5 152.4 ms
+0 g
+(      ;;)107.5 152.4 ms
+0 0.502 0 r
+(  1192)59.5 142.4 ms
+0 g
+(    h\))107.5 142.4 ms
+0 0.502 0 r
+(  1193)59.5 132.4 ms
+0 g
+(      print_help)107.5 132.4 ms
+0 0.502 0 r
+(  1194)59.5 122.4 ms
+0 g
+(      exit 0)107.5 122.4 ms
+0 0.502 0 r
+(  1195)59.5 112.4 ms
+0 g
+(      ;;)107.5 112.4 ms
+0 0.502 0 r
+(  1196)59.5 102.4 ms
+0 g
+(    -\))107.5 102.4 ms
+0 0.502 0 r
+(  1197)59.5 92.4 ms
+0 g
+(      case "${OPTARG}" in)107.5 92.4 ms
+0 0.502 0 r
+(  1198)59.5 82.4 ms
+0 g
+(        output\))107.5 82.4 ms
+0 0.502 0 r
+(  1199)59.5 72.4 ms
+0 g
+(          OUTPUT_FILE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 72.4 ms
+0 0.502 0 r
+(  1200)59.5 62.4 ms
+0 g
+(          ;;)107.5 62.4 ms
+0 0.502 0 r
+(  1201)59.5 52.4 ms
+0 g
+(        stdout\))107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 22 22
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 22)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(  1202)59.5 772.4 ms
+0 g
+(          PRINT_TO_STDOUT=1)107.5 772.4 ms
+0 0.502 0 r
+(  1203)59.5 762.4 ms
+0 g
+(          ;;)107.5 762.4 ms
+0 0.502 0 r
+(  1204)59.5 752.4 ms
+0 g
+(        prompt\))107.5 752.4 ms
+0 0.502 0 r
+(  1205)59.5 742.4 ms
+0 g
+(          PROMPT="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 742.4 ms
+0 0.502 0 r
+(  1206)59.5 732.4 ms
+0 g
+(          ;;)107.5 732.4 ms
+0 0.502 0 r
+(  1207)59.5 722.4 ms
+0 g
+(        promptfile\))107.5 722.4 ms
+0 0.502 0 r
+(  1208)59.5 712.4 ms
+0 g
+(          PROMPT_FILE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 712.4 ms
+0 0.502 0 r
+(  1209)59.5 702.4 ms
+0 g
+(          ;;)107.5 702.4 ms
+0 0.502 0 r
+(  1210)59.5 692.4 ms
+0 g
+(        lang|language\))107.5 692.4 ms
+0 0.502 0 r
+(  1211)59.5 682.4 ms
+0 g
+(          LANGUAGE="${!OPTIND}"; OPTIND=$\(\( OPTIND + 1 \)\))107.5 682.4 ms
+0 0.502 0 r
+(  1212)59.5 672.4 ms
+0 g
+(          ;;)107.5 672.4 ms
+0 0.502 0 r
+(  1213)59.5 662.4 ms
+0 g
+(        help\))107.5 662.4 ms
+0 0.502 0 r
+(  1214)59.5 652.4 ms
+0 g
+(          print_help)107.5 652.4 ms
+0 0.502 0 r
+(  1215)59.5 642.4 ms
+0 g
+(          exit 0)107.5 642.4 ms
+0 0.502 0 r
+(  1216)59.5 632.4 ms
+0 g
+(          ;;)107.5 632.4 ms
+0 0.502 0 r
+(  1217)59.5 622.4 ms
+0 g
+(        *\))107.5 622.4 ms
+0 0.502 0 r
+(  1218)59.5 612.4 ms
+0 g
+(          echo "ERROR: Invalid option --${OPTARG}" >&2)107.5 612.4 ms
+0 0.502 0 r
+(  1219)59.5 602.4 ms
+0 g
+(          print_help)107.5 602.4 ms
+0 0.502 0 r
+(  1220)59.5 592.4 ms
+0 g
+(          exit 1)107.5 592.4 ms
+0 0.502 0 r
+(  1221)59.5 582.4 ms
+0 g
+(          ;;)107.5 582.4 ms
+0 0.502 0 r
+(  1222)59.5 572.4 ms
+0 g
+(      esac)107.5 572.4 ms
+0 0.502 0 r
+(  1223)59.5 562.4 ms
+0 g
+(      ;;)107.5 562.4 ms
+0 0.502 0 r
+(  1224)59.5 552.4 ms
+0 g
+(    \\?\))107.5 552.4 ms
+0 0.502 0 r
+(  1225)59.5 542.4 ms
+0 g
+(      echo "ERROR: Invalid option -${OPTARG}" >&2)107.5 542.4 ms
+0 0.502 0 r
+(  1226)59.5 532.4 ms
+0 g
+(      print_help)107.5 532.4 ms
+0 0.502 0 r
+(  1227)59.5 522.4 ms
+0 g
+(      exit 1)107.5 522.4 ms
+0 0.502 0 r
+(  1228)59.5 512.4 ms
+0 g
+(      ;;)107.5 512.4 ms
+0 0.502 0 r
+(  1229)59.5 502.4 ms
+0 g
+(  esac)107.5 502.4 ms
+0 0.502 0 r
+(  1230)59.5 492.4 ms
+0 g
+(done)107.5 492.4 ms
+0 0.502 0 r
+(  1231)59.5 482.4 ms
+0 g
+(shift $\(\(OPTIND -1\)\))107.5 482.4 ms
+0 0.502 0 r
+(  1232)59.5 472.4 ms
+(  1233)59.5 462.4 ms
+0.753 0 0.753 r
+(# Check if an input file was provided. If not, print an error message and ex)107.5 462.4 ms
+(it.)107.5 452.4 ms
+0 0.502 0 r
+(  1234)59.5 442.4 ms
+0 g
+(if [ $# -eq 0 ]; then)107.5 442.4 ms
+0 0.502 0 r
+(  1235)59.5 432.4 ms
+0 g
+(  echo "ERROR: No input file provided." >&2)107.5 432.4 ms
+0 0.502 0 r
+(  1236)59.5 422.4 ms
+0 g
+(  print_help)107.5 422.4 ms
+0 0.502 0 r
+(  1237)59.5 412.4 ms
+0 g
+(  exit 1)107.5 412.4 ms
+0 0.502 0 r
+(  1238)59.5 402.4 ms
+0 g
+(fi)107.5 402.4 ms
+0 0.502 0 r
+(  1239)59.5 392.4 ms
+(  1240)59.5 382.4 ms
+0 g
+(INPUT_FILE="$1")107.5 382.4 ms
+0 0.502 0 r
+(  1241)59.5 372.4 ms
+(  1242)59.5 362.4 ms
+0.753 0 0.753 r
+(# Set default output files if not provided)107.5 362.4 ms
+0 0.502 0 r
+(  1243)59.5 352.4 ms
+0 g
+(OUTPUT_FILE="${OUTPUT_FILE:-${INPUT_FILE}.json}")107.5 352.4 ms
+0 0.502 0 r
+(  1244)59.5 342.4 ms
+0 g
+(SINGLE_OUTPUT_FILE="${SINGLE_OUTPUT_FILE:-${INPUT_FILE}.txt}")107.5 342.4 ms
+0 0.502 0 r
+(  1245)59.5 332.4 ms
+(  1246)59.5 322.4 ms
+0.753 0 0.753 r
+(# Check if the input file exists. If not, print an error message and exit.)107.5 322.4 ms
+0 0.502 0 r
+(  1247)59.5 312.4 ms
+0 g
+(if [ ! -f "${INPUT_FILE}" ]; then)107.5 312.4 ms
+0 0.502 0 r
+(  1248)59.5 302.4 ms
+0 g
+(  echo "ERROR: The input file '${INPUT_FILE}' does not exist." >&2)107.5 302.4 ms
+0 0.502 0 r
+(  1249)59.5 292.4 ms
+0 g
+(  exit 1)107.5 292.4 ms
+0 0.502 0 r
+(  1250)59.5 282.4 ms
+0 g
+(fi)107.5 282.4 ms
+0 0.502 0 r
+(  1251)59.5 272.4 ms
+(  1252)59.5 262.4 ms
+0.753 0 0.753 r
+(# If the user specified a prompt file, check if it exists. If not, print an )107.5 262.4 ms
+(error message and exit.)107.5 252.4 ms
+0 0.502 0 r
+(  1253)59.5 242.4 ms
+0 g
+(if [ -n "${PROMPT_FILE}" ]; then)107.5 242.4 ms
+0 0.502 0 r
+(  1254)59.5 232.4 ms
+0 g
+(  if [ ! -f "${PROMPT_FILE}" ]; then)107.5 232.4 ms
+0 0.502 0 r
+(  1255)59.5 222.4 ms
+0 g
+(    echo "ERROR: The prompt file '${PROMPT_FILE}' does not exist." >&2)107.5 222.4 ms
+0 0.502 0 r
+(  1256)59.5 212.4 ms
+0 g
+(    exit 1)107.5 212.4 ms
+0 0.502 0 r
+(  1257)59.5 202.4 ms
+0 g
+(  fi)107.5 202.4 ms
+0 0.502 0 r
+(  1258)59.5 192.4 ms
+0 g
+(fi)107.5 192.4 ms
+0 0.502 0 r
+(  1259)59.5 182.4 ms
+0.753 0 0.753 r
+(```)107.5 182.4 ms
+0 0.502 0 r
+(  1260)59.5 172.4 ms
+(  1261)59.5 162.4 ms
+(  1262)59.5 152.4 ms
+0.753 0 0.753 r
+(----)107.5 152.4 ms
+0 0.502 0 r
+(  1263)59.5 142.4 ms
+0 g
+(System:)107.5 142.4 ms
+0 0.502 0 r
+(  1264)59.5 132.4 ms
+(  1265)59.5 122.4 ms
+0 g
+(It's great to hear that the script is working well now!)107.5 122.4 ms
+0 0.502 0 r
+(  1266)59.5 112.4 ms
+(  1267)59.5 102.4 ms
+0 g
+(Your modifications to the duration calculation and the command line options )107.5 102.4 ms
+(parsing look correct and should improve the script's functionality.)107.5 92.4 ms
+0 0.502 0 r
+(  1268)59.5 82.4 ms
+(  1269)59.5 72.4 ms
+(-)107.5 72.4 ms
+0 g
+( The change in the )s
+0.753 0 0.753 r
+(`)s
+0 g
+(transcribe_chunk)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function to calculate )s
+0.753 0 0.753 r
+(`)s
+0 g
+(encoded_second)s
+(s)107.5 62.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( from )s
+0.753 0 0.753 r
+(`)s
+0 g
+(chunkduration)s
+0.753 0 0.753 r
+(`)s
+0 g
+( using )s
+0.753 0 0.753 r
+(`)s
+0 g
+(ffprobe)s
+0.753 0 0.753 r
+(`)s
+0 g
+( is more accurate as it directly calc)s
+(ulates the duration of the audio file in seconds.)107.5 52.4 ms
+re sp
+%%PageTrailer
+%%Page: 23 23
+%%BeginPageSetup
+sv
+0 g
+F0 sf
+%%EndPageSetup
+F1 sf
+(Literate_Programming_Experiment_with_GPT4-Appendix-Dialog.dialog.md          Page 23)59.5 792.4 ms
+F0 sf
+0 0.502 0 r
+(  1270)59.5 772.4 ms
+0 g
+(    )107.5 772.4 ms
+0 0.502 0 r
+(  1271)59.5 762.4 ms
+(-)107.5 762.4 ms
+0 g
+( The update to the command line options parsing adds flexibility to the scr)s
+(ipt by allowing the user to specify output file names and an optional langua)107.5 752.4 ms
+(ge hint. The addition of default values for the )107.5 742.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(OUTPUT_FILE)s
+0.753 0 0.753 r
+(`)s
+0 g
+( and )s
+0.753 0 0.753 r
+(`)s
+0 g
+(SINGLE_OU)s
+(TPUT_FILE)107.5 732.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+( variables is also a good enhancement, making the script easier to)s
+( use by automatically setting the output filenames based on the input filena)107.5 722.4 ms
+(me if the user does not provide them.)107.5 712.4 ms
+0 0.502 0 r
+(  1272)59.5 702.4 ms
+0 g
+(    )107.5 702.4 ms
+0 0.502 0 r
+(  1273)59.5 692.4 ms
+(  1274)59.5 682.4 ms
+0 g
+(Remember to also update the )107.5 682.4 ms
+0.753 0 0.753 r
+(`)s
+0 g
+(print_help)s
+0.753 0 0.753 r
+(`)s
+0 g
+( function to reflect these new and u)s
+(pdated command line options, so that the help message remains accurate and i)107.5 672.4 ms
+(nformative.)107.5 662.4 ms
+0 0.502 0 r
+(  1275)59.5 652.4 ms
+(  1276)59.5 642.4 ms
+0.753 0 0.753 r
+(-----)107.5 642.4 ms
+re sp
+%%PageTrailer
+%%Trailer
+%%Pages: 23
+%%EOF
+
