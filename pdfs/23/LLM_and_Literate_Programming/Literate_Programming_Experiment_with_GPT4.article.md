@@ -61,9 +61,9 @@ structured way thinking, using human language, that I believe may
 improve mutual communication between humans, about complex structured
 matters, like computer code.
 
-## Observations
+## Observations and Conclusions
 
--   After dialog and encouraging it to ask me questions to make sure we
+*   After dialog and encouraging it to ask me questions to make sure we
     end up with good requirements (which was very good, as revealed its
     misunderstandings of some of my intents), I encouraged to start by
     making README.md, basically to be requirements document and
@@ -71,10 +71,10 @@ matters, like computer code.
     verify understanding of whole project and work it is planning to do,
     having reference point to refer to and eventually copy&paste, in
     case long conversation would need reminding of what is to be done.
--   It was keeping consistency of intent very well
+*   It was keeping consistency of intent very well
     -   probably due to large volume of text capturing ideas and
         semantics
--   However, when fixing or rewriting routines, it was sometimes
+*   However, when fixing or rewriting routines, it was sometimes
     hallucinating about how they looked earlier, nor important bits,
     like e.g. how POST URL for request should look like etc. However,
     after pointing out minor details, and encouraging it to insert more
@@ -85,14 +85,30 @@ matters, like computer code.
         I felt that it kept semantic consistency of program over long
         conversation way better then when working in long conversations
         with not commented code.
+*   Main problem is that code makes impression like "good", but when
+    one reads it carefully, or tries to use in different situations
+    finds that does not fulfill all requirements or makes things
+    that does not make sense. E.g. On beginning I was using it on
+    big files in .ogg/.oga formats currently not supported by OpenAI Whisper API,
+    so was testing path of converting and chunking. However, later
+    I tried with small mp3 files to discover they are for no reason
+    converted, instead of send directly. So I resumed experiment,
+    updated atteched conversation/dialog with GPT4 trying to add missing
+    case. This makes it clear, that if GPT4 can fail with such simple
+    script, but make impression that "code looks good", as few of my
+    friends skimmed output fast, that it creates false sense of security.
+    Therefore, I consider that in "Coding AI" era, importance of testing,
+    formal methods to verify correctness and code auditors will be
+    growing in importance.
+
 
 To investigate in the future:
 
--   especially when designing Agents I will consider:
--   start with interview to produce specification document
--   then make step to design high level execution plan
--   and try to push it to break program into smaller functions.
--   and implement smaller function one at a time.
+*   especially when designing Agents I will consider:
+*   start with interview to produce specification document
+*   then make step to design high level execution plan
+*   and try to push it to break program into smaller functions.
+*   and implement smaller function one at a time.
 
 I have impression, that it often operates on granularity of whole
 function when applying fixes. That's why my intuition and curiosity if
@@ -100,14 +116,14 @@ it performs better when working with smaller functions, therefore if
 cross functional issue would appear to have enough tokens to comprehend
 all required pieces at once, that may :
 
--   require "fixing scheduler/assistant" agent - that would chose
+*   require "fixing scheduler/assistant" agent - that would chose
     relevant parts/functions for given issue, so "fixer agent" would be
     provided with fresh memory of pieces that are most relevant to
     issue.
 
 More future work:
 
--   As you study dialog, some may argue that there is room for
+*   As you study dialog, some may argue that there is room for
     improvement in regards to Literate Programming style, principles,
     benefits, techniques, therefore:
     -   More Literate Programming Prompt Engineering work maybe required
@@ -122,11 +138,11 @@ More future work:
 
 Author's guess:
 
--   It depends on program, task, topic.
--   If topic semantics is close to algorithmic, then program structures
+*   It depends on program, task, topic.
+*   If topic semantics is close to algorithmic, then program structures
     maybe sufficiently carrying enough semantic information, themselves
     to reason.
--   However if program is to address some domain space from ontologies
+*   However if program is to address some domain space from ontologies
     outside of computer program realm, than carrying semantics of logic
     requires extra means, therefore comments, like Literate Programming
     may help to maintain and keep program more resilient long term to

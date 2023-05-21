@@ -434,9 +434,9 @@ Certainly! Let's continue with the implementation.
 
 In this next step, we will implement the audio chunking and transcoding. We'll use `ffmpeg` for this purpose because it's versatile and it's commonly used for handling multimedia data. We're assuming `ffmpeg` is installed and available in the user's system.
 
-bashCopy code
 
-`# Define the path to the directory where we'll store the temporary files.
+```
+# Define the path to the directory where we'll store the temporary files.
 TMP_DIR="/tmp/whisper_transcript_${RANDOM}"
 
 # Create the temporary directory.
@@ -450,7 +450,8 @@ ffmpeg -i "${INPUT_FILE}" -f segment -segment_time 30 -acodec pcm_s16le -ar 1600
 if [ $? -ne 0 ]; then
   echo "ERROR: Failed to convert and split the input file." >&2
   exit 1
-fi` 
+fi
+```
 
 In this block, we're creating a temporary directory to store the audio chunks. We're then converting the input audio to WAV format, and at the same time splitting it into 30-second chunks. The `ffmpeg` command might seem complicated, but it's quite straightforward:
 
@@ -1274,3 +1275,124 @@ Your modifications to the duration calculation and the command line options pars
 Remember to also update the `print_help` function to reflect these new and updated command line options, so that the help message remains accurate and informative.
 
 -----
+User:
+
+I run `openai_whisper_transcription.sh` script with 4.8MB mp3 file as parameter. Therefore it both: under limit of 25MB and in one of formats supported by whisper ( mp3, mp4, mpeg, mpga, m4a, wav, or webm.).
+
+However from logs of program it looks like it was converting this file. Why?
+
+If input file satisfies both requirements (i.e. is in format accepted by OpenAI Whisper API and has smaller then 25MB limit) shouldn't it be send directly to server with no need of conversion?
+
+How can we improve this script to make it work?
+
+-----
+System:
+
+You're correct that if the file is already in a format that the Whisper API accepts and is less than 25MB in size, it should not need to be converted or split into chunks. The current script, however, is designed to handle larger files by default, which is why it splits the input into chunks.
+
+If you'd like to modify the script to skip the chunking process for smaller files, you can add a check for the file size at the beginning of the script, and if it's less than 25MB, skip directly to the transcription step. Here's a rough idea of how you could implement this:
+
+```
+# Get the size of the input file in megabytes
+input_size_mb=$(du -m "$INPUT_FILE" | cut -f1)
+
+# If the input file is less than 25MB and in a supported format, skip the chunking process
+if [[ $input_size_mb -lt 25 && "$INPUT_FILE" =~ \.(mp3|mp4|mpeg|mpga|m4a|wav|webm)$ ]]; then
+    echo "The input file is smaller than 25MB and in a supported format. Skipping the chunking process."
+
+    # The filename of the result file will be the same as the input file, but with a .json extension
+    resultfile="${INPUT_FILE%.*}.json"
+    resultfiletxt="${INPUT_FILE%.*}.txt"
+
+    # Call the Whisper API to transcribe the entire file
+    transcribe_file "$INPUT_FILE" "$resultfile" "$resultfiletxt"
+    
+    # Exit the script
+    exit 0
+fi
+```
+
+# If the file is larger than 25MB or not in a supported format, continue with the rest of the script to split it into chunks
+...
+In the code above, transcribe_file is a new function that you would need to create. It would be similar to the transcribe_chunk function, but it would take the entire input file as a parameter instead of a chunk.
+
+Please note that this is a simplified example and may not cover all edge cases. You should test this thoroughly and adjust it as needed to ensure it works for your specific use cases.
+
+-----
+User:
+
+Can you just make functions that:
+
+* `can_be_send_directly` function - check if file is within size limit , less then 25MB and checks if file has one of accepted extensions
+* `transcribe_file_directly` function - that transcribes such file by sending it directly, without any chunking and conversion  (and if provided uses data from flags (e.g. prompt , language flags)
+* and piece of code I should put early on in script that first uses first function to check if input is eligible to run second one? If so , then runs second one and exits script?
+
+-----
+System:
+
+Sure! Let's define the functions you asked for.
+
+First, the function can_be_send_directly:
+
+```
+can_be_send_directly() {
+    local file="${1}"
+    local filesize_mb=$(du -m "$file" | cut -f1)
+
+    # Check if file size is less than 25MB and if it has a supported extension
+    if [[ $filesize_mb -lt 25 && "$file" =~ \.(mp3|mp4|mpeg|mpga|m4a|wav|webm)$ ]]; then
+        return 0  # Return true (in bash, 0 means true)
+    else
+        return 1  # Return false
+    fi
+}
+```
+
+Next, the function transcribe_file_directly:
+
+```
+transcribe_file_directly() {
+    local file="${1}"
+    local resultfile="${OUTPUT_FILE}"
+    local resultfiletxt="${SINGLE_OUTPUT_FILE}"
+
+    echo "Transcribing the file directly (no chunking)..." >&2
+
+    # Call OpenAI's Whisper API
+    curl -s -X POST "https://api.openai.com/v1/audio/transcriptions" \
+        -H "Authorization: Bearer ${OPENAI_API_KEY}" \
+        -H "Content-Type: multipart/form-data" \
+        -F "file=@${file}" \
+        -F "model=whisper-1" \
+        -F "prompt=${PROMPT}" \
+        -F "response_format=json" \
+        -F "language=${LANGUAGE}" > "${resultfile}"
+
+    # Extract the transcription text from the JSON response
+    jq -r '.text' "${resultfile}" > "${resultfiletxt}"
+}
+```
+
+Now, you can use these functions at the beginning of your script as follows:
+
+```
+# Parse options...
+# Check if an input file was provided...
+
+INPUT_FILE="$1"
+
+# Check if the input file can be sent directly
+if can_be_send_directly "$INPUT_FILE"; then
+    transcribe_file_directly "$INPUT_FILE"
+    exit 0
+fi
+
+# If the file is larger than 25MB or not in a supported format, continue with the rest of the script to split it into chunks...
+```
+
+In this example, the transcribe_file_directly function uses the same `OUTPUT_FILE` and `SINGLE_OUTPUT_FILE` variables defined in the option parsing section of your script. Please adjust these variables as needed.
+
+-----
+User:
+
+
