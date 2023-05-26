@@ -129,6 +129,48 @@ if [ -n "${PROMPT_FILE}" ]; then
 fi
 
 
+can_be_send_directly() {
+    local file="${1}"
+    local filesize_mb=$(du -m "$file" | cut -f1)
+
+    # Check if file size is less than 25MB and if it has a supported extension
+    if [[ $filesize_mb -lt 25 && "$file" =~ \.(mp3|mp4|mpeg|mpga|m4a|wav|webm)$ ]]; then
+        return 0  # Return true (in bash, 0 means true)
+    else
+        return 1  # Return false
+    fi
+}
+
+transcribe_file_directly() {
+    local file="${1}"
+    local resultfile="${OUTPUT_FILE}"
+    local resultfiletxt="${SINGLE_OUTPUT_FILE}"
+
+    echo "Transcribing the file directly (no chunking)..." >&2
+
+    # Call OpenAI's Whisper API
+    curl -s -X POST "https://api.openai.com/v1/audio/transcriptions" \
+        -H "Authorization: Bearer ${OPENAI_API_KEY}" \
+        -H "Content-Type: multipart/form-data" \
+        -F "file=@${file}" \
+        -F "model=whisper-1" \
+        -F "prompt=${PROMPT}" \
+        -F "response_format=json" \
+        -F "language=${LANGUAGE}" > "${resultfile}"
+
+    # Extract the transcription text from the JSON response
+    jq -r '.text' "${resultfile}" > "${resultfiletxt}"
+}
+
+# Parse options...
+# Check if an input file was provided...
+
+# Check if the input file can be sent directly
+if can_be_send_directly "$INPUT_FILE"; then
+    transcribe_file_directly "$INPUT_FILE"
+    exit 0
+fi
+
 # Define the path to the directory where we'll store the temporary files.
 TMP_DIR="/tmp/whisper_transcript_${RANDOM}"
 
@@ -153,6 +195,7 @@ if [ $? -ne 0 ]; then
 fi
 
 
+# If the file is larger than 25MB or not in a supported format, continue with the rest of the script to split it into chunks...
 check_if_mp3_chunks_are_present() {
   local mp3_files_count=$(ls ${TMP_DIR}/*.mp3 2> /dev/null | wc -l)
   
