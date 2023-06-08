@@ -40,6 +40,7 @@ function dwn_hf() {
     fi
 }
 
+dwn_hf https://huggingface.co/camenduru/potat1
 dwn_hf https://huggingface.co/tiiuae/falcon-40b
 dwn_hf https://huggingface.co/ausboss/llama-13b-supercot
 dwn_hf https://huggingface.co/ausboss/llama-30b-supercot
