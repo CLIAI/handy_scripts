@@ -80,3 +80,4 @@ dwn_hf https://huggingface.co/PygmalionAI/metharme-13b
 dwn_hf https://huggingface.co/PygmalionAI/pygmalion-13b
 dwn_hf https://huggingface.co/PygmalionAI/pygmalion-7b
 dwn_hf https://huggingface.co/TehVenom/WizardLM-13B-Uncensored-Q5_1-GGML
+dwn_hf https://huggingface.co/google/flan-t5-xl
