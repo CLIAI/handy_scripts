@@ -43,6 +43,8 @@ function dwn_hf() {
 dwn_hf https://huggingface.co/camenduru/potat1
 dwn_hf https://huggingface.co/tiiuae/falcon-40b
 dwn_hf https://huggingface.co/NousResearch/Nous-Hermes-13b
+dwn_hf https://huggingface.co/WizardLM/WizardCoder-15B-V1.0
+dwn_hf https://huggingface.co/TheBloke/WizardCoder-15B-1.0-GPTQ
 dwn_hf https://huggingface.co/ausboss/llama-13b-supercot
 dwn_hf https://huggingface.co/ausboss/llama-30b-supercot
 dwn_hf https://huggingface.co/ausboss/llama-30b-supercot-4bit
