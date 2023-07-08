@@ -40,6 +40,7 @@ function dwn_hf() {
     fi
 }
 
+dwn_hf https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-SuperHOT-8K-GGML
 dwn_hf https://huggingface.co/camenduru/potat1
 dwn_hf https://huggingface.co/tiiuae/falcon-40b
 dwn_hf https://huggingface.co/NousResearch/Nous-Hermes-13b
