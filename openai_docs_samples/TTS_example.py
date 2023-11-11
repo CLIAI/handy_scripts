@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from openai import OpenAI
+import openai
 
-client = OpenAI()
+client = openai.Client()
 
 response = client.audio.speech.create(
     model="tts-1",
