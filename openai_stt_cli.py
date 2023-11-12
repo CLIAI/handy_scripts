@@ -10,7 +10,7 @@ import numpy as np
 from openai import OpenAI
 
 # Argument parsing
-parser = argparse.ArgumentParser(description='OpenAI TTS CLI')
+parser = argparse.ArgumentParser(description='OpenAI STT/ASR CLI (Voice to Text)')
 parser.add_argument('-s', '--silent', action='store_true', help='Run in silent mode without prompt')
 parser.add_argument('-o', '--output', type=str, help='Specify output file for transcript')
 parser.add_argument('-a', '--append', type=str, help='Specify output file to append transcript')

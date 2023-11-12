@@ -26,10 +26,10 @@ Use Openai TTS to record and output to : stdout, file or clipboard (Linux).
 Of course requires `OPENAI_API_KEY` environment variable.
 
 ```
-github/CLIAI/handy_scripts$ openai_tts_cli.py -h
-usage: openai_tts_cli.py [-h] [-s] [-o OUTPUT] [-a APPEND] [-c]
+github/CLIAI/handy_scripts$ openai_stt_cli.py -h
+usage: openai_stt_cli.py [-h] [-s] [-o OUTPUT] [-a APPEND] [-c]
 
-OpenAI TTS CLI
+OpenAI STT/ASR CLI (Voice to Text)
 
 options:
   -h, --help            show this help message and exit
