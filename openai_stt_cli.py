@@ -129,7 +129,8 @@ if __name__ == "__main__":
         exit(0)
     if args.clipboard:
         if shutil.which('xclip'):
-            os.system(f"echo {transcript!r} | xclip -selection clipboard")
+            transcript_trimmed = transcript.strip()
+            os.system(f"echo {transcript_trimmed!r} | xclip -selection clipboard")
         else:
             print("xclip is not available. Please install xclip or use a different method to copy to clipboard.")
             exit(1)
