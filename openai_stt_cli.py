@@ -5,7 +5,7 @@ import tempfile
 import time
 import argparse
 import shutil
-
+import subprocess
 import numpy as np
 from openai import OpenAI
 
@@ -130,7 +130,8 @@ if __name__ == "__main__":
     if args.clipboard:
         if shutil.which('xclip'):
             transcript_trimmed = transcript.strip()
-            os.system(f"echo {transcript_trimmed!r} | xclip -selection clipboard")
+            subprocess.run("xclip -selection clipboard", input=transcript_trimmed, text=True, shell=True)
+
         else:
             print("xclip is not available. Please install xclip or use a different method to copy to clipboard.")
             exit(1)
