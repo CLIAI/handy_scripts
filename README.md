@@ -19,3 +19,25 @@ Let me mention some:
       - hopefully also handy e.g. to convert your brainstorming voice notes,
         or audio from video lectures for later LLM processing.
 
+# `openai_tts_cli.py`
+
+Use Openai TTS to record and output to : stdout, file or clipboard (Linux).
+
+Of course requires `OPENAI_API_KEY` environment variable.
+
+```
+github/CLIAI/handy_scripts$ openai_tts_cli.py -h
+usage: openai_tts_cli.py [-h] [-s] [-o OUTPUT] [-a APPEND] [-c]
+
+OpenAI TTS CLI
+
+options:
+  -h, --help            show this help message and exit
+  -s, --silent          Run in silent mode without prompt
+  -o OUTPUT, --output OUTPUT
+                        Specify output file for transcript
+  -a APPEND, --append APPEND
+                        Specify output file to append transcript
+  -c, --clipboard       Copy result to clipboard using xclip
+
+```
