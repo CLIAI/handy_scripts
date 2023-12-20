@@ -41,3 +41,35 @@ options:
   -c, --clipboard       Copy result to clipboard using xclip
 
 ```
+## Repository Contents Overview
+
+This repository contains a collection of scripts, tools, and documentation related to speech-to-text (STT), text-to-speech (TTS), and other language processing utilities using OpenAI's APIs.
+
+### Scripts and Tools
+
+- `deepl`: A directory containing scripts for DeepL translation services.
+- `download_cool_models.sh`: A script to download models for language processing.
+- `monitor_clipboard_and_translate.sh`: A script that monitors the clipboard for text to translate.
+- `openai_docs_samples`: A directory with examples and sample inputs for TTS.
+- `openai_stt_cli.py`: A command-line interface for OpenAI's speech-to-text service.
+- `openai_tts_from_file.py`: A script to convert text from a file to speech using OpenAI's TTS.
+- `openai_whisper_transcription.sh`: A script to transcribe audio files using OpenAI's Whisper model.
+- `record_and_transcribe_using_openai_whisper_api.sh`: A script to record audio and transcribe it using OpenAI's Whisper API.
+- `stt_assemblyai.py`: A script to transcribe audio files using AssemblyAI's STT service.
+
+### Documentation
+
+- `openai_whisper_transcription-README.md`: Documentation for the OpenAI Whisper transcription script.
+
+### PDFs and Documentation
+
+- `pdfs/23/LLM_and_Literate_Programming`: A directory containing PDFs and Markdown files related to literate programming experiments with GPT-4.
+
+### Miscellaneous
+
+- `.gitignore`: A file specifying untracked files to ignore.
+- `LICENSE`: The license file for the repository.
+- `test`: A directory for test scripts and data.
+- `test`: A directory for test scripts and data used for verifying the functionality of the scripts.
+
+For more detailed information on each item, please refer to the respective files and directories.
