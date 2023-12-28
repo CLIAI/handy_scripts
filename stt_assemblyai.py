@@ -22,8 +22,10 @@ def create_transcript(api_token, audio_url, speaker_labels):
     }
     data = {
         "audio_url": audio_url,
-        "speaker_labels": speaker_labels
+        "speaker_labels": speaker_labels,
     }
+    if args.language != 'auto':
+        data["language_code"] = args.language
     if args.expected_speakers != -1:
         data["speakers_expected"] = args.expected_speakers
     response = requests.post(url, headers=headers, json=data)
@@ -47,6 +49,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation.')
     parser.add_argument('-o', '--output', type=str, default='', help='Output file to store the result. If not provided, result will be printed to standard output.')
     parser.add_argument('--expected-speakers', type=int, default=-1, help='Expected number of speakers for diarisation.')
+    parser.add_argument('-l', '--language', type=str, default='auto', help='Dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
     args = parser.parse_args()
 
     api_token = os.environ["ASSEMBLYAI_API_KEY"]
