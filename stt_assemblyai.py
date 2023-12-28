@@ -2,6 +2,7 @@
 import os
 import requests
 import time
+import argparse
 
 def upload_file(api_token, audio_input):
     if audio_input.startswith('http://') or audio_input.startswith('https://'):
@@ -39,23 +40,32 @@ def create_transcript(api_token, audio_url, speaker_labels):
             time.sleep(3)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
+    parser.add_argument('audio_input', type=str, help='The audio file to transcribe.')
+    parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation.')
+    parser.add_argument('-o', '--output', type=str, default='', help='Output file to store the result. If not provided, result will be printed to standard output.')
+    args = parser.parse_args()
+
     api_token = os.environ["ASSEMBLYAI_API_KEY"]
-    import sys
-    if len(sys.argv) < 2:
-        print("Error: No audio file provided.")
-        sys.exit(1)
-    audio_input = sys.argv[1]
-    speaker_labels = False  # Set to False by default
-    if len(sys.argv) > 2 and sys.argv[2] == '--diarisation':
-        speaker_labels = True  # Set to True if --diarisation flag is provided
+    audio_input = args.audio_input
+    speaker_labels = args.diarisation
 
     try:
         upload_url = upload_file(api_token, audio_input)
         transcript = create_transcript(api_token, upload_url, speaker_labels)
-        if speaker_labels:
-            for utterance in transcript['utterances']:
-                print(f"Speaker {utterance['speaker']}:", utterance['text'])
+        output = args.output
+        if output:
+            with open(output, 'w') as f:
+                if speaker_labels:
+                    for utterance in transcript['utterances']:
+                        f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
+                else:
+                    f.write(transcript['text'] + '\n')
         else:
-            print(transcript['text'])
+            if speaker_labels:
+                for utterance in transcript['utterances']:
+                    print(f"Speaker {utterance['speaker']}:", utterance['text'])
+            else:
+                print(transcript['text'])
     except Exception as e:
         print(f'Error: {e}')
