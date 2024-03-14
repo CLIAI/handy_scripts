@@ -29,7 +29,10 @@ def create_transcript(api_token, audio_url, speaker_labels):
     if args.expected_speakers != -1:
         data["speakers_expected"] = args.expected_speakers
     response = requests.post(url, headers=headers, json=data)
-    response.raise_for_status()
+    if response.status_code != 200:
+        print(f"Error: {response.status_code}")
+        print(f"Response: {response.json()}")
+        response.raise_for_status()
     transcript_id = response.json()['id']
     polling_endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
     while True:
