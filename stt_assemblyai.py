@@ -48,7 +48,7 @@ if __name__ == "__main__":
     parser.add_argument('audio_input', type=str, help='The audio file to transcribe.')
     parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation.')
     parser.add_argument('-o', '--output', type=str, default='', help='Output file to store the result. If not provided, result will be printed to standard output.')
-    parser.add_argument('--expected-speakers', type=int, default=-1, help='Expected number of speakers for diarisation.')
+    parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='Expected number of speakers for diarisation.')
     parser.add_argument('-l', '--language', type=str, default='auto', help='Dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
     args = parser.parse_args()
 
