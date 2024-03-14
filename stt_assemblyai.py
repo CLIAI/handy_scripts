@@ -50,6 +50,7 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output', type=str, default='', help='Output file to store the result. If not provided, result will be printed to standard output.')
     parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='Expected number of speakers for diarisation.')
     parser.add_argument('-l', '--language', type=str, default='auto', help='Dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging.')
     args = parser.parse_args()
 
     api_token = os.environ["ASSEMBLYAI_API_KEY"]
@@ -57,8 +58,14 @@ if __name__ == "__main__":
     speaker_labels = args.diarisation
 
     try:
+        if args.verbose:
+            print("Uploading file...")
         upload_url = upload_file(api_token, audio_input)
+        if args.verbose:
+            print("File uploaded. Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
+        if args.verbose:
+            print("Transcript created. Writing output...")
         output = args.output
         if output:
             with open(output, 'w') as f:
@@ -73,5 +80,7 @@ if __name__ == "__main__":
                     print(f"Speaker {utterance['speaker']}:", utterance['text'])
             else:
                 print(transcript['text'])
+        if args.verbose:
+            print("Done.")
     except Exception as e:
         print(f'Error: {e}')
