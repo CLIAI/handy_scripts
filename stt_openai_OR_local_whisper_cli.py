@@ -26,7 +26,16 @@ except (OSError, ModuleNotFoundError):
 
 from prompt_toolkit.shortcuts import prompt
 
-# from .dump import dump  # noqa: F401
+
+def display_menu(array_of_options=False):
+    options = ['1', '2', '3', '']
+    if array_of_options:
+        return options
+    print("Recording. Press option and ENTER (or just ENTER for default):")
+    print("1. transcript with openai API (default)")
+    print("2. transcript locally with whisper.cpp (with `--speed-up`)")
+    print("3. transcript locally with whisper.cpp")
+    print("4. TODO")
 
 
 class SoundDeviceError(Exception):
@@ -45,9 +54,9 @@ class Voice:
             print("The soundfile module is not available. Please install it using 'pip install soundfile'.")
             raise SoundDeviceError("The soundfile module is required but not installed.")
         try:
+            import sounddevice as sd
             if not args.silent:
                 print("Initializing sound device...")
-            import sounddevice as sd
             self.sd = sd
         except Exception as e:
             print(f"An error occurred while initializing the sound device: {e}")
@@ -79,13 +88,13 @@ class Voice:
         bar = bar[:num]
 
         dur = time.time() - self.start_time
-        return f"Recording, press ENTER when done... {dur:.1f}sec {bar}"
+        return f"Recording. Press option and ENTER (or just ENTER for default)... {dur:.1f}sec {bar}"
 
     # This block is responsible for handling the KeyboardInterrupt exception
     # which is triggered by pressing [Ctrl]+[C]. When caught, it simply returns
     # from the function without proceeding to the transcription step.
 
-    def raw_record_and_transcribe(self, history, language):
+    def raw_record_only(self):
         self.q = queue.Queue()
 
         filename = tempfile.mktemp(suffix=".wav")
@@ -96,42 +105,77 @@ class Voice:
 
         with self.sd.InputStream(samplerate=sample_rate, channels=1, callback=self.callback):
             if not args.silent:
-                prompt(self.get_prompt, refresh_interval=0.1)
+                choice = prompt(self.get_prompt, refresh_interval=0.1)
             else:
-                #input("Press ENTER to stop recording...")
-                input("") # silently wait for ENTER in silent mode.
+                choice = input("") # silently wait for ENTER in silent mode.
 
         # Only proceed with transcription if there are audio frames in the queue
         if not self.q.empty():
             with sf.SoundFile(filename, mode="x", samplerate=sample_rate, channels=1) as file:
                 while not self.q.empty():
                     file.write(self.q.get())
-
-            with open(filename, "rb") as fh:
-                transcript = client.audio.transcriptions.create(model="whisper-1", file=fh)
-            transcript_text = transcript.text
         else:
-            transcript_text = "No audio recorded."
+            print("No audio recorded.")
+
+        return choice, filename
+
+    def transcribe_with_openai_api(self, filename):
+        with open(filename, "rb") as fh:
+            transcript = client.audio.transcriptions.create(model="whisper-1", file=fh)
+        transcript_text = transcript.text
 
         return transcript_text
+
+    def run_whisper_cpp_in_temp_dir(self, filename, extra_flags=[]):
+        try:
+            with tempfile.TemporaryDirectory() as temp_dir:
+                base = os.path.splitext(os.path.basename(filename))[0]
+                temp_filename = os.path.join(temp_dir, f"{base}.wav")
+                shutil.copyfile(filename, temp_filename)
+                print(f"Processing {temp_filename} with whisper.cpp in {temp_dir}")
+                print(f"Base filename: {base}")
+                command = ["/usr/bin/time", f"--output={base}.wav.time", "whisper.cpp", "--model", "/usr/share/whisper.cpp-model-large/large.bin"] + extra_flags + ["-otxt", "-ovtt", "-osrt", "-ocsv", temp_filename]
+                print(f"Running command: {' '.join(command)}")
+                result = subprocess.run(command, cwd=temp_dir)
+                print(f"Command result: {result}")
+                with open(f"{temp_dir}/{base}.wav.time", 'r') as f:
+                    print(f.read())
+                with open(f"{temp_dir}/{base}.wav.txt", 'r') as f:
+                    transcript_text = f.read()
+        finally:
+            shutil.rmtree(temp_dir, ignore_errors=True)
+        return transcript_text
+
+    def transcribe_with_whisper_cpp(self, filename, extra_flags=[]):
+        return self.run_whisper_cpp_in_temp_dir(filename, extra_flags)
 
 
 if __name__ == "__main__":
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise ValueError("Please set the OPENAI_API_KEY environment variable.")
-    # print(Voice().record_and_transcribe()) #original line
     try:
-        transcript = Voice().raw_record_and_transcribe(history="", language="en")
-        # Handle output based on the silent mode and output file argument
+        display_menu()
+        voice = Voice()
+        choice, filename = voice.raw_record_only()
+        transcript = voice.transcribe_with_openai_api(filename)
     except KeyboardInterrupt:
         print("\nRecording interrupted by user.")
         exit(0)
+    while choice not in display_menu(array_of_options=True):
+        print("Invalid choice. Please try again.")
+        display_menu()
+        choice = input("Enter your choice: ")
+    if choice == '1':
+        transcript = voice.transcribe_with_openai_api(filename)
+    elif choice == '2':
+        transcript = voice.transcribe_with_whisper_cpp(filename, extra_flags=["--speed-up"])
+    elif choice == '3':
+        transcript = voice.transcribe_with_whisper_cpp(filename, extra_flags=[])
     if args.clipboard:
         if shutil.which('xclip'):
             transcript_trimmed = transcript.strip()
             subprocess.run("xclip -selection clipboard", input=transcript_trimmed, text=True, shell=True)
-
         else:
             print("xclip is not available. Please install xclip or use a different method to copy to clipboard.")
             exit(1)
