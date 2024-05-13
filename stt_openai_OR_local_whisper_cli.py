@@ -15,6 +15,7 @@ parser.add_argument('-s', '--silent', action='store_true', help='Run in silent m
 parser.add_argument('-o', '--output', type=str, help='Specify output file for transcript')
 parser.add_argument('-a', '--append', type=str, help='Specify output file to append transcript')
 parser.add_argument('-c', '--clipboard', action='store_true', help='Copy result to clipboard using xclip')
+parser.add_argument('-x', '--non-interactive', action='store_true', help='Do not prompt user, i.e. use in pipelines (WIP).')
 args = parser.parse_args()
 
 client = OpenAI()
@@ -149,6 +150,13 @@ class Voice:
     def transcribe_with_whisper_cpp(self, filename, extra_flags=[]):
         return self.run_whisper_cpp_in_temp_dir(filename, extra_flags)
 
+def wait_for_user(transcript, arg_should_not_wait=False):
+    if arg_should_not_wait:
+        return
+    transcript_trimmed = transcript.strip()
+    print(f"As local transcripts take long, let me wait for you confirming with 'Enter' before exiting. Transcript:\n{transcript_trimmed}")
+    input("")
+
 
 if __name__ == "__main__":
     api_key = os.getenv("OPENAI_API_KEY")
@@ -170,8 +178,10 @@ if __name__ == "__main__":
         transcript = voice.transcribe_with_openai_api(filename)
     elif choice == '2':
         transcript = voice.transcribe_with_whisper_cpp(filename, extra_flags=["--speed-up"])
+        wait_for_user(transcript, args.non_interactive)
     elif choice == '3':
         transcript = voice.transcribe_with_whisper_cpp(filename, extra_flags=[])
+        wait_for_user(transcript, args.non_interactive)
     if args.clipboard:
         if shutil.which('xclip'):
             transcript_trimmed = transcript.strip()
