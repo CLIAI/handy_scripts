@@ -4,13 +4,13 @@ import requests
 import time
 import argparse
 
-import mimetypes
+import subprocess
 
 def upload_file(api_token, audio_input):
     if audio_input.startswith('http://') or audio_input.startswith('https://'):
         return audio_input
     # Check if the file is an audio file
-    mimetype, _ = mimetypes.guess_type(audio_input)
+    mimetype = subprocess.check_output(['file', '--mime-type', '-b', audio_input]).decode('utf-8').strip()
     if not mimetype or not mimetype.startswith('audio'):
         raise Exception(f"The file {audio_input} does not appear to be an audio file.")
     url = 'https://api.assemblyai.com/v2/upload'
