@@ -88,4 +88,5 @@ if __name__ == "__main__":
         if args.verbose:
             print("Done.")
     except Exception as e:
+        print(f'> REST RESPONSE: {response.json()}', file=sys.stderr)
         print(f'Error: {e}')
