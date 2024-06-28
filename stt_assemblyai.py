@@ -14,8 +14,11 @@ def upload_file(api_token, audio_input):
     headers = {'authorization': api_token}
     with open(audio_input, 'rb') as f:
         response = requests.post(url, headers=headers, files={'file': f})
-    response.raise_for_status()
-    return response.json()['upload_url']
+    try:
+        response.raise_for_status()
+        return response.json()['upload_url']
+    except Exception as e:
+        raise Exception(f"Error in upload_file: {e}, REST RESPONSE: {response.json()}") from e
 
 def create_transcript(api_token, audio_url, speaker_labels):
     url = "https://api.assemblyai.com/v2/transcript"
@@ -40,12 +43,15 @@ def create_transcript(api_token, audio_url, speaker_labels):
     polling_endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
     while True:
         response = requests.get(polling_endpoint, headers=headers)
-        response.raise_for_status()
-        transcription_result = response.json()
-        if transcription_result['status'] == "completed":
-            return transcription_result
-        elif transcription_result['status'] == "error":
-            raise Exception(f"Transcription failed: {transcription_result['error']}")
+        try:
+            response.raise_for_status()
+            transcription_result = response.json()
+            if transcription_result['status'] == "completed":
+                return transcription_result
+            elif transcription_result['status'] == "error":
+                raise Exception(f"Transcription failed: {transcription_result['error']}")
+        except Exception as e:
+            raise Exception(f"Error in create_transcript: {e}, REST RESPONSE: {response.json()}") from e
         else:
             time.sleep(3)
 
