@@ -93,5 +93,8 @@ if __name__ == "__main__":
             print("Done.")
     except Exception as e:
         if response is not None:
-            print(f'> REST RESPONSE: {response.json()}', file=sys.stderr)
+            if isinstance(response, str):
+                print(f'> REST RESPONSE: {response}', file=sys.stderr)
+            else:
+                print(f'> REST RESPONSE: {response.json()}', file=sys.stderr)
         print(f'Error: {e}')
