@@ -69,16 +69,13 @@ if __name__ == "__main__":
     audio_input = args.audio_input
     speaker_labels = args.diarisation
 
-    response = None
     try:
         if args.verbose:
             print("Uploading file...")
-        response = upload_file(api_token, audio_input)
-        upload_url = response
+        upload_url = upload_file(api_token, audio_input)
         if args.verbose:
             print("File uploaded. Creating transcript...")
-        response = create_transcript(api_token, upload_url, speaker_labels)
-        transcript = response
+        transcript = create_transcript(api_token, upload_url, speaker_labels)
         if args.verbose:
             print("Transcript created. Writing output...")
         output = args.output
@@ -98,9 +95,4 @@ if __name__ == "__main__":
         if args.verbose:
             print("Done.")
     except Exception as e:
-        if response is not None:
-            if isinstance(response, str):
-                print(f'> REST RESPONSE: {response}', file=sys.stderr)
-            else:
-                print(f'> REST RESPONSE: {response.json()}', file=sys.stderr)
         print(f'Error: {e}')
