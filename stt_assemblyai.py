@@ -11,14 +11,23 @@ def upload_file(api_token, audio_input):
     if audio_input.startswith('http://') or audio_input.startswith('https://'):
         return audio_input
     url = 'https://api.assemblyai.com/v2/upload'
-    headers = {'authorization': api_token}
-    with open(audio_input, 'rb') as f:
-        response = requests.post(url, headers=headers, files={'file': f})
+    headers = {
+        'authorization': api_token,
+        'content-type': 'application/octet-stream'
+    }
     try:
+        with open(audio_input, 'rb') as f:
+            response = requests.post(url, headers=headers, data=f)
         response.raise_for_status()
-        return response.json()['upload_url']
+        upload_url = response.json()['upload_url']
+        if args.verbose:
+            print(f"File uploaded. URL: {upload_url}")
+        return upload_url
     except Exception as e:
-        raise Exception(f"Error in upload_file: {e}, REST RESPONSE: {response.json()}") from e
+        print(f"Error in upload_file: {e}")
+        if response:
+            print(f"REST RESPONSE: {response.text}")
+        raise
 
 def create_transcript(api_token, audio_url, speaker_labels):
     url = "https://api.assemblyai.com/v2/transcript"
@@ -34,30 +43,39 @@ def create_transcript(api_token, audio_url, speaker_labels):
         data["language_code"] = args.language
     if args.expected_speakers != -1:
         data["speakers_expected"] = args.expected_speakers
-    response = requests.post(url, headers=headers, json=data)
-    if response.status_code != 200:
-        print(f"Error: {response.status_code}")
-        print(f"Response: {response.json()}")
+    
+    try:
+        response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
-    transcript_id = response.json()['id']
-    polling_endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
-    while True:
-        response = requests.get(polling_endpoint, headers=headers)
-        try:
+        transcript_id = response.json()['id']
+        if args.verbose:
+            print(f"Transcript ID: {transcript_id}")
+        
+        polling_endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
+        while True:
+            response = requests.get(polling_endpoint, headers=headers)
             response.raise_for_status()
             transcription_result = response.json()
-            if transcription_result['status'] == "completed":
+            status = transcription_result['status']
+            if args.verbose:
+                print(f"Current status: {status}")
+            if status == "completed":
                 return transcription_result
-            elif transcription_result['status'] == "error":
+            elif status == "error":
                 raise Exception(f"Transcription failed: {transcription_result['error']}")
-        except Exception as e:
-            raise Exception(f"Error in create_transcript: {e}, REST RESPONSE: {response.json()}") from e
-        else:
-            time.sleep(3)
+            elif status in ["queued", "processing"]:
+                time.sleep(5)
+            else:
+                raise Exception(f"Unknown status: {status}")
+    except Exception as e:
+        print(f"Error in create_transcript: {e}")
+        if response:
+            print(f"REST RESPONSE: {response.text}")
+        raise
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
-    parser.add_argument('audio_input', type=str, help='The path to the audio file to transcribe.')
+    parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
     parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation. This will label each speaker in the transcription.')
     parser.add_argument('-o', '--output', type=str, default='', help='The path to the output file to store the result. If not provided, the result will be printed to standard output.')
     parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='The expected number of speakers for diarisation. This helps improve the accuracy of speaker labelling.')
@@ -71,10 +89,10 @@ if __name__ == "__main__":
 
     try:
         if args.verbose:
-            print("Uploading file...")
+            print("Processing audio input...")
         upload_url = upload_file(api_token, audio_input)
         if args.verbose:
-            print("File uploaded. Creating transcript...")
+            print("Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
         if args.verbose:
             print("Transcript created. Writing output...")
@@ -86,6 +104,8 @@ if __name__ == "__main__":
                         f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
                 else:
                     f.write(transcript['text'] + '\n')
+            if args.verbose:
+                print(f"Output written to {output}")
         else:
             if speaker_labels:
                 for utterance in transcript['utterances']:
@@ -96,3 +116,4 @@ if __name__ == "__main__":
             print("Done.")
     except Exception as e:
         print(f'Error: {e}')
+        sys.exit(1)
