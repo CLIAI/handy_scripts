@@ -163,17 +163,21 @@ if __name__ == "__main__":
     if not api_key:
         raise ValueError("Please set the OPENAI_API_KEY environment variable.")
     try:
-        display_menu()
+        if not args.silent:
+            display_menu()
         voice = Voice()
         choice, filename = voice.raw_record_only()
         transcript = voice.transcribe_with_openai_api(filename)
     except KeyboardInterrupt:
         print("\nRecording interrupted by user.")
         exit(0)
-    while choice not in display_menu(array_of_options=True):
-        print("Invalid choice. Please try again.")
-        display_menu()
-        choice = input("Enter your choice: ")
+    if not args.silent:
+        while choice not in display_menu(array_of_options=True):
+            print("Invalid choice. Please try again.")
+            display_menu()
+            choice = input("Enter your choice: ")
+    else:
+        choice = '1'  # Default to OpenAI API in silent mode
     if choice == '1':
         transcript = voice.transcribe_with_openai_api(filename)
     elif choice == '2':
