@@ -120,7 +120,8 @@ def write_transcript_to_file(args, output, transcript):
         with open(output, 'w') as f:
             if args.diarisation:
                 for utterance in transcript['utterances']:
-                    f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
+                    chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
+                    f.write(chunk_str)
             else:
                 f.write(transcript['text'] + '\n')
         if args.verbose and not args.quiet:
@@ -129,7 +130,8 @@ def write_transcript_to_file(args, output, transcript):
     if output == '-' or not args.quiet:
         if args.diarisation:
             for utterance in transcript['utterances']:
-                print(f"Speaker {utterance['speaker']}:", utterance['text'])
+                chunk_str = f"Speaker {utterance['speaker']}:", utterance['text']
+                print(chunk_str)
         else:
             print(transcript['text'])
 
