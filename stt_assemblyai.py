@@ -73,7 +73,7 @@ def create_transcript(api_token, audio_url, speaker_labels):
             print(f"REST RESPONSE: {response.text}")
         raise
 
-if __name__ == "__main__":
+def make_arg_parser():
     parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
     parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
     parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation. This will label each speaker in the transcription.')
@@ -82,6 +82,10 @@ if __name__ == "__main__":
     parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='The expected number of speakers for diarisation. This helps improve the accuracy of speaker labelling.')
     parser.add_argument('-l', '--language', type=str, default='auto', help='The dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
+    return parser
+
+if __name__ == "__main__":
+    parser = make_arg_parser()
     args = parser.parse_args()
 
     api_token = os.environ["ASSEMBLYAI_API_KEY"]
