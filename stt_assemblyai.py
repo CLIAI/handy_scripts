@@ -109,10 +109,10 @@ def stt_assemblyai_main(args, api_token):
 
         # Determine the output file
         if args.output == '-':
-            potential_output = os.path.splitext(audio_input)[0] + '.txt'
+            potential_output = os.path.splitext(audio_input)[0] + '.txt' #TODO , change this line so there is no slitting text, we just append `.txt` at the end of audio_input filename
             output = potential_output if os.path.exists(potential_output) else '-'
         else:
-            output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+            output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt' #TODO: same here, instead of split + .txt , we just add .txt to audio_input
         if args.verbose:
             print(f"output filename: {output}")
         
