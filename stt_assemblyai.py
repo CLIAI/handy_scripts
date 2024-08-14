@@ -84,7 +84,7 @@ def make_arg_parser():
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
     return parser
 
-def main(args, api_token):
+def stt_assemblyai_main(args, api_token):
     audio_input = args.audio_input
     speaker_labels = args.diarisation
 
@@ -131,4 +131,4 @@ if __name__ == "__main__":
         sys.exit(1)
     parser = make_arg_parser()
     args = parser.parse_args()
-    main(args, api_token)
+    stt_assemblyai_main(args, api_token)
