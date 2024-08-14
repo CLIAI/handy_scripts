@@ -85,7 +85,7 @@ def write_transcript_to_file(args, output, transcript, audio_input):
     import copy
     args_force_quiet = copy.deepcopy(args)
     args_force_quiet.quiet = True
-    write_str(args_force_quiet, audio_input + '.response.json', json.dumps(transcript))
+    write_str(args_force_quiet, audio_input + '.assemblyai.json', json.dumps(transcript))
     if args.verbose and not args.quiet:
         print(f"Server response written to {output}.response")
     
