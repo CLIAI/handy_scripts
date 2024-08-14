@@ -93,7 +93,11 @@ def stt_assemblyai_main(args, api_token):
             print("Processing audio input...")
 
         # Determine the output file
-        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        if args.output == '-':
+            potential_output = os.path.splitext(audio_input)[0] + '.txt'
+            output = potential_output if os.path.exists(potential_output) else '-'
+        else:
+            output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
         if args.verbose:
             print(f"output filename: {output}")
         
