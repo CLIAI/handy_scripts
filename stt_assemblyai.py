@@ -118,10 +118,10 @@ def stt_assemblyai_main(args, api_token):
             print("Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
         
-        # Write the server response to a file
+        # Write the server response to a file in JSON format
         if output != '-':
             with open(output + '.response', 'w') as f:
-                f.write(str(transcript))
+                json.dump(transcript, f)
             if args.verbose and not args.quiet:
                 print(f"Server response written to {output}.response")
         
