@@ -104,7 +104,7 @@ def stt_assemblyai_main(args, api_token):
         
         # Check if output file exists before making the transcript
         if os.path.exists(output):
-            if not args.quiet:
+            if not args.quiet and args.verbose:
                 sys.stderr.write(f'SKIPPING: transcription of {audio_input} as {output} already exists\n')
             if (not args.quiet) or args.output == '-':
                 with open(output, 'r') as f:
