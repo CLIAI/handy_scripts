@@ -129,6 +129,7 @@ def stt_assemblyai_main(args, api_token):
         # Write the transcript to the output file
         if args.verbose:
             print("Transcript created. Writing output...")
+        #TODO: move logic writing to file to other function that will take `args` and `output` 
         if output != '-':
             with open(output, 'w') as f:
                 if speaker_labels:
@@ -137,7 +138,8 @@ def stt_assemblyai_main(args, api_token):
                 else:
                     f.write(transcript['text'] + '\n')
             if args.verbose and not args.quiet:
-                print(f"Output written to {output}")
+        i        print(f"Output written to {output}")
+        #TODO: this section as well should go to that other function
         if output == '-' or not args.quiet:
             if speaker_labels:
                 for utterance in transcript['utterances']:
