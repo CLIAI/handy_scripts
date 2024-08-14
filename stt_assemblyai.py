@@ -92,24 +92,31 @@ def stt_assemblyai_main(args, api_token):
         if args.verbose:
             print("Processing audio input...")
         upload_url = upload_file(api_token, audio_input)
+        # Determine the output file
+        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        
+        # Check if output file exists before making the transcript
+        if output != '-' and os.path.exists(output):
+            if not args.quiet:
+                sys.stderr.write(f'SKIPPING: transcription of {audio_input} as {output} already exists\n')
+            sys.exit(0)
+        
+        # Create the transcript
         if args.verbose:
             print("Creating transcript...")
-        # TODO: Check if output file exists shold be done here to prevent unnecesary `create_transcript` call!
         transcript = create_transcript(api_token, upload_url, speaker_labels)
-        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        
+        # Write the server response to a file
         if output != '-':
             with open(output + '.response', 'w') as f:
                 f.write(str(transcript))
             if args.verbose and not args.quiet:
                 print(f"Server response written to {output}.response")
+        
+        # Write the transcript to the output file
         if args.verbose:
             print("Transcript created. Writing output...")
         if output != '-':
-            # TODO: THIS CHECK IF FILE EXISTS SHOULD BE DONE EARLIER , BEFORE CALLING `create_transcript` to prevent unnecessary REST call!
-            if os.path.exists(output):
-                if not args.quiet:
-                    sys.stderr.write(f'SKIPPING: transcription of {audio_input} as {output} already exists\n')
-                sys.exit(0)
             with open(output, 'w') as f:
                 if speaker_labels:
                     for utterance in transcript['utterances']:
