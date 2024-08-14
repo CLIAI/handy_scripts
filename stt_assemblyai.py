@@ -94,6 +94,7 @@ def stt_assemblyai_main(args, api_token):
         upload_url = upload_file(api_token, audio_input)
         if args.verbose:
             print("Creating transcript...")
+        # TODO: Check if output file exists shold be done here to prevent unnecesary `create_transcript` call!
         transcript = create_transcript(api_token, upload_url, speaker_labels)
         output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
         if output != '-':
@@ -104,6 +105,7 @@ def stt_assemblyai_main(args, api_token):
         if args.verbose:
             print("Transcript created. Writing output...")
         if output != '-':
+            # TODO: THIS CHECK IF FILE EXISTS SHOULD BE DONE EARLIER , BEFORE CALLING `create_transcript` to prevent unnecessary REST call!
             if os.path.exists(output):
                 if not args.quiet:
                     sys.stderr.write(f'SKIPPING: transcription of {audio_input} as {output} already exists\n')
