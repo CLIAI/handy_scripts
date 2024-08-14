@@ -77,7 +77,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
     parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
     parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation. This will label each speaker in the transcription.')
-    parser.add_argument('-o', '--output', type=str, default='', help='The path to the output file to store the result. If not provided, the result will be printed to standard output.')
+    parser.add_argument('-o', '--output', type=str, default=None, help='The path to the output file to store the result. If not provided, the result will be saved to a file with the same name as the input file but with a .txt extension. If "-" is provided, the result will be printed to standard output.')
+    parser.add_argument('-q', '--quiet', action='store_true', help='Suppress all output to standard output. If an output file is specified, the result will still be saved to that file.')
     parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='The expected number of speakers for diarisation. This helps improve the accuracy of speaker labelling.')
     parser.add_argument('-l', '--language', type=str, default='auto', help='The dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
@@ -96,17 +97,21 @@ if __name__ == "__main__":
         transcript = create_transcript(api_token, upload_url, speaker_labels)
         if args.verbose:
             print("Transcript created. Writing output...")
-        output = args.output
-        if output:
+        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        if output != '-':
+            if os.path.exists(output):
+                if not args.quiet:
+                    sys.stderr.write(f'SKIPPING: transcription of {audio_input} as {output} already exists\n')
+                sys.exit(0)
             with open(output, 'w') as f:
                 if speaker_labels:
                     for utterance in transcript['utterances']:
                         f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
                 else:
                     f.write(transcript['text'] + '\n')
-            if args.verbose:
+            if args.verbose and not args.quiet:
                 print(f"Output written to {output}")
-        else:
+        if output == '-' or not args.quiet:
             if speaker_labels:
                 for utterance in transcript['utterances']:
                     print(f"Speaker {utterance['speaker']}:", utterance['text'])
