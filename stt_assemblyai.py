@@ -91,7 +91,7 @@ def stt_assemblyai_main(args, api_token):
     try:
         if args.verbose:
             print("Processing audio input...")
-        upload_url = upload_file(api_token, audio_input)
+
         # Determine the output file
         output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
         if args.verbose:
@@ -104,6 +104,9 @@ def stt_assemblyai_main(args, api_token):
             sys.exit(0)
         
         # Create the transcript
+        if args.verbose:
+            print("Uploading audio file...")
+        upload_url = upload_file(api_token, audio_input)
         if args.verbose:
             print("Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
