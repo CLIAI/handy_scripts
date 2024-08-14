@@ -115,25 +115,24 @@ def write_transcript_to_file(args, output, transcript):
             json.dump(transcript, f)
         if args.verbose and not args.quiet:
             print(f"Server response written to {output}.response")
-    
-    if output != '-':
-        with open(output, 'w') as f:
-            if args.diarisation:
-                for utterance in transcript['utterances']:
-                    chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
+
+    if args.diarisation:
+        for utterance in transcript['utterances']:
+            chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
+            if output != '-':
+                with open(output, 'a') as f:
                     f.write(chunk_str)
-            else:
-                f.write(transcript['text'] + '\n')
-        if args.verbose and not args.quiet:
-            print(f"Output written to {output}")
-    
-    if output == '-' or not args.quiet:
-        if args.diarisation:
-            for utterance in transcript['utterances']:
-                chunk_str = f"Speaker {utterance['speaker']}:", utterance['text']
+            if output == '-' or not args.quiet:
                 print(chunk_str)
-        else:
+    else:
+        if output != '-':
+            with open(output, 'w') as f:
+                f.write(transcript['text'] + '\n')
+        if output == '-' or not args.quiet:
             print(transcript['text'])
+
+    if output != '-' and args.verbose and not args.quiet:
+        print(f"Output written to {output}")
 
 def stt_assemblyai_main(args, api_token):
     audio_input = args.audio_input
