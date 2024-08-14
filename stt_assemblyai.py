@@ -82,7 +82,9 @@ def write_str(args, output, string, mode='w'):
         print(string)
 
 def write_transcript_to_file(args, output, transcript):
-    # TODO: args_force_quiet = copy of args with .quiet set to true
+    import copy
+    args_force_quiet = copy.deepcopy(args)
+    args_force_quiet.quiet = True
     write_str(args_force_quiet, output + '.response', json.dumps(transcript))
     if args.verbose and not args.quiet:
         print(f"Server response written to {output}.response")
