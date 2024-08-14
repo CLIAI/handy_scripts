@@ -74,29 +74,27 @@ def create_transcript(api_token, audio_url, speaker_labels):
             print(f"REST RESPONSE: {response.text}")
         raise
 
-def write_transcript_to_file(args, output, transcript):
+def write_str(args, output, string, mode='w'):
     if output != '-':
-        with open(output + '.response', 'w') as f:
-            json.dump(transcript, f)
-        if args.verbose and not args.quiet:
-            print(f"Server response written to {output}.response")
-    
-    if output != '-':
-        with open(output, 'w') as f:
-            if args.diarisation:
-                for utterance in transcript['utterances']:
-                    f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
-            else:
-                f.write(transcript['text'] + '\n')
-        if args.verbose and not args.quiet:
-            print(f"Output written to {output}")
-    
+        with open(output, mode) as f:
+            f.write(string)
     if output == '-' or not args.quiet:
-        if args.diarisation:
-            for utterance in transcript['utterances']:
-                print(f"Speaker {utterance['speaker']}:", utterance['text'])
-        else:
-            print(transcript['text'])
+        print(string)
+
+def write_transcript_to_file(args, output, transcript):
+    write_str(args, output + '.response', json.dumps(transcript))
+    if args.verbose and not args.quiet:
+        print(f"Server response written to {output}.response")
+    
+    if args.diarisation:
+        for utterance in transcript['utterances']:
+            chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
+            write_str(args, output, chunk_str, 'a')
+    else:
+        write_str(args, output, transcript['text'] + '\n')
+
+    if output != '-' and args.verbose and not args.quiet:
+        print(f"Output written to {output}")
 
 def make_arg_parser():
     parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
