@@ -94,6 +94,8 @@ def stt_assemblyai_main(args, api_token):
         upload_url = upload_file(api_token, audio_input)
         # Determine the output file
         output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        if args.verbose:
+            print(f"output filename: {output}")
         
         # Check if output file exists before making the transcript
         if output != '-' and os.path.exists(output):
