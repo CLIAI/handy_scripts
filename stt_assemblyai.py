@@ -108,26 +108,16 @@ def make_arg_parser():
     return parser
 
 def write_transcript_to_file(args, output, transcript):
-    if output != '-':
-        with open(output + '.response', 'w') as f:
-            json.dump(transcript, f)
-        if args.verbose and not args.quiet:
-            print(f"Server response written to {output}.response")
-
+    write_str(args, output + '.response', json.dumps(transcript))
+    if args.verbose and not args.quiet:
+        print(f"Server response written to {output}.response")
+    
     if args.diarisation:
         for utterance in transcript['utterances']:
             chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
-            if output != '-':
-                with open(output, 'a') as f:
-                    f.write(chunk_str)
-            if output == '-' or not args.quiet:
-                print(chunk_str)
+            write_str(args, output, chunk_str, 'a')
     else:
-        if output != '-':
-            with open(output, 'w') as f:
-                f.write(transcript['text'] + '\n')
-        if output == '-' or not args.quiet:
-            print(transcript['text'])
+        write_str(args, output, transcript['text'] + '\n')
 
     if output != '-' and args.verbose and not args.quiet:
         print(f"Output written to {output}")
