@@ -84,8 +84,7 @@ def make_arg_parser():
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
     return parser
 
-def main(args):
-    api_token = os.environ["ASSEMBLYAI_API_KEY"]
+def main(args, api_token):
     audio_input = args.audio_input
     speaker_labels = args.diarisation
 
@@ -125,6 +124,11 @@ def main(args):
         sys.exit(1)
 
 if __name__ == "__main__":
+    try:
+        api_token = os.environ["ASSEMBLYAI_API_KEY"]
+    except KeyError:
+        print("Error: ASSEMBLYAI_API_KEY environment variable not set.")
+        sys.exit(1)
     parser = make_arg_parser()
     args = parser.parse_args()
-    main(args)
+    main(args, api_token)
