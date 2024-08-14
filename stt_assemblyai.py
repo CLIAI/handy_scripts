@@ -74,6 +74,30 @@ def create_transcript(api_token, audio_url, speaker_labels):
             print(f"REST RESPONSE: {response.text}")
         raise
 
+def write_transcript_to_file(args, output, transcript):
+    if output != '-':
+        with open(output + '.response', 'w') as f:
+            json.dump(transcript, f)
+        if args.verbose and not args.quiet:
+            print(f"Server response written to {output}.response")
+    
+    if output != '-':
+        with open(output, 'w') as f:
+            if args.diarisation:
+                for utterance in transcript['utterances']:
+                    f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
+            else:
+                f.write(transcript['text'] + '\n')
+        if args.verbose and not args.quiet:
+            print(f"Output written to {output}")
+    
+    if output == '-' or not args.quiet:
+        if args.diarisation:
+            for utterance in transcript['utterances']:
+                print(f"Speaker {utterance['speaker']}:", utterance['text'])
+        else:
+            print(transcript['text'])
+
 def make_arg_parser():
     parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
     parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
@@ -143,33 +167,10 @@ def stt_assemblyai_main(args, api_token):
             print("Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
         
-        # Write the server response to a file in JSON format
-        if output != '-':
-            with open(output + '.response', 'w') as f:
-                json.dump(transcript, f)
-            if args.verbose and not args.quiet:
-                print(f"Server response written to {output}.response")
-        
         # Write the transcript to the output file
         if args.verbose:
             print("Transcript created. Writing output...")
-        #TODO: move logic writing to file to other function that will take `args` and `output` 
-        if output != '-':
-            with open(output, 'w') as f:
-                if speaker_labels:
-                    for utterance in transcript['utterances']:
-                        f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
-                else:
-                    f.write(transcript['text'] + '\n')
-            if args.verbose and not args.quiet:
-        i        print(f"Output written to {output}")
-        #TODO: this section as well should go to that other function
-        if output == '-' or not args.quiet:
-            if speaker_labels:
-                for utterance in transcript['utterances']:
-                    print(f"Speaker {utterance['speaker']}:", utterance['text'])
-            else:
-                print(transcript['text'])
+        write_transcript_to_file(args, output, transcript)
         if args.verbose:
             print("Done.")
     except Exception as e:
