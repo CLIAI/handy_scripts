@@ -85,6 +85,30 @@ def make_arg_parser():
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
     return parser
 
+def write_transcript_to_file(args, output, transcript):
+    if output != '-':
+        with open(output + '.response', 'w') as f:
+            json.dump(transcript, f)
+        if args.verbose and not args.quiet:
+            print(f"Server response written to {output}.response")
+    
+    if output != '-':
+        with open(output, 'w') as f:
+            if args.diarisation:
+                for utterance in transcript['utterances']:
+                    f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
+            else:
+                f.write(transcript['text'] + '\n')
+        if args.verbose and not args.quiet:
+            print(f"Output written to {output}")
+    
+    if output == '-' or not args.quiet:
+        if args.diarisation:
+            for utterance in transcript['utterances']:
+                print(f"Speaker {utterance['speaker']}:", utterance['text'])
+        else:
+            print(transcript['text'])
+
 def stt_assemblyai_main(args, api_token):
     audio_input = args.audio_input
     speaker_labels = args.diarisation
