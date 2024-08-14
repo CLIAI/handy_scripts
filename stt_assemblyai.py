@@ -95,10 +95,14 @@ def stt_assemblyai_main(args, api_token):
         if args.verbose:
             print("Creating transcript...")
         transcript = create_transcript(api_token, upload_url, speaker_labels)
-        #TODO : move dumping .response file here 
+        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
+        if output != '-':
+            with open(output + '.response', 'w') as f:
+                f.write(str(transcript))
+            if args.verbose and not args.quiet:
+                print(f"Server response written to {output}.response")
         if args.verbose:
             print("Transcript created. Writing output...")
-        output = args.output if args.output is not None else os.path.splitext(audio_input)[0] + '.txt'
         if output != '-':
             if os.path.exists(output):
                 if not args.quiet:
@@ -110,11 +114,8 @@ def stt_assemblyai_main(args, api_token):
                         f.write(f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n')
                 else:
                     f.write(transcript['text'] + '\n')
-            with open(output + '.response', 'w') as f:
-                f.write(str(transcript))
             if args.verbose and not args.quiet:
                 print(f"Output written to {output}")
-                print(f"Server response written to {output}.response")
         if output == '-' or not args.quiet:
             if speaker_labels:
                 for utterance in transcript['utterances']:
