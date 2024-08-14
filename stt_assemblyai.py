@@ -81,7 +81,7 @@ def write_str(args, output, string, mode='w'):
     if output == '-' or not args.quiet:
         print(string)
 
-def write_transcript_to_file(args, output, transcript):
+def write_transcript_to_file(args, output, transcript, audio_input):
     import copy
     args_force_quiet = copy.deepcopy(args)
     args_force_quiet.quiet = True
@@ -136,7 +136,7 @@ def stt_assemblyai_main(args, api_token):
         # Write the transcript to the output file
         if args.verbose:
             print("Transcript created. Writing output...")
-        write_transcript_to_file(args, output, transcript)
+        write_transcript_to_file(args, output, transcript, audio_input)
         if args.verbose:
             print("Done.")
     except Exception as e:
