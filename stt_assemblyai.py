@@ -99,32 +99,6 @@ def write_transcript_to_file(args, output, transcript):
     if output != '-' and args.verbose and not args.quiet:
         print(f"Output written to {output}")
 
-def make_arg_parser():
-    parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
-    parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
-    parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation. This will label each speaker in the transcription.')
-    parser.add_argument('-o', '--output', type=str, default=None, help='The path to the output file to store the result. If not provided, the result will be saved to a file with the same name as the input file but with a .txt extension. If "-" is provided, the result will be printed only to standard output and no files saved.')
-    parser.add_argument('-q', '--quiet', action='store_true', help='Suppress all status messages to standard output. If an output file is specified, the result will still be saved to that file (or standard output if `-` is specified).')
-    parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='The expected number of speakers for diarisation. This helps improve the accuracy of speaker labelling.')
-    parser.add_argument('-l', '--language', type=str, default='auto', help='The dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
-    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
-    return parser
-
-def write_transcript_to_file(args, output, transcript):
-    write_str(args, output + '.response', json.dumps(transcript))
-    if args.verbose and not args.quiet:
-        print(f"Server response written to {output}.response")
-    
-    if args.diarisation:
-        for utterance in transcript['utterances']:
-            chunk_str = f"Speaker {utterance['speaker']}:" + utterance['text'] + '\n'
-            write_str(args, output, chunk_str, 'a')
-    else:
-        write_str(args, output, transcript['text'] + '\n')
-
-    if output != '-' and args.verbose and not args.quiet:
-        print(f"Output written to {output}")
-
 def stt_assemblyai_main(args, api_token):
     audio_input = args.audio_input
     speaker_labels = args.diarisation
@@ -168,6 +142,17 @@ def stt_assemblyai_main(args, api_token):
     except Exception as e:
         print(f'Error: {e}')
         sys.exit(1)
+
+def make_arg_parser():
+    parser = argparse.ArgumentParser(description='Transcribe audio file using AssemblyAI API.')
+    parser.add_argument('audio_input', type=str, help='The path to the audio file or URL to transcribe.')
+    parser.add_argument('-d', '--diarisation', action='store_true', help='Enable speaker diarisation. This will label each speaker in the transcription.')
+    parser.add_argument('-o', '--output', type=str, default=None, help='The path to the output file to store the result. If not provided, the result will be saved to a file with the same name as the input file but with a .txt extension. If "-" is provided, the result will be printed only to standard output and no files saved.')
+    parser.add_argument('-q', '--quiet', action='store_true', help='Suppress all status messages to standard output. If an output file is specified, the result will still be saved to that file (or standard output if `-` is specified).')
+    parser.add_argument('-e', '--expected-speakers', type=int, default=-1, help='The expected number of speakers for diarisation. This helps improve the accuracy of speaker labelling.')
+    parser.add_argument('-l', '--language', type=str, default='auto', help='The dominant language in the audio file. Example codes: en, en_au, en_uk, en_us, es, fr, de, it, pt, nl, hi, ja, zh, fi, ko, pl, ru. Default is "auto" for automatic language detection.')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose logging. This will print detailed logs during the execution of the script.')
+    return parser
 
 if __name__ == "__main__":
     try:
