@@ -1,0 +1,34 @@
+pkgname=assemblyai-cli-git
+pkgver=r20240506.
+pkgrel=1
+pkgdesc="CLI tool for interacting with AssemblyAI's API"
+arch=('x86_64')
+url="https://github.com/AssemblyAI/assemblyai-cli"
+license=('MIT')
+makedepends=('git' 'go')
+depends=()
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=("${pkgname}::git+https://github.com/AssemblyAI/assemblyai-cli.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/${pkgname}"
+  # Use the date of the last commit plus the version tag as the version
+  printf "r%s.%s" "$(git log -1 --format="%cd" --date=short | tr -d '-')" "$(git describe --tags --abbrev=0)"
+}
+
+prepare() {
+  cd "$srcdir/${pkgname}"
+  git fetch --depth 1
+}
+
+build() {
+  cd "$srcdir/${pkgname}"
+  go build -o assemblyai
+}
+
+package() {
+  cd "$srcdir/${pkgname}"
+  install -Dm755 assemblyai "$pkgdir/usr/bin/assemblyai"
+}
