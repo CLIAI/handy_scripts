@@ -1,34 +1,38 @@
 pkgname=assemblyai-cli-git
-pkgver=r20240506.
+pkgver=r1.c8eb9bf
 pkgrel=1
 pkgdesc="CLI tool for interacting with AssemblyAI's API"
 arch=('x86_64')
 url="https://github.com/AssemblyAI/assemblyai-cli"
-license=('MIT')
+license=('Apache-2.0')
 makedepends=('git' 'go')
 depends=()
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("${pkgname}::git+https://github.com/AssemblyAI/assemblyai-cli.git")
-md5sums=('SKIP')
+provides=('assemblyai-cli')
+conflicts=('assemblyai-cli')
+source=()
+md5sums=()
 
 pkgver() {
-  cd "$srcdir/${pkgname}"
-  # Use the date of the last commit plus the version tag as the version
-  printf "r%s.%s" "$(git log -1 --format="%cd" --date=short | tr -d '-')" "$(git describe --tags --abbrev=0)"
+  cd "$srcdir/assemblyai-cli"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-  cd "$srcdir/${pkgname}"
-  git fetch --depth 1
+  git clone --depth 1 https://github.com/AssemblyAI/assemblyai-cli.git "$srcdir/assemblyai-cli"
 }
 
 build() {
-  cd "$srcdir/${pkgname}"
-  go build -o assemblyai
+  cd "$srcdir/assemblyai-cli"
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+  go build -o build/assemblyai
 }
 
 package() {
-  cd "$srcdir/${pkgname}"
-  install -Dm755 assemblyai "$pkgdir/usr/bin/assemblyai"
+  cd "$srcdir/assemblyai-cli"
+  install -Dm755 build/assemblyai "$pkgdir/usr/bin/assemblyai"
 }
+
