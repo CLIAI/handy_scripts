@@ -5,12 +5,9 @@ pkgdesc="CLI tool for interacting with AssemblyAI's API"
 arch=('x86_64')
 url="https://github.com/AssemblyAI/assemblyai-cli"
 license=('Apache-2.0')
-makedepends=('git' 'go')
-depends=()
+makedepends=('go')
 provides=('assemblyai-cli')
 conflicts=('assemblyai-cli')
-source=()
-md5sums=()
 
 pkgver() {
   cd "$srcdir/assemblyai-cli"
@@ -29,6 +26,14 @@ build() {
   export CGO_LDFLAGS="${LDFLAGS}"
   export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
   go build -o build/assemblyai
+}
+
+check() {
+  cd "$srcdir/assemblyai-cli"
+  if [ ! -f build/assemblyai ]; then
+    echo "Error: assemblyai binary not found"
+    return 1
+  fi
 }
 
 package() {
