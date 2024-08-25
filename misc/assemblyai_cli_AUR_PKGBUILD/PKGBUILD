@@ -5,6 +5,7 @@ pkgdesc="CLI tool for interacting with AssemblyAI's API"
 arch=('x86_64')
 url="https://github.com/AssemblyAI/assemblyai-cli"
 license=('Apache-2.0')
+depends=('glibc')
 makedepends=('go')
 provides=('assemblyai-cli')
 conflicts=('assemblyai-cli')
