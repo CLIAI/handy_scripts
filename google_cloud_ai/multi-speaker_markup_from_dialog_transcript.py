@@ -8,9 +8,9 @@ import sys
 import os
 from google.cloud import texttospeech
 
-def log_verbose(message):
+def log_verbose(message, *format_args):
     if args.verbose:
-        print(message, file=sys.stderr)
+        print(message.format(*format_args), file=sys.stderr)
 
 def parse_input(input_file):
     speakers = {}
@@ -46,6 +46,9 @@ def parse_input(input_file):
 
     return turns
 
+def choose_audio_encoding():
+    return get_audio_encoding(args.encoding) if args.encoding else texttospeech.AudioEncoding.MP3
+
 def generate_audio(turns):
     client = texttospeech.TextToSpeechClient()
     
@@ -58,9 +61,10 @@ def generate_audio(turns):
         language_code="en-US", name="en-US-Studio-MultiSpeaker"
     )
     
-    audio_config = texttospeech.AudioConfig(
-        audio_encoding=texttospeech.AudioEncoding.MP3
-    )
+    audio_encoding = choose_audio_encoding()
+    encoding_str = next(key for key, value in encoding_map.items() if value == audio_encoding)
+    log_verbose("DEB:Chosen audio encoding: {}", encoding_str)
+    audio_config = texttospeech.AudioConfig(audio_encoding=audio_encoding)
     
     response = client.synthesize_speech(
         input=synthesis_input, voice=voice, audio_config=audio_config
@@ -68,13 +72,38 @@ def generate_audio(turns):
     
     return response.audio_content
 
+encoding_map = {
+    "LINEAR16": texttospeech.AudioEncoding.LINEAR16,
+    "MP3": texttospeech.AudioEncoding.MP3,
+    "OGG_OPUS": texttospeech.AudioEncoding.OGG_OPUS,
+    "MULAW": texttospeech.AudioEncoding.MULAW,
+    "ALAW": texttospeech.AudioEncoding.ALAW,
+    # "FLAC": texttospeech.AudioEncoding.FLAC,  # FLAC is not yet supported: https://github.com/googleapis/google-cloud-python/issues/13239
+    "wav": texttospeech.AudioEncoding.LINEAR16,
+    "mp3": texttospeech.AudioEncoding.MP3,
+    "ogg": texttospeech.AudioEncoding.OGG_OPUS,
+    "OGG": texttospeech.AudioEncoding.OGG_OPUS,
+    "mulaw": texttospeech.AudioEncoding.MULAW,
+    "alaw": texttospeech.AudioEncoding.ALAW,
+    # "flac": texttospeech.AudioEncoding.FLAC,  # FLAC is not yet supported: https://github.com/googleapis/google-cloud-python/issues/13239
+    "WAV": texttospeech.AudioEncoding.LINEAR16,
+}
+
+def get_audio_encoding(encoding_str):
+    encoding = encoding_map.get(encoding_str.upper())
+    if encoding is None:
+        print(f"ERROR: Unsupported audio encoding '{encoding_str.upper()}'", file=sys.stderr)
+        sys.exit(1)
+    return encoding
+
 def main():
     global args
     parser = argparse.ArgumentParser(description="Generate multi-speaker audio from input text.")
     parser.add_argument("-i", "--input", required=True, help="Input file (use '-' for stdin)")
-    parser.add_argument("-s", "--speakers", default="R,S,T,U", help="Speaker mapping (comma-separated)")
+    parser.add_argument("-s", "--speakers", default="R,S,T,U", help="Speaker mapping (comma-separated) [R,S,T,U]")
     parser.add_argument("-v", "--verbose", action="count", default=0, help="Enable verbose logging")
     parser.add_argument("-n", "--dry-run", action="store_true", help="Run the script without generating or writing audio")
+    parser.add_argument("-e", "--encoding", default=None, help="Audio encoding (wav, mp3, ogg, mulaw, alaw)")
     args = parser.parse_args()
 
     args.speakers = args.speakers.split(',')
@@ -84,7 +113,7 @@ def main():
         output_file = "output.mp3"
     else:
         input_file = open(args.input, 'r')
-        output_file = args.input + ".mp3"
+        output_file = args.input + "." + args.encoding if args.encoding else ".mp3"
 
     if os.path.exists(output_file):
         print(f"SKIPPING:ALREADY_EXISTS:{output_file}")
@@ -103,7 +132,10 @@ def main():
 
         print(f'Audio content written to file "{output_file}"')
     else:
-        print("Dry run completed. No audio generated or written.")
+        audio_encoding = choose_audio_encoding()
+        encoding_str = next(key for key, value in encoding_map.items() if value == audio_encoding)
+        log_verbose("DEB:Chosen audio encoding: {}", encoding_str)
+        print(f"Dry run completed. No audio would have been written to {output_file}")
 
 if __name__ == "__main__":
     main()
