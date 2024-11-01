@@ -104,15 +104,19 @@ def main():
     parser.add_argument("-v", "--verbose", action="count", default=0, help="Enable verbose logging")
     parser.add_argument("-n", "--dry-run", action="store_true", help="Run the script without generating or writing audio")
     parser.add_argument("-e", "--encoding", default=None, help="Audio encoding (wav, mp3, ogg, mulaw, alaw)")
+    parser.add_argument("-o", "--output", default=None, help="Output file (default is input filename with appropriate extension)")
     args = parser.parse_args()
 
     args.speakers = args.speakers.split(',')
 
+    input_file = sys.stdin if args.input == '-' else open(args.input, 'r')
     if args.input == '-':
-        input_file = sys.stdin
-        output_file = "output.mp3"
+        output_file = "output.mp3" if not args.output else args.output
+    elif args.output:
+        output_file = args.output
+        if not args.encoding:
+            args.encoding = os.path.splitext(output_file)[1][1:]
     else:
-        input_file = open(args.input, 'r')
         output_file = args.input + "." + args.encoding if args.encoding else ".mp3"
 
     if os.path.exists(output_file):
