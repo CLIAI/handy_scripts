@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import queue
 import tempfile
 import time
@@ -7,7 +8,10 @@ import argparse
 import shutil
 import subprocess
 import numpy as np
+from functools import partial
 from openai import OpenAI
+
+eprint = partial(print, file=sys.stderr)
 
 # Argument parsing
 parser = argparse.ArgumentParser(description='OpenAI STT/ASR CLI (Voice to Text)')
@@ -25,18 +29,24 @@ try:
 except (OSError, ModuleNotFoundError):
     sf = None
 
-from prompt_toolkit.shortcuts import prompt
+from prompt_toolkit import PromptSession
+from prompt_toolkit.output import create_output
 
+# Create an output object that writes to standard error
+stderr_output = create_output(sys.stderr)
+
+# Create a PromptSession with the custom output
+session = PromptSession(output=stderr_output)
 
 def display_menu(array_of_options=False):
     options = ['1', '2', '3', '']
     if array_of_options:
         return options
-    print("Recording. Press option and ENTER (or just ENTER for default):")
-    print("1. transcript with openai API (default)")
-    print("2. transcript locally with whisper.cpp (with `--speed-up`)")
-    print("3. transcript locally with whisper.cpp")
-    print("4. TODO")
+    eprint("Recording. Press option and ENTER (or just ENTER for default):")
+    eprint("1. transcript with openai API (default)")
+    eprint("2. transcript locally with whisper.cpp (with `--speed-up`)")
+    eprint("3. transcript locally with whisper.cpp")
+    eprint("4. TODO")
 
 
 class SoundDeviceError(Exception):
@@ -52,15 +62,15 @@ class Voice:
 
     def __init__(self):
         if sf is None:
-            print("The soundfile module is not available. Please install it using 'pip install soundfile'.")
+            eprint("The soundfile module is not available. Please install it using 'pip install soundfile'.", file=sys.stderr)
             raise SoundDeviceError("The soundfile module is required but not installed.")
         try:
             import sounddevice as sd
             if not args.silent:
-                print("Initializing sound device...")
+                eprint("Initializing sound device...")
             self.sd = sd
         except Exception as e:
-            print(f"An error occurred while initializing the sound device: {e}")
+            eprint(f"An error occurred while initializing the sound device: {e}")
             raise SoundDeviceError("Failed to initialize the sound device.")
 
     def callback(self, indata, frames, time, status):
@@ -106,7 +116,7 @@ class Voice:
 
         with self.sd.InputStream(samplerate=sample_rate, channels=1, callback=self.callback):
             if not args.silent:
-                choice = prompt(self.get_prompt, refresh_interval=0.1)
+                choice = session.prompt(self.get_prompt, refresh_interval=0.1)
             else:
                 choice = input("") # silently wait for ENTER in silent mode.
 
@@ -116,7 +126,7 @@ class Voice:
                 while not self.q.empty():
                     file.write(self.q.get())
         else:
-            print("No audio recorded.")
+            eprint("No audio recorded.")
 
         return choice, filename
 
@@ -133,12 +143,12 @@ class Voice:
                 base = os.path.splitext(os.path.basename(filename))[0]
                 temp_filename = os.path.join(temp_dir, f"{base}.wav")
                 shutil.copyfile(filename, temp_filename)
-                print(f"Processing {temp_filename} with whisper.cpp in {temp_dir}")
-                print(f"Base filename: {base}")
+                eprint(f"Processing {temp_filename} with whisper.cpp in {temp_dir}")
+                eprint(f"Base filename: {base}")
                 command = ["/usr/bin/time", f"--output={base}.wav.time", "whisper.cpp", "--model", "/usr/share/whisper.cpp-model-large/large.bin"] + extra_flags + ["-otxt", "-ovtt", "-osrt", "-ocsv", temp_filename]
-                print(f"Running command: {' '.join(command)}")
+                eprint(f"Running command: {' '.join(command)}")
                 result = subprocess.run(command, cwd=temp_dir)
-                print(f"Command result: {result}")
+                eprint(f"Command result: {result}")
                 with open(f"{temp_dir}/{base}.wav.time", 'r') as f:
                     print(f.read())
                 with open(f"{temp_dir}/{base}.wav.txt", 'r') as f:
@@ -154,7 +164,7 @@ def wait_for_user(transcript, arg_should_not_wait=False):
     if arg_should_not_wait:
         return
     transcript_trimmed = transcript.strip()
-    print(f"As local transcripts take long, let me wait for you confirming with 'Enter' before exiting. Transcript:\n{transcript_trimmed}")
+    eprint(f"As local transcripts take long, let me wait for you confirming with 'Enter' before exiting. Transcript:\n{transcript_trimmed}")
     input("")
 
 
@@ -169,11 +179,11 @@ if __name__ == "__main__":
         choice, filename = voice.raw_record_only()
         transcript = voice.transcribe_with_openai_api(filename)
     except KeyboardInterrupt:
-        print("\nRecording interrupted by user.")
+        eprint("\nRecording interrupted by user.")
         exit(0)
     if not args.silent:
         while choice not in display_menu(array_of_options=True):
-            print("Invalid choice. Please try again.")
+            eprint("Invalid choice. Please try again.")
             display_menu()
             choice = input("Enter your choice: ")
     else:
@@ -191,7 +201,7 @@ if __name__ == "__main__":
             transcript_trimmed = transcript.strip()
             subprocess.run("xclip -selection clipboard", input=transcript_trimmed, text=True, shell=True)
         else:
-            print("xclip is not available. Please install xclip or use a different method to copy to clipboard.")
+            eprint("xclip is not available. Please install xclip or use a different method to copy to clipboard.")
             exit(1)
     if args.output or args.append:
         transcript = transcript.rstrip('\n') + '\n'
