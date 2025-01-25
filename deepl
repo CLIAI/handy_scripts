@@ -50,8 +50,16 @@ fi
 
 # set -x #for debugging, also you may want to consider to comment "#| jq.."
 
-curl --silent -X POST "${DEEPL_API_ENDPOINT}" \
+response=$(curl --silent -X POST "${DEEPL_API_ENDPOINT}" \
     -H "Authorization: DeepL-Auth-Key ${DEEPL_API_KEY}" \
-	--data-urlencode "text=${text}" \
-	-d "source_lang=${srcl}" \
-	-d "target_lang=${dstl}" | jq -r '.translations[0].text'
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-urlencode "text=${text}" \
+    -d "source_lang=${srcl}" \
+    -d "target_lang=${dstl}")
+
+if echo "$response" | jq -e '.translations' > /dev/null; then
+    echo "$response" | jq -r '.translations[0].text'
+else
+    echo "Error: $(echo "$response" | jq -r '.message')"
+    exit 1
+fi
