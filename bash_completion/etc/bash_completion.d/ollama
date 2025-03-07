@@ -1,0 +1,53 @@
+#!/bin/bash
+# Bash completion for the "ollama" CLI.  Requires jq and curl.
+#
+# Published: 
+# * https://github.com/CLIAI/handy_scripts/blob/main/bash_completion/etc/bash_completion.d/ollama
+# * https://gist.github.com/gwpl/a5e47034029bcb37de5b13f64108fc80/
+
+# Cache settings
+_OLLAMA_MODEL_TTL=300
+_OLLAMA_MODELS_TIMESTAMP=0
+_OLLAMA_MODELS=""
+
+# Fetch models from Ollama server, caching results
+_ollama_fetch_models() {
+  local now
+  now=$(date +%s)
+  if [ $(( now - _OLLAMA_MODELS_TIMESTAMP )) -gt $_OLLAMA_MODEL_TTL ]; then
+    _OLLAMA_MODELS=$(
+      curl -s http://localhost:11434/api/tags \
+      | jq -r '.models[].name'
+    )
+    _OLLAMA_MODELS_TIMESTAMP=$now
+  fi
+}
+
+# Main completion function
+_ollama() {
+  local cur prev
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  case "${prev}" in
+    run)
+      # Get fresh models from Ollama
+      _ollama_fetch_models
+
+      # Filter models by whatever the user has typed so far (case-insensitive)
+      # and feed them into compgen so they appear as completions.
+      local filtered
+      filtered=$(echo "$_OLLAMA_MODELS" | grep -i "$cur")
+      COMPREPLY=( $(compgen -W "${filtered}" -- "$cur") )
+      return 0
+      ;;
+  esac
+
+  # Default commands
+  COMPREPLY=( $(compgen -W "serve create show run pull push list ps cp rm help" -- "$cur") )
+}
+
+# Register the completion function
+complete -F _ollama ollama
+
