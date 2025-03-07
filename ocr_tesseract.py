@@ -10,6 +10,7 @@
 # data while ensuring ease of use through command-line interface.
 #
 # published:
+# * https://github.com/CLIAI/handy_scripts/blob/main/ocr_tesseract.py
 # * https://gist.github.com/gwpl/aa26593b575c93c76178a1bcc2afa9eb
 #
 # Keep sources:
