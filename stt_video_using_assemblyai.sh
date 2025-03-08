@@ -88,9 +88,9 @@ transcribe_with_diarization "$expected_speakers" "$LANGUAGE" "$MP3" "$TXT"
 if [ -f "$TXT" ]; then
   echo "Transcript is available at: $TXT" >&2
   
-  # If the transcript exists but wasn't just printed by stt_assemblyai.py,
-  # print it to stdout to ensure consistent behavior
-  if [ -s "$TXT" ]; then
+  # Only print the transcript if it wasn't already printed by stt_assemblyai.py
+  # We can check if the transcript was just created by comparing timestamps
+  if [ -s "$TXT" ] && [ "$TXT" -ot "$MP3" ]; then
     cat "$TXT"
   fi
 fi
