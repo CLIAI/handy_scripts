@@ -36,21 +36,19 @@ function transcribe_with_diarization() {
   local LANGUAGE="$2"
   local MP3="$3"
   local TXT="$4"
-  if [ ! -f "$TXT" ]; then
-    if [ "$expected_speakers" -eq 1 ]; then
-      set -x
-      stt_assemblyai.py -l "$LANGUAGE" -o "$TXT" "$MP3"
-    elif [ "$expected_speakers" -ne 0 ]; then
-      set -x
-      stt_assemblyai.py -l "$LANGUAGE" -d -e "$expected_speakers" -o "$TXT" "$MP3"
-    else
-      set -x
-      stt_assemblyai.py -l "$LANGUAGE" -d -o "$TXT" "$MP3"
-    fi
-set +x
+  
+  # Always call stt_assemblyai.py - it will handle idempotence internally
+  if [ "$expected_speakers" -eq 1 ]; then
+    set -x
+    stt_assemblyai.py -l "$LANGUAGE" -o "$TXT" "$MP3"
+  elif [ "$expected_speakers" -ne 0 ]; then
+    set -x
+    stt_assemblyai.py -l "$LANGUAGE" -d -e "$expected_speakers" -o "$TXT" "$MP3"
   else
-    echo "File $TXT already exists."
+    set -x
+    stt_assemblyai.py -l "$LANGUAGE" -d -o "$TXT" "$MP3"
   fi
+  set +x
 }
 
 if [ $# -eq 0 ]; then
@@ -79,5 +77,14 @@ if [ -z "$LANGUAGE" ]; then
   LANGUAGE="${LANGUAGE:-en}"
 fi
 
+# Extract MP3 if needed
 extract_mp3 "$VIDEO" "$MP3"
+
+# Transcribe using AssemblyAI
+# stt_assemblyai.py will handle idempotence - if transcript exists, it will display it
 transcribe_with_diarization "$expected_speakers" "$LANGUAGE" "$MP3" "$TXT"
+
+# Display a message indicating completion
+if [ -f "$TXT" ]; then
+  echo "Transcript is available at: $TXT"
+fi
