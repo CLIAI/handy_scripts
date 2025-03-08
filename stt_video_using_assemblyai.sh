@@ -12,10 +12,10 @@ then
 fi
 
 if [ $# -eq 0 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
-  echo "Usage: $0 video_file [expected_speakers [language code]]"
-  echo
-  echo "* video_file: The path to the video file you want to transcribe."
-  echo "* expected_speakers: The number of speakers in the video."
+  echo "Usage: $0 video_file [expected_speakers [language code]]" >&2
+  echo >&2
+  echo "* video_file: The path to the video file you want to transcribe." >&2
+  echo "* expected_speakers: The number of speakers in the video." >&2
   exit 1
 fi
 
@@ -27,7 +27,7 @@ function extract_mp3() {
     ffmpeg -i "$video" -vn -ab 128k -ar 44100 -y "$MP3"
     set +x
   else
-    echo "File $MP3 already exists."
+    echo "File $MP3 already exists." >&2
   fi
 }
 
@@ -52,13 +52,13 @@ function transcribe_with_diarization() {
 }
 
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 video_file expected_speakers"
+  echo "Usage: $0 video_file expected_speakers" >&2
   exit 0
 fi
 
 VIDEO="$1"
 if [ ! -f "$VIDEO" ]; then
-  echo "Video file $VIDEO does not exist."
+  echo "Video file $VIDEO does not exist." >&2
   exit 1
 fi
 
@@ -86,5 +86,11 @@ transcribe_with_diarization "$expected_speakers" "$LANGUAGE" "$MP3" "$TXT"
 
 # Display a message indicating completion
 if [ -f "$TXT" ]; then
-  echo "Transcript is available at: $TXT"
+  echo "Transcript is available at: $TXT" >&2
+  
+  # If the transcript exists but wasn't just printed by stt_assemblyai.py,
+  # print it to stdout to ensure consistent behavior
+  if [ -s "$TXT" ]; then
+    cat "$TXT"
+  fi
 fi
