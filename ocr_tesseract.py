@@ -117,7 +117,8 @@ if __name__ == "__main__":
     parser.add_argument("--oem", type=int, default=3, help="OCR Engine mode for Tesseract")
     parser.add_argument("--language", "--lang", "-l", type=str, default="eng", help="Language for OCR")
     parser.add_argument("--bounding_boxes", "-B", action="store_true", help="Return bounding box information")
-    parser.add_argument("--draw-bounding-boxes", "--dbb", metavar="FILENAME", help="Draw bounding boxes on the image and save to specified file")
+    parser.add_argument("--draw-bounding-boxes", "--dbb", metavar="FILENAME", 
+                        help="Draw bounding boxes on the image and save to specified file. Use 'auto' or '-' to automatically name the file as [input_image].bb.png")
     parser.add_argument("--jsonl", "-j", action="store_true", help="Output results in JSONL format (one JSON object per line)")
     parser.add_argument("--auto_preprocess", "--pre", action="store_true", help="Automatically use adaptive thresholding")
     args = parser.parse_args()
@@ -136,9 +137,15 @@ if __name__ == "__main__":
     # Ensure the output path for drawn bounding boxes has .png extension
     draw_boxes_path = None
     if args.draw_bounding_boxes:
-        draw_boxes_path = args.draw_bounding_boxes
-        if not draw_boxes_path.lower().endswith('.png'):
-            draw_boxes_path += '.png'
+        # Handle special cases for auto-naming
+        if args.draw_bounding_boxes == '-' or args.draw_bounding_boxes.lower() == 'auto':
+            # Generate filename based on input image name
+            base_name = os.path.splitext(args.image_path)[0]
+            draw_boxes_path = f"{base_name}.bb.png"
+        else:
+            draw_boxes_path = args.draw_bounding_boxes
+            if not draw_boxes_path.lower().endswith('.png'):
+                draw_boxes_path += '.png'
 
     result = perform_ocr(args.image_path, preprocess_options, tesseract_config, 
                          return_bounding_boxes, draw_boxes_path)
