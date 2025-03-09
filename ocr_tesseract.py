@@ -109,12 +109,10 @@ if __name__ == "__main__":
                     box_data = {
                         "type": "text_box",
                         "text": result["data"]["text"][i],
-                        "box": {
-                            "left": result["data"]["left"][i],
-                            "top": result["data"]["top"][i],
-                            "width": result["data"]["width"][i],
-                            "height": result["data"]["height"][i]
-                        },
+                        "x": result["data"]["left"][i],
+                        "y": result["data"]["top"][i],
+                        "w": result["data"]["width"][i],
+                        "h": result["data"]["height"][i],
                         "confidence": result["data"]["conf"][i]
                     }
                     print(json.dumps(box_data))
