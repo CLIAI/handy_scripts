@@ -21,6 +21,7 @@
 
 import sys
 import argparse
+import json
 from PIL import Image
 
 # Try to import required libraries with helpful error messages if they fail
@@ -83,6 +84,7 @@ if __name__ == "__main__":
     parser.add_argument("--oem", type=int, default=3, help="OCR Engine mode for Tesseract")
     parser.add_argument("--language", "--lang", "-l", type=str, default="eng", help="Language for OCR")
     parser.add_argument("--bounding_boxes", "-B", action="store_true", help="Return bounding box information")
+    parser.add_argument("--jsonl", "-j", action="store_true", help="Output results in JSONL format (one JSON object per line)")
     parser.add_argument("--auto_preprocess", "--pre", action="store_true", help="Automatically use adaptive thresholding")
     args = parser.parse_args()
 
@@ -95,9 +97,32 @@ if __name__ == "__main__":
     }
 
     result = perform_ocr(args.image_path, preprocess_options, tesseract_config, args.bounding_boxes)
-    print("Extracted Text:", result["text"])
-    if args.bounding_boxes:
-        print("\nBounding Box Data:")
-        for i in range(len(result["data"]["text"])):
-            if result["data"]["text"][i].strip():
-                print(f"Text: '{result['data']['text'][i]}' | Box: [{result['data']['left'][i]}, {result['data']['top'][i]}, {result['data']['width'][i]}, {result['data']['height'][i]}] | Confidence: {result['data']['conf'][i]}")
+    
+    if args.jsonl:
+        # Output full text as first JSONL entry
+        print(json.dumps({"type": "full_text", "text": result["text"]}))
+        
+        # Output each text box as a separate JSONL entry if bounding boxes requested
+        if args.bounding_boxes:
+            for i in range(len(result["data"]["text"])):
+                if result["data"]["text"][i].strip():
+                    box_data = {
+                        "type": "text_box",
+                        "text": result["data"]["text"][i],
+                        "box": {
+                            "left": result["data"]["left"][i],
+                            "top": result["data"]["top"][i],
+                            "width": result["data"]["width"][i],
+                            "height": result["data"]["height"][i]
+                        },
+                        "confidence": result["data"]["conf"][i]
+                    }
+                    print(json.dumps(box_data))
+    else:
+        # Original human-readable output format
+        print("Extracted Text:", result["text"])
+        if args.bounding_boxes:
+            print("\nBounding Box Data:")
+            for i in range(len(result["data"]["text"])):
+                if result["data"]["text"][i].strip():
+                    print(f"Text: '{result['data']['text'][i]}' | Box: [{result['data']['left'][i]}, {result['data']['top'][i]}, {result['data']['width'][i]}, {result['data']['height'][i]}] | Confidence: {result['data']['conf'][i]}")
