@@ -22,6 +22,7 @@
 import sys
 import argparse
 import json
+import os
 from PIL import Image
 
 # Try to import required libraries with helpful error messages if they fail
@@ -57,7 +58,32 @@ def preprocess_image(image, grayscale=True, threshold=False, threshold_value=150
             _, processed = cv2.threshold(processed, threshold_value, 255, cv2.THRESH_BINARY)
     return processed
 
-def perform_ocr(image_path, preprocess_options, tesseract_config, return_bounding_boxes=False):
+def draw_bounding_boxes(image, data, output_path):
+    """Draw bounding boxes on the image and save it."""
+    try:
+        import numpy as np
+        # Make a copy of the image to draw on
+        img_with_boxes = image.copy()
+        
+        # Draw rectangles for each detected text area
+        for i in range(len(data["text"])):
+            if data["text"][i].strip():
+                x, y, w, h = data["left"][i], data["top"][i], data["width"][i], data["height"][i]
+                cv2.rectangle(img_with_boxes, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                
+                # Add text label with confidence
+                text = f"{data['text'][i]} ({data['conf'][i]}%)"
+                cv2.putText(img_with_boxes, text, (x, y - 10), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
+        
+        # Save the image with bounding boxes
+        cv2.imwrite(output_path, img_with_boxes)
+        return True
+    except ImportError as e:
+        print(f"ERROR: Cannot generate image with bounding boxes due to missing import: {e}", file=sys.stderr)
+        return False
+
+def perform_ocr(image_path, preprocess_options, tesseract_config, return_bounding_boxes=False, draw_boxes_path=None):
     """Run OCR on the image with the given settings."""
     image = cv2.imread(image_path)
     if image is None:
@@ -66,9 +92,16 @@ def perform_ocr(image_path, preprocess_options, tesseract_config, return_boundin
     pil_image = Image.fromarray(processed_image)
     extracted_text = pytesseract.image_to_string(pil_image, config=tesseract_config)
     output = {"text": extracted_text}
-    if return_bounding_boxes:
+    
+    # Always get bounding box data if we need to draw boxes
+    if return_bounding_boxes or draw_boxes_path:
         data = pytesseract.image_to_data(pil_image, config=tesseract_config, output_type=pytesseract.Output.DICT)
         output["data"] = data
+        
+        # Draw bounding boxes if requested
+        if draw_boxes_path:
+            draw_bounding_boxes(image, data, draw_boxes_path)
+    
     return output
 
 if __name__ == "__main__":
@@ -84,6 +117,7 @@ if __name__ == "__main__":
     parser.add_argument("--oem", type=int, default=3, help="OCR Engine mode for Tesseract")
     parser.add_argument("--language", "--lang", "-l", type=str, default="eng", help="Language for OCR")
     parser.add_argument("--bounding_boxes", "-B", action="store_true", help="Return bounding box information")
+    parser.add_argument("--draw-bounding-boxes", "--dbb", metavar="FILENAME", help="Draw bounding boxes on the image and save to specified file")
     parser.add_argument("--jsonl", "-j", action="store_true", help="Output results in JSONL format (one JSON object per line)")
     parser.add_argument("--auto_preprocess", "--pre", action="store_true", help="Automatically use adaptive thresholding")
     args = parser.parse_args()
@@ -95,8 +129,19 @@ if __name__ == "__main__":
         "threshold_value": args.threshold_value,
         "adaptive": args.adaptive or args.auto_preprocess
     }
+    
+    # If drawing bounding boxes is requested, ensure bounding_boxes is also enabled
+    return_bounding_boxes = args.bounding_boxes or (args.draw_bounding_boxes is not None)
+    
+    # Ensure the output path for drawn bounding boxes has .png extension
+    draw_boxes_path = None
+    if args.draw_bounding_boxes:
+        draw_boxes_path = args.draw_bounding_boxes
+        if not draw_boxes_path.lower().endswith('.png'):
+            draw_boxes_path += '.png'
 
-    result = perform_ocr(args.image_path, preprocess_options, tesseract_config, args.bounding_boxes)
+    result = perform_ocr(args.image_path, preprocess_options, tesseract_config, 
+                         return_bounding_boxes, draw_boxes_path)
     
     if args.jsonl:
         # Output full text as first JSONL entry
