@@ -257,6 +257,17 @@ def main():
         # Fallback
         return ".txt"
 
+    def set_extended_attribute(filename, url_val):
+        """
+        Attempt to store the original url in extended attribute: user.xdg.origin.url
+        If it fails, ignore unless verbosity > 0, then show a warning.
+        """
+        try:
+            os.setxattr(filename, "user.xdg.origin.url", url_val.encode('utf-8'))
+        except OSError as e:
+            if verbosity > 0:
+                print(f"Warning: could not set xattr user.xdg.origin.url on {filename}: {e}", file=sys.stderr)
+
     # If --save-all is used, we produce multiple output files
     if args.save_all:
         if not args.output:
@@ -329,12 +340,13 @@ def main():
             try:
                 with open(out_filename, "w", encoding="utf-8") as f_out:
                     f_out.write(str(out_str))
-                if verbosity > 0:
-                    print(f"Wrote {item} to {out_filename}", file=sys.stderr)
             except OSError as e:
                 if verbosity > 0:
                     print(f"Error writing to {out_filename}: {e}", file=sys.stderr)
                 sys.exit(1)
+
+            # Attempt to store extended attribute for the original URL
+            set_extended_attribute(out_filename, args.url)
 
         # Done with multi-output mode
         sys.exit(0)
@@ -387,16 +399,16 @@ def main():
                 if verbosity > 0:
                     print(f"Auto-generated filename: {output_filename}", file=sys.stderr)
             
-            # write to a single file
             try:
                 with open(output_filename, "w", encoding="utf-8") as f_out:
                     f_out.write(single_output_str)
-                if verbosity > 0:
-                    print(f"Single output written to {output_filename}", file=sys.stderr)
             except OSError as e:
                 if verbosity > 0:
                     print(f"Error writing to {args.output}: {e}", file=sys.stderr)
                 sys.exit(1)
+
+            # Attempt to store extended attribute for the original URL
+            set_extended_attribute(output_filename, args.url)
         else:
             # Print to stdout as before
             print(single_output_str)
