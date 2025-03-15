@@ -214,6 +214,13 @@ def main():
     # =========================================================
     # Logic for new flags --output / --save-all
     # =========================================================
+    # TODO: Enhance --save-all implementation:
+    # - Handle which --field options work with which --return-format values
+    # - Different return formats have different structures requiring specific extraction logic
+    # - Add logic to download images when they are URLs, with appropriate naming conventions
+    # - Ensure proper standards compliance for xattr metadata
+    # - Implement overwrite protection options (force, skip, interactive) with sensible defaults
+    # =========================================================
 
     def get_data_string(item, full_data):
         """
@@ -223,6 +230,8 @@ def main():
           - 'text' / 'markdown' / 'html' / 'screenshot' / 'pageshot'
           - recognized field among 'content', 'title', 'description', 'links', 'images'
         """
+        # TODO: Enhance to properly handle different return formats
+        # Each return format may have a different structure for each field
         # Return entire JSON
         if item == "json":
             return json.dumps(full_data, indent=2, ensure_ascii=False)
@@ -232,6 +241,8 @@ def main():
             return full_data.get("data", {}).get(item, "")
 
         # For known fields: content, title, description, links, images
+        # TODO: Add special handling for 'images' to download image content when URLs are returned
+        # TODO: Determine appropriate naming convention for downloaded images
         return full_data.get("data", {}).get(item, "")
 
     def detect_extension(r_format, item):
@@ -262,6 +273,7 @@ def main():
         Attempt to store the original url in extended attribute: user.xdg.origin.url
         If it fails, ignore unless verbosity > 0, then show a warning.
         """
+        # TODO: Verify compliance with xattr standards and best practices
         try:
             os.setxattr(filename, "user.xdg.origin.url", url_val.encode('utf-8'))
         except OSError as e:
@@ -337,6 +349,7 @@ def main():
             else:
                 out_filename = f"{args.output}.{item}{ext}"
 
+            # TODO: Implement overwrite protection (force, skip, interactive modes)
             try:
                 with open(out_filename, "w", encoding="utf-8") as f_out:
                     f_out.write(str(out_str))
@@ -399,6 +412,7 @@ def main():
                 if verbosity > 0:
                     print(f"Auto-generated filename: {output_filename}", file=sys.stderr)
             
+            # TODO: Implement overwrite protection (force, skip, interactive modes)
             try:
                 with open(output_filename, "w", encoding="utf-8") as f_out:
                     f_out.write(single_output_str)
