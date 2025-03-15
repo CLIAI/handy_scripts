@@ -10,6 +10,60 @@ import os
 import argparse
 import requests
 import json
+import re
+
+def url_to_filename(url, verbosity=0):
+    """
+    Convert a URL to a safe filename.
+    
+    Args:
+        url (str): The URL to convert
+        verbosity (int): Verbosity level
+        
+    Returns:
+        str: A filename-safe string derived from the URL
+    """
+    # First, try to match against special patterns
+    # (This is a placeholder for future special case handlers)
+    
+    # If no special case matched, use the generic handler
+    return generic_url_to_filename(url, verbosity)
+
+def generic_url_to_filename(url, verbosity=0):
+    """
+    Generic function to convert any URL to a safe filename.
+    
+    Args:
+        url (str): The URL to convert
+        verbosity (int): Verbosity level
+        
+    Returns:
+        str: A filename-safe string derived from the URL
+    """
+    if verbosity > 1:
+        print(f"Converting URL to filename: {url}", file=sys.stderr)
+        
+    # Remove protocol (http://, https://)
+    clean_url = re.sub(r'^https?://', '', url)
+    
+    # Remove trailing slashes
+    clean_url = clean_url.rstrip('/')
+    
+    # Replace all characters that aren't alphanumeric, underscore, or hyphen
+    # This ensures the result fits [a-zA-Z0-9_-]
+    clean_url = re.sub(r'[^a-zA-Z0-9_-]', '_', clean_url)
+    
+    # Collapse multiple underscores into one
+    clean_url = re.sub(r'_+', '_', clean_url)
+    
+    # Limit length to avoid excessively long filenames
+    if len(clean_url) > 100:
+        clean_url = clean_url[:100]
+    
+    if verbosity > 1:
+        print(f"Generated filename: {clean_url}", file=sys.stderr)
+        
+    return clean_url
 
 def main():
     parser = argparse.ArgumentParser(
@@ -59,7 +113,8 @@ def main():
 
     # New flags:
     parser.add_argument("-o", "--output",
-                        help="Path or filename for the single output file, or prefix for multiple outputs if used with --save-all.")
+                        help="Path or filename for the single output file, or prefix for multiple outputs if used with --save-all. "
+                             "Use 'auto' to automatically generate filename based on URL.")
     parser.add_argument("--save-all", "-A",
                         help="Comma-separated list of items or 'all' to produce multiple files from a single request. "
                              "Possible items include 'json', 'content', 'title', 'description', 'links', 'images', "
@@ -208,6 +263,12 @@ def main():
             # Must have an -o prefix if we're saving multiple outputs
             print("Error: --save-all requires --output as a filename prefix.", file=sys.stderr)
             sys.exit(1)
+        
+        # Handle 'auto' special value for --output
+        if args.output.lower() == 'auto':
+            args.output = url_to_filename(args.url, verbosity)
+            if verbosity > 0:
+                print(f"Auto-generated filename prefix: {args.output}", file=sys.stderr)
 
         # Build the list of items we want to generate
         items_to_export = []
@@ -319,12 +380,19 @@ def main():
 
         single_output_str = produce_single_output()
         if args.output:
+            output_filename = args.output
+            # Handle 'auto' special value for --output
+            if args.output.lower() == 'auto':
+                output_filename = url_to_filename(args.url, verbosity)
+                if verbosity > 0:
+                    print(f"Auto-generated filename: {output_filename}", file=sys.stderr)
+            
             # write to a single file
             try:
-                with open(args.output, "w", encoding="utf-8") as f_out:
+                with open(output_filename, "w", encoding="utf-8") as f_out:
                     f_out.write(single_output_str)
                 if verbosity > 0:
-                    print(f"Single output written to {args.output}", file=sys.stderr)
+                    print(f"Single output written to {output_filename}", file=sys.stderr)
             except OSError as e:
                 if verbosity > 0:
                     print(f"Error writing to {args.output}: {e}", file=sys.stderr)
