@@ -35,6 +35,7 @@ def parse_args():
     Parse command line arguments.
     -k / --keys: comma-separated list of key names or known providers.
     -v / --verbose: increases verbosity level (each occurrence adds 1).
+    --reveal-values: if set, display actual environment variable values in the selection list.
     Everything after '--' or the first non-option argument is considered the command to run.
     """
     parser = argparse.ArgumentParser(
@@ -48,6 +49,11 @@ def parse_args():
         '-v', '--verbose', action='count', default=0,
         help="Increase verbosity level (use multiple times for more)."
     )
+    parser.add_argument(
+        '--reveal-values', action='store_true', default=False,
+        help="If set, display actual environment variable values in the selection menu."
+    )
+
     # We'll split out the command to run after the known flags.
     # The command can appear after a '--' or be all items that remain after known flags.
     # To handle that, we'll use parse_known_args and treat the remainder as the command.
@@ -83,11 +89,13 @@ def find_envvars_for_provider(provider_str):
     matches = [var for var in os.environ if var.startswith(prefix)]
     return matches, prefix
 
-def select_envvar_from_list(matches, prefix, verbosity):
+def select_envvar_from_list(matches, prefix, verbosity, reveal_values=False):
     """
     If multiple matches are found, interactively let user pick one.
     If exactly one match is found, return it immediately.
     If none found, return None.
+
+    Returns the name of the *selected* environment variable or None.
     """
     if not matches:
         log_message(f"No environment variable found matching prefix '{prefix}'.", 1, verbosity, "INFO")
@@ -98,7 +106,11 @@ def select_envvar_from_list(matches, prefix, verbosity):
     # Multiple found; prompt user
     log_message(f"Multiple environment variables match prefix '{prefix}':", 1, verbosity, "INFO")
     for i, m in enumerate(matches, start=1):
-        print(f"{i}) {m} = {os.environ[m]}", file=sys.stderr)
+        if reveal_values:
+            print(f"{i}) {m} = {os.environ[m]}", file=sys.stderr)
+        else:
+            print(f"{i}) {m}", file=sys.stderr)
+
     print("Select a number, or 'q' to skip:", file=sys.stderr)
     while True:
         choice = input("> ").strip().lower()
@@ -123,16 +135,17 @@ def main():
     # Parse the keys (comma separated)
     provider_list = [k.strip() for k in args.keys.split(',') if k.strip()]
 
-    # Dictionary of chosen environment variables { ENV_VAR_NAME: ENV_VAR_VALUE }
+    # Dictionary of chosen environment variables { canonical_var_name: value_from_user_choice }
     chosen_env = {}
 
     # For each requested key/provider
     for provider_str in provider_list:
         matches, prefix = find_envvars_for_provider(provider_str)
-        selected = select_envvar_from_list(matches, prefix, verbosity)
-        if selected:
-            # Set in chosen_env
-            chosen_env[selected] = os.environ[selected]
+        selected_var = select_envvar_from_list(matches, prefix, verbosity, reveal_values=args.reveal_values)
+        if selected_var:
+            # Instead of using selected_var as the key, use prefix to overwrite
+            # e.g. if prefix was OPENAI_API_KEY, we set that var with the chosen value
+            chosen_env[prefix] = os.environ[selected_var]
 
     # If no command is given, show usage and exit
     if not args.command:
@@ -141,20 +154,20 @@ def main():
         sys.exit(1)
 
     # Prepare environment for the subprocess
-    # Copy current environment to avoid changing parent's environment
     new_env = dict(os.environ)
     new_env.update(chosen_env)
 
     # If we want to see debug info about final environment vars set
     log_message("Will run command with these newly set environment variables:", 2, verbosity, "INFO")
     for k, v in chosen_env.items():
-        log_message(f"{k}={v}", 2, verbosity, "INFO")
+        if args.reveal_values:
+            log_message(f"{k}={v}", 2, verbosity, "INFO")
+        else:
+            log_message(f"{k}=[HIDDEN]", 2, verbosity, "INFO")
 
     # Execute the command
     log_message(f"Executing command: {' '.join(args.command)}", 1, verbosity, "INFO")
 
-    # We can either use os.execvp if we truly want to replace this process,
-    # or we can use subprocess. Let's use subprocess to remain in control.
     import subprocess
     try:
         result = subprocess.run(args.command, env=new_env)
