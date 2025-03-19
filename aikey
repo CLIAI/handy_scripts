@@ -1,3 +1,170 @@
 #!/usr/bin/env python3
+"""
+A minimal-dependency Python 3 script to manage and select AI API keys from environment variables,
+then run a specified command with those keys set in its environment.
 
-#...
+Goals and objectives (for a technical audience, concisely):
+- Provide an easy way to choose which API key(s) to use at runtime.
+- Support known providers like "openai" -> "OPENAI_API_KEY", "replicate" -> "REPLICATE_API_TOKEN", etc.
+- Permits the user, via command line flags, to specify which keys (and/or providers) to look up.
+- If multiple matching environment variables are found, the user can interactively select one.
+- Once selected, the script sets those keys in the environment and executes a command.
+- Verbosity is adjustable via repeated "-v" or "--verbose" flags.
+
+Useful example:
+    aikey -k openai,replicate -- echo "Testing environment..."
+
+Future roadmap:
+- Support .env files or other credential stores.
+- Additional environment variable name transformations beyond prefix matching.
+- More advanced interactive selection (e.g., filtering, searching, etc.).
+"""
+
+import os
+import sys
+import argparse
+
+KNOWN_PROVIDERS = {
+    'openai': 'OPENAI_API_KEY',
+    'replicate': 'REPLICATE_API_TOKEN',
+    'anthropic': 'ANTHROPIC_API_KEY'
+}
+
+def parse_args():
+    """
+    Parse command line arguments.
+    -k / --keys: comma-separated list of key names or known providers.
+    -v / --verbose: increases verbosity level (each occurrence adds 1).
+    Everything after '--' or the first non-option argument is considered the command to run.
+    """
+    parser = argparse.ArgumentParser(
+        description="Select AI API keys from environment and run a command with those keys set."
+    )
+    parser.add_argument(
+        '-k', '--keys',
+        help="Comma-separated list of keys or providers to load. Examples: openai,replicate,anthropic."
+    )
+    parser.add_argument(
+        '-v', '--verbose', action='count', default=0,
+        help="Increase verbosity level (use multiple times for more)."
+    )
+    # We'll split out the command to run after the known flags.
+    # The command can appear after a '--' or be all items that remain after known flags.
+    # To handle that, we'll use parse_known_args and treat the remainder as the command.
+    args, remainder = parser.parse_known_args()
+
+    # If remainder starts with '--', remove it.
+    if len(remainder) > 0 and remainder[0] == '--':
+        remainder = remainder[1:]
+
+    args.command = remainder
+    return args
+
+def log_message(msg, level, current_verbosity, prefix="INFO"):
+    """
+    Print a message with a prefix to stderr if current_verbosity >= level.
+    """
+    if current_verbosity >= level:
+        # For level 1 -> prefix is "INFO", for level 5 -> prefix might be "DEBUG"
+        print(f"{prefix}: {msg}", file=sys.stderr)
+
+def find_envvars_for_provider(provider_str):
+    """
+    Given a provider string (e.g. 'openai'), check if we have it in KNOWN_PROVIDERS.
+    If so, retrieve the canonical environment variable name. If not, assume the user
+    wants that exact string as the prefix.
+    Then find environment variables that start with that prefix (case-sensitive).
+    """
+    if provider_str.lower() in KNOWN_PROVIDERS:
+        prefix = KNOWN_PROVIDERS[provider_str.lower()]
+    else:
+        prefix = provider_str
+
+    matches = [var for var in os.environ if var.startswith(prefix)]
+    return matches, prefix
+
+def select_envvar_from_list(matches, prefix, verbosity):
+    """
+    If multiple matches are found, interactively let user pick one.
+    If exactly one match is found, return it immediately.
+    If none found, return None.
+    """
+    if not matches:
+        log_message(f"No environment variable found matching prefix '{prefix}'.", 1, verbosity, "INFO")
+        return None
+    if len(matches) == 1:
+        return matches[0]
+
+    # Multiple found; prompt user
+    log_message(f"Multiple environment variables match prefix '{prefix}':", 1, verbosity, "INFO")
+    for i, m in enumerate(matches, start=1):
+        print(f"{i}) {m} = {os.environ[m]}", file=sys.stderr)
+    print("Select a number, or 'q' to skip:", file=sys.stderr)
+    while True:
+        choice = input("> ").strip().lower()
+        if choice == 'q':
+            return None
+        try:
+            idx = int(choice)
+            if 1 <= idx <= len(matches):
+                return matches[idx - 1]
+        except ValueError:
+            pass
+        print("Invalid input. Please enter an integer from the list, or 'q' to quit.", file=sys.stderr)
+
+def main():
+    args = parse_args()
+    verbosity = args.verbose
+
+    # If no keys specified, default to "openai"
+    if not args.keys:
+        args.keys = "openai"
+
+    # Parse the keys (comma separated)
+    provider_list = [k.strip() for k in args.keys.split(',') if k.strip()]
+
+    # Dictionary of chosen environment variables { ENV_VAR_NAME: ENV_VAR_VALUE }
+    chosen_env = {}
+
+    # For each requested key/provider
+    for provider_str in provider_list:
+        matches, prefix = find_envvars_for_provider(provider_str)
+        selected = select_envvar_from_list(matches, prefix, verbosity)
+        if selected:
+            # Set in chosen_env
+            chosen_env[selected] = os.environ[selected]
+
+    # If no command is given, show usage and exit
+    if not args.command:
+        log_message("No command specified. Exiting.", 1, verbosity, "INFO")
+        print("Usage: aikey -k openai,replicate [--] command [arguments]\n", file=sys.stderr)
+        sys.exit(1)
+
+    # Prepare environment for the subprocess
+    # Copy current environment to avoid changing parent's environment
+    new_env = dict(os.environ)
+    new_env.update(chosen_env)
+
+    # If we want to see debug info about final environment vars set
+    log_message("Will run command with these newly set environment variables:", 2, verbosity, "INFO")
+    for k, v in chosen_env.items():
+        log_message(f"{k}={v}", 2, verbosity, "INFO")
+
+    # Execute the command
+    log_message(f"Executing command: {' '.join(args.command)}", 1, verbosity, "INFO")
+
+    # We can either use os.execvp if we truly want to replace this process,
+    # or we can use subprocess. Let's use subprocess to remain in control.
+    import subprocess
+    try:
+        result = subprocess.run(args.command, env=new_env)
+        sys.exit(result.returncode)
+    except FileNotFoundError:
+        log_message(f"Command not found: {args.command[0]}", 1, verbosity, "INFO")
+        sys.exit(127)
+    except Exception as e:
+        log_message(f"Error running command: {e}", 1, verbosity, "INFO")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
