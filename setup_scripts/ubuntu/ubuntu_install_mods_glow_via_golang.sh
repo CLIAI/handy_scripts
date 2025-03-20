@@ -1,7 +1,19 @@
 #!/bin/bash
 
+# Script aimed to install on fresh Ubuntu
+# glow - terminal Markdown hilighter https://github.com/charmbracelet/glow
+# mods - CLI for LLMs https://github.com/charmbracelet/mods/
+#
+# It has failover strategies to handle old Ubuntu insallations,
+# tips from: https://gist.github.com/gwpl/26846ef3c066b3109a03101cb58349f0
+# 
+# Also in case of running e.g. on small VM, it will try to detect
+# if compilation crashed due to little RAM
+# and try to add temporarily extra swap file.
+
+#!/bin/bash
+
 set -e  # Exit on error
-set -x # Report commands executed
 export DEBIAN_FRONTEND=noninteractive
 
 # Detect Ubuntu version
@@ -22,7 +34,7 @@ fi
 # Apply the updated PATH in this session
 export PATH="$GO_BIN:$PATH"
 
-# Function to install Go with fallbacks
+# Function to install Go with failover
 install_go() {
     if command -v go &>/dev/null; then
         echo "Go is already installed."
@@ -52,15 +64,49 @@ install_go() {
 # Install Go
 install_go
 
-# Ensure the Go environment is set up properly
+# Ensure Go environment is set up properly
 export GOPATH="$GO_PATH"
 export PATH="$GO_BIN:$PATH"
 
-# Function to install a Go tool with fallback strategies
+# Function to check Go version
+get_go_version() {
+    go version | awk '{print $3}' | cut -d. -f2
+}
+
+GO_VERSION=$(get_go_version)
+
+# Function to check available RAM
+check_ram() {
+    free -m | awk '/^Mem:/ { print $2 }'
+}
+
+AVAILABLE_RAM=$(check_ram)
+
+# Cleanup function for swap file
+cleanup_swap() {
+    echo "Removing temporary swap file..."
+    sudo swapoff /swapfile
+    sudo rm -f /swapfile
+    echo "Swap file removed."
+}
+
+# Function to create a temporary swap file
+create_swap() {
+    # Ensure cleanup on exit
+    trap cleanup_swap EXIT
+
+    echo "Adding temporary 2GB swap file to mitigate memory issues..."
+    sudo fallocate -l 2G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo "Swap file added."
+}
+
+# Function to install a Go tool with fallback
 install_go_tool() {
     local tool_cmd="$1"
     local install_cmd="$2"
-    local fallback_cmd="$3"
 
     if command -v "$tool_cmd" &>/dev/null; then
         echo "$tool_cmd is already installed."
@@ -68,25 +114,49 @@ install_go_tool() {
     fi
 
     echo "Installing $tool_cmd via go install..."
+
     if go install "$install_cmd"; then
         echo "$tool_cmd successfully installed."
     else
-        echo "Failed to install $tool_cmd with go install, attempting fallback..."
-        export GO111MODULE=on
-        if go get "$fallback_cmd"; then
-            echo "$tool_cmd installed using fallback method."
+        echo "Failed to install $tool_cmd with go install."
+
+        # Check if the failure was caused by out-of-memory
+        if dmesg | tail -n 20 | grep -q 'Out of memory'; then
+            echo "It looks like Go installation was killed due to low memory."
+
+            if [[ $(id -u) -ne 0 ]]; then
+                echo "Warning: You are not running as root."
+                echo "Available RAM: ${AVAILABLE_RAM}MB"
+                echo "Consider increasing memory or adding swap manually."
+                exit 1
+            fi
+
+            if [[ "$AVAILABLE_RAM" -lt 4000 ]]; then
+                create_swap
+                echo "Retrying installation of $tool_cmd after adding swap..."
+                if go install "$install_cmd"; then
+                    echo "$tool_cmd installed successfully after adding swap."
+                    return 0
+                else
+                    echo "Failed to install $tool_cmd even after adding swap."
+                    exit 1
+                fi
+            else
+                echo "You have sufficient memory. Please check system logs for other issues."
+                exit 1
+            fi
         else
-            echo "Failed to install $tool_cmd. Please check your Go installation."
+            echo "Installation failed for an unknown reason. Please check your system."
             exit 1
         fi
     fi
 }
 
 # Install `glow`
-install_go_tool "glow" "github.com/charmbracelet/glow@latest" "github.com/charmbracelet/glow"
+install_go_tool "glow" "github.com/charmbracelet/glow@latest"
 
 # Install `mods`
-install_go_tool "mods" "github.com/charmbracelet/mods@latest" "github.com/charmbracelet/mods"
+install_go_tool "mods" "github.com/charmbracelet/mods@latest"
 
 echo "All installations are completed. Restart your shell or run 'source ~/.profile' to apply changes."
 
