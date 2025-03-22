@@ -85,6 +85,7 @@ zoo
 import os
 import sys
 import argparse
+import subprocess
 
 KNOWN_PROVIDERS = {
     'openai': 'OPENAI_API_KEY',
@@ -229,17 +230,26 @@ def main():
 
     # Execute the command
     log_message(f"Executing command: {' '.join(args.command)}", 1, verbosity, "INFO")
-
-    import subprocess
+    result = None
     try:
         result = subprocess.run(args.command, env=new_env)
-        sys.exit(result.returncode)
     except FileNotFoundError:
         log_message(f"Command not found: {args.command[0]}", 1, verbosity, "INFO")
-        sys.exit(127)
+        log_message("Attempting fallback by executing via interactive bash...", 1, verbosity, "INFO")
+        fallback_cmd = ["bash", "-i", "-c", " ".join(args.command)]
+        try:
+            result = subprocess.run(fallback_cmd, env=new_env)
+        except Exception as e:
+            log_message(f"Error in fallback execution: {e}", 1, verbosity, "INFO")
+            sys.exit(1)
     except Exception as e:
         log_message(f"Error running command: {e}", 1, verbosity, "INFO")
         sys.exit(1)
+
+    if result is not None:
+        sys.exit(result.returncode)
+    else:
+        sys.exit(127)
 
 if __name__ == "__main__":
     main()
