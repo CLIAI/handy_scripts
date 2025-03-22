@@ -18,6 +18,68 @@ Future roadmap:
 - Support .env files or other credential stores.
 - Additional environment variable name transformations beyond prefix matching.
 - More advanced interactive selection (e.g., filtering, searching, etc.).
+
+
+DEMO:
+
+```
+$ # Here we use 'bash -c...' as simluation of program 
+$ #    using environment values. Here we print them.
+
+$ export OPENAI_API_KEY='aaa'
+$ export OPENAI_API_KEY_BBB='bbb'
+$ export OPENAI_API_KEY_CCC='ccc'
+$ export ANTHROPIC_API_KEY='zoo'
+$ export ANTHROPIC_API_KEY_AAA='foo'
+$ export ANTHROPIC_API_KEY_BBB='bar'
+
+$ # Here user asks `aikey` to "wrap" execution and select which enviornment values one wants to use. With --reveal-values flga, prints them to terminal.
+$ aikey -k openai,anthropic --reveal-values bash -c 'echo "$OPENAI_API_KEY"; echo "$ANTHROPIC_API_KEY"'
+1) OPENAI_API_KEY_BBB = bbb
+2) OPENAI_API_KEY = aaa
+3) OPENAI_API_KEY_CCC = ccc
+Select a number, or 'q' to skip:
+> 1
+1) ANTHROPIC_API_KEY_AAA = foo
+2) ANTHROPIC_API_KEY = zoo
+3) ANTHROPIC_API_KEY_BBB = bar
+Select a number, or 'q' to skip:
+> 1
+bbb
+foo
+
+$ aikey -k openai,anthropic --reveal-values bash -c 'echo "$OPENAI_API_KEY"; echo "$ANTHROPIC_API_KEY"'
+1) OPENAI_API_KEY_BBB = bbb
+2) OPENAI_API_KEY = aaa
+3) OPENAI_API_KEY_CCC = ccc
+Select a number, or 'q' to skip:
+> 3
+1) ANTHROPIC_API_KEY_AAA = foo
+2) ANTHROPIC_API_KEY = zoo
+3) ANTHROPIC_API_KEY_BBB = bar
+Select a number, or 'q' to skip:
+> 3
+ccc
+bar
+
+$ # here example without --reveal-flag
+$ aikey -k openai,anthropic bash -c 'echo "$OPENAI_API_KEY"; echo "$ANTHROPIC_API_KEY"'
+1) OPENAI_API_KEY_BBB
+2) OPENAI_API_KEY
+3) OPENAI_API_KEY_CCC
+Select a number, or 'q' to skip:
+> 2
+1) ANTHROPIC_API_KEY_AAA
+2) ANTHROPIC_API_KEY
+3) ANTHROPIC_API_KEY_BBB
+Select a number, or 'q' to skip:
+> 2
+aaa
+zoo
+```
+
+
+
 """
 
 import os
