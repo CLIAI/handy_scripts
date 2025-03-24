@@ -96,9 +96,10 @@ KNOWN_PROVIDERS = {
 def parse_args():
     """
     Parse command line arguments.
-    -k / --keys: comma-separated list of key names or known providers.
-    -v / --verbose: increases verbosity level (each occurrence adds 1).
+    -k, --keys: comma-separated list of key names or known providers.
+    -v, --verbose: increases verbosity level (each occurrence adds 1).
     --reveal-values: if set, display actual environment variable values in the selection list.
+    -s, --shell-export: if set, output environment variable exports suitable for 'eval' in a shell.
     Everything after '--' or the first non-option argument is considered the command to run.
     """
     parser = argparse.ArgumentParser(
@@ -115,6 +116,10 @@ def parse_args():
     parser.add_argument(
         '--reveal-values', action='store_true', default=False,
         help="If set, display actual environment variable values in the selection menu."
+    )
+    parser.add_argument(
+        '-s', '--shell-export', action='store_true', default=False,
+        help="If set, output shell export statements instead of running a command."
     )
 
     # We'll split out the command to run after the known flags.
@@ -207,7 +212,13 @@ def main():
         if selected_var:
             chosen_env[prefix] = os.environ[selected_var]
 
-    # If no command is given, show usage and exit
+    # If the user wants shell export statements, print them and exit
+    if args.shell_export:
+        for k, v in chosen_env.items():
+            print(f'export {k}="{v}"')
+        sys.exit(0)
+
+    # If no command is given (and no shell export requested), show usage and exit
     if not args.command:
         log_message("No command specified. Exiting.", 1, verbosity, "INFO")
         print("Usage: aikey -k openai,replicate [--] command [arguments]\n", file=sys.stderr)
@@ -238,7 +249,6 @@ def main():
         # the ones that might be loaded in an interactive shell.
         export_cmd_parts = []
         for k, v in chosen_env.items():
-            # Using 'export VAR="value"' approach to ensure it overwrites in the shell
             export_cmd_parts.append(f'export {k}="{v}"')
         export_cmd = "; ".join(export_cmd_parts)
         fallback_cmd = ["bash", "-i", "-c", f'{export_cmd}; {cmd_str}']
