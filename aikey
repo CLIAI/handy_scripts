@@ -77,9 +77,6 @@ Select a number, or 'q' to skip:
 aaa
 zoo
 ```
-
-
-
 """
 
 import os
@@ -103,7 +100,24 @@ def parse_args():
     Everything after '--' or the first non-option argument is considered the command to run.
     """
     parser = argparse.ArgumentParser(
-        description="Select AI API keys from environment and run a command with those keys set."
+        description="Select AI API keys from environment and run a command with those keys set.",
+        epilog="""
+Additional usage notes for --shell-export:
+------------------------------------------
+If you want to 'activate' chosen keys in your current shell, you can define a
+function in your .bashrc or .profile, for example:
+
+    function eaikey() {
+        eval "$(aikey --shell-export "$@" < /dev/tty 2>/dev/tty)"
+    }
+
+Then run:
+
+    eaikey -k openai,replicate
+
+and you'll be prompted (via stderr/stdin on your terminal) to choose the variables.
+They will be set in your current shell session afterwards.
+"""
     )
     parser.add_argument(
         '-k', '--keys',
