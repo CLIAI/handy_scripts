@@ -170,7 +170,7 @@ def find_envvars_for_provider(provider_str):
     matches = [var for var in os.environ if var.startswith(prefix)]
     return matches, prefix
 
-def select_envvar_from_list(matches, prefix, verbosity, reveal_values=False):
+def select_envvar_from_list(matches, prefix, verbosity, reveal_values=False, shell_export=False):
     """
     If multiple matches are found, interactively let user pick one.
     If exactly one match is found, return it immediately.
@@ -194,7 +194,15 @@ def select_envvar_from_list(matches, prefix, verbosity, reveal_values=False):
 
     print("Select a number, or 'q' to skip:", file=sys.stderr)
     while True:
-        choice = input("> ").strip().lower()
+        if shell_export:
+            # In shell-export mode, we read from /dev/tty to avoid messing with `eval`.
+            with open('/dev/tty', 'r') as tty:
+                print("> ", end='', file=sys.stderr)
+                sys.stderr.flush()
+                choice = tty.readline().strip().lower()
+        else:
+            choice = input("> ").strip().lower()
+
         if choice == 'q':
             return None
         try:
@@ -222,7 +230,9 @@ def main():
     # For each requested key/provider
     for provider_str in provider_list:
         matches, prefix = find_envvars_for_provider(provider_str)
-        selected_var = select_envvar_from_list(matches, prefix, verbosity, reveal_values=args.reveal_values)
+        selected_var = select_envvar_from_list(matches, prefix, verbosity,
+                                               reveal_values=args.reveal_values,
+                                               shell_export=args.shell_export)
         if selected_var:
             chosen_env[prefix] = os.environ[selected_var]
 
