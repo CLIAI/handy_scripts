@@ -117,7 +117,8 @@ Then run:
 
 and you'll be prompted (via stderr/stdin on your terminal) to choose the variables.
 They will be set in your current shell session afterwards.
-"""
+""",
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
         '-k', '--keys',
@@ -138,7 +139,6 @@ They will be set in your current shell session afterwards.
 
     # We'll split out the command to run after the known flags.
     # The command can appear after a '--' or be all items that remain after known flags.
-    # To handle that, we'll use parse_known_args and treat the remainder as the command.
     args, remainder = parser.parse_known_args()
 
     # If remainder starts with '--', remove it.
