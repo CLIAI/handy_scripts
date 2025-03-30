@@ -116,7 +116,7 @@ if __name__ == "__main__":
     parser.add_argument("--psm", type=int, default=3, help="Page segmentation mode for Tesseract")
     parser.add_argument("--oem", type=int, default=3, help="OCR Engine mode for Tesseract")
     parser.add_argument("--language", "--lang", "-l", type=str, default="eng", help="Language for OCR")
-    parser.add_argument("--bounding_boxes", "-B", action="store_true", help="Return bounding box information")
+    parser.add_argument("--bounding-boxes", "-B", action="store_true", help="Return bounding box information")
     parser.add_argument("--draw-bounding-boxes", "--dbb", metavar="FILENAME", 
                         help="Draw bounding boxes on the image and save to specified file. Use 'auto' or '-' to automatically name the file as [input_image].bb.png")
     parser.add_argument("--jsonl", "-j", action="store_true", help="Output results in JSONL format (one JSON object per line)")
