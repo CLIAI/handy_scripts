@@ -24,6 +24,7 @@ import argparse
 import json
 import os
 from PIL import Image
+import subprocess  # Added to handle the --view parameter
 
 # Try to import required libraries with helpful error messages if they fail
 try:
@@ -121,6 +122,9 @@ if __name__ == "__main__":
                         help="Draw bounding boxes on the image and save to specified file. Use 'auto' or '-' to automatically name the file as [input_image].bb.png")
     parser.add_argument("--jsonl", "-j", action="store_true", help="Output results in JSONL format (one JSON object per line)")
     parser.add_argument("--auto_preprocess", "--pre", action="store_true", help="Automatically use adaptive thresholding")
+    parser.add_argument("--view", "-V", type=str,
+                        help="Command line to view bounding box image after generation. If '{}' is present, the bounding box "
+                             "image filename will replace '{}'. Otherwise the bounding box image will be appended as the final argument.")
     args = parser.parse_args()
 
     tesseract_config = f"--psm {args.psm} --oem {args.oem} -l {args.language}"
@@ -171,8 +175,18 @@ if __name__ == "__main__":
     else:
         # Original human-readable output format
         print("Extracted Text:", result["text"])
-        if args.bounding_boxes:
+        if args.bounding_boxes and "data" in result:
             print("\nBounding Box Data:")
             for i in range(len(result["data"]["text"])):
                 if result["data"]["text"][i].strip():
                     print(f"Text: '{result['data']['text'][i]}' | Box: [{result['data']['left'][i]}, {result['data']['top'][i]}, {result['data']['width'][i]}, {result['data']['height'][i]}] | Confidence: {result['data']['conf'][i]}")
+    
+    # If we generated a bounding box image and the user wants to view it, run the specified command
+    if draw_boxes_path and args.view:
+        if '{}' in args.view:
+            view_cmd = args.view.format(draw_boxes_path)
+            view_cmd_list = view_cmd.split()
+        else:
+            view_cmd_list = args.view.split() + [draw_boxes_path]
+        
+        subprocess.run(view_cmd_list)
